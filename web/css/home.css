@@ -266,6 +266,14 @@ h6 { font-size: 12px; margin: 0 0 5px; padding: 0; }
     display:block;
 }
 
+#login_form {
+    background-color: white;
+    height: 300px;
+    align-items: center;
+    justify-content: center
+    
+}
+
 .nivo-controlNav {
     position:absolute;
     right: 10px;

@@ -13,12 +13,12 @@
 
         <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/ddsmoothmenu.js">
+        <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
+        <!--<script type="text/javascript" src="js/ddsmoothmenu.js">-->
 
         </script>
 
-        <script type="text/javascript">
+<!--        <script type="text/javascript">
 
             ddsmoothmenu.init({
                 mainmenuid: "top_nav", //menu DIV id
@@ -28,7 +28,7 @@
                 contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
             })
 
-        </script>
+        </script>-->
 
     </head>
 
@@ -41,7 +41,11 @@
                     <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
                     <div id="header_right">
                         <p>
-                            <a href="#">My Account</a> | <a href="#">My Wishlist</a> | <a href="#">My Cart</a> | <a href="#">Checkout</a> | <a href="#">Log In</a></p>
+                            <a href="#">My Account</a> | 
+                            <a href="#">My Wishlist</a> | 
+                            <a href="#">My Cart</a> | 
+                            <a href="#">Checkout</a> | 
+                            <a href="loginForCustomer.jsp">Log In</a></p>
                         <p>
                             Shopping Cart: <strong>3 items</strong> ( <a href="shoppingcart.html">Show Cart</a> )
                         </p>
@@ -149,13 +153,13 @@
                                 <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.
                             </div>
                         </div>
-                        <script type="text/javascript" src="js/jquery-1.4.3.min.js"></script>
-                        <script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>
-                        <script type="text/javascript">
+                        <!--<script type="text/javascript" src="js/jquery-1.4.3.min.js"></script>-->
+                        <!--<script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>-->
+<!--                        <script type="text/javascript">
                               $(window).load(function () {
                                   $('#slider').nivoSlider();
                               });
-                        </script>
+                        </script>-->
                         <h1>New Products</h1>
                         <div class="product_box">
                             <h3>Ut eu feugiat</h3>
