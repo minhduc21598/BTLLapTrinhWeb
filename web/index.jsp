@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@page import="model.User" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -13,9 +13,10 @@
 
         <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
         <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
-        <!--<script type="text/javascript" src="js/ddsmoothmenu.js">-->
-        <!--</script>-->
+        <!--<script type="text/javascript" src="js/ddsmoothmenu.js"></script>-->
+
         <!--        <script type="text/javascript">
+        
                     ddsmoothmenu.init({
                         mainmenuid: "top_nav", //menu DIV id
                         orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
@@ -23,8 +24,11 @@
                         //customtheme: ["#1c5a80", "#18374a"],
                         contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
                     })
+        
                 </script>-->
+
     </head>
+
     <body>
         <div id="templatemo_body_wrapper">
             <div id="templatemo_wrapper">
@@ -37,10 +41,22 @@
                             <!--<a href="#">My Wishlist</a> |--> 
                             <a href="#">My Cart</a> | 
                             <a href="#">Checkout</a> | 
-                            <a href="loginForCustomer.jsp">Log In</a></p>
-                        <p>
-                            Shopping Cart: <strong>3 items</strong> ( <a href="shoppingcart.html">Show Cart</a> )
-                        </p>
+                            <!--                            <a href="loginForCustomer.jsp">Log In</a></p>-->
+                            <% User user = (User) request.getAttribute("user"); %>
+                            <% if (user == null) { %>
+                            <a href="loginForCustomer.jsp">Log In</a>
+                            <% } else {%>
+                            <script>
+                                alert('Đăng nhập thành công !')
+                            </script>
+                            <p>
+                                Welcome,
+                                <a href="editInforCustomer.jsp"><%= user.getHoten()%></a>
+                            </p>
+                            <% }%>
+                            <p>
+                                Shopping Cart: <strong>3 items</strong> ( <a href="shoppingcart.html">Show Cart</a> )
+                            </p>
                     </div>
                     <div class="cleaner"></div>
                 </div> <!-- END of templatemo_header -->

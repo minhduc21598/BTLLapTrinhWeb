@@ -5,6 +5,7 @@ import dao.AccountDAO;
 import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -69,6 +70,7 @@ public class CheckLoginCustomer extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
         String name = request.getParameter("name");
         String pass = request.getParameter("pass");
         PrintWriter out = new PrintWriter(response.getWriter());
@@ -78,7 +80,10 @@ public class CheckLoginCustomer extends HttpServlet {
             UserDAO ud = new UserDAO();
             User user = ud.checkUser(ac.getId());
             if (user.getKieu() == 2) {
-                out.print("Welcome, " + user.getHoten() + " !");
+//                out.print("Welcome, " + user.getHoten() + " !");
+                request.setAttribute("user", user);
+                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                rd.forward(request, response);
             } else {
                 out.print("Admin cannot login here !");
             }
