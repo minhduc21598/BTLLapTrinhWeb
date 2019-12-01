@@ -81,8 +81,8 @@ public class CheckLoginCustomer extends HttpServlet {
             User user = ud.checkUser(ac.getId());
             if (user.getKieu() == 2) {
 //                out.print("Welcome, " + user.getHoten() + " !");
-                request.setAttribute("name", user.getHoten());
-                RequestDispatcher rd = request.getRequestDispatcher("/view/adminHome.jsp");
+                request.setAttribute("user", user);
+                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                 rd.forward(request, response);
             } else {
                 out.print("Admin cannot login here !");

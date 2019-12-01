@@ -1,3 +1,9 @@
+<%-- 
+    Document   : shoppingcart
+    Created on : Dec 1, 2019, 11:13:00 AM
+    Author     : ASUS
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="loginForAdmin.jsp">Đăng nhập</a>
+        <h1>Hello World!</h1>
     </body>
 </html>
