@@ -14,9 +14,7 @@
         <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
 
         <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
-        <!--<script type="text/javascript" src="js/ddsmoothmenu.js">-->
-
-        </script>
+        <!--<script type="text/javascript" src="js/ddsmoothmenu.js"></script>-->
 
 <!--        <script type="text/javascript">
 
@@ -32,6 +30,10 @@
 
     </head>
 
+    <script>
+        if(${name} != null) alert(`Welcome, ${name}`)
+    </script>
+    
     <body>
 
         <div id="templatemo_body_wrapper">
