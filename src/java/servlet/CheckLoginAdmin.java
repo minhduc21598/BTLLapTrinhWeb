@@ -8,6 +8,7 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -72,6 +73,7 @@ public class CheckLoginAdmin extends HttpServlet {
         PrintWriter out = new PrintWriter(response.getWriter());
         AccountDAO ad = new AccountDAO();
         Account ac = ad.checkAccount(name, pass);
+        
         if (ac.getUsername() != null) {
             UserDAO ud = new UserDAO();
             User user = ud.checkUser(ac.getId());
