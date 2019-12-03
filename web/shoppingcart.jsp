@@ -34,12 +34,12 @@
                 <div id="header_right">
                     <% User user = (User) session.getAttribute("user"); %>
                     <% if (user == null) { %>
-                    <a href="loginForCustomer.jsp">Log In</a>
+                    <a href="loginForCustomer.jsp">Đăng nhập</a>
                     <% } else {%>                    
-                    <p>Welcome, <%= user.getName()%></p>
-                    <a href="editInforCustomer.jsp">My Account</a> | 
-                    <a href="shoppingcart.jsp">My Cart</a> | 
-                    <a href="#">Checkout</a>
+                    <p>Xin chào, <%= user.getName()%></p>
+                    <a href="editInforCustomer.jsp">Tài khoản</a> | 
+                    <a href="shoppingcart.jsp">Giỏ hàng</a> | 
+                    <a href="LogOut?user=<%= user %>">Đăng xuất</a>
                     <% }%>
                     <p>
                         Giỏ hàng hiện tại: <strong>3 sản phẩm</strong> ( <a href="shoppingcart.jsp">Xem giỏ</a> )
@@ -47,7 +47,6 @@
                 </div>
                 <div class="cleaner"></div>
             </div> 
-            <!-- END of templatemo_header -->
             <div id="templatemo_menubar">
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
@@ -69,12 +68,10 @@
                            </ul> -->
                         </li>
                         <li><a href="faqs.html">FAQ</a></li>
-                        <!-- <li><a href="checkout.html">Checkout</a></li> -->
                         <li><a href="contact.html">Liên Hệ</a></li>
                     </ul>
                     <br style="clear: left" />
                 </div> 
-                <!-- end of ddsmoothmenu -->               
                 <div id="templatemo_search">
                     <form action="#" method="get">
                         <input type="text" placeholder="Nhập sản phẩm cần tìm" value=" " name="keyword" id="keyword" title="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
@@ -82,7 +79,6 @@
                     </form>
                 </div>
             </div> 
-            <!-- END of templatemo_menubar -->
             <div id="templatemo_main">
                 <div id="sidebar" class="float_l">
                     <div class="sidebar_box"><span class="bottom"></span>
@@ -132,57 +128,19 @@
                             <td align="center"> <a href="#"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  </td>
                         </tr>
                         <% }%>
-                        <script>
-                            alert(<%= list.size() %>)
-                        </script>
-                        <!--                            <tr>
-                                                        <td><img src="images/product/01.jpg" alt="image 1" /></td> 
-                                                        <td>Adidas xxx  (Validate <a href="http://validator.w3.org/check?uri=referer" rel="nofollow">XHTML</a> &amp; <a href="http://jigsaw.w3.org/css-validator/check/referer" rel="nofollow">CSS</a>) </td> 
-                                                        <td align="center"><input type="text" value="1" style="width: 20px; text-align: right" /> </td>
-                                                        <td align="right">$100 </td> 
-                                                        <td align="right">$100 </td>
-                                                        <td align="center"> <a href="#"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a> </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img src="images/product/02.jpg" alt="image 2" /> </td>
-                                                        <td>Converse xxx</td> 
-                                                        <td align="center"><input type="text" value="1" style="width: 20px; text-align: right" />  </td>
-                                                        <td align="right">$80  </td>
-                                                        <td align="right">$80 </td>
-                                                        <td align="center"> <a href="#"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><img src="images/product/03.jpg" alt="image 3" /> </td>
-                                                        <td>Adidas xyz</td> 
-                                                        <td align="center"><input type="text" value="1" style="width: 20px; text-align: right" />  </td>
-                                                        <td align="right">$60  </td>
-                                                        <td align="right">$60 </td>
-                                                        <td align="center"> <a href="#"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="3" align="right"  height="30px">Bạn vừa thay đổi giỏ của mình? Bấm vào đây để <a href="shoppingcart.html"><strong>Cập nhật</strong></a>&nbsp;&nbsp;</td>
-                                                        <td align="right" style="background:#ddd; font-weight:bold"> Tổng tiền </td>
-                                                        <td align="right" style="background:#ddd; font-weight:bold">$240 </td>
-                                                        <td style="background:#ddd; font-weight:bold"> </td>
-                                                    </tr>-->
                     </table>
                     <div style="float:right; width: 215px; margin-top: 20px;">
-                        <!-- <p><a href="checkout.html">Proceed to checkout</a></p> -->
                         <p><a href="javascript:history.back()">Tiếp tục mua sắm</a></p>
                     </div>
                 </div>
                 <div class="cleaner"></div>
             </div> 
-            <!-- END of templatemo_main -->
             <div id="templatemo_footer">
                 <p><a href="#">Trang chủ</a> | <a href="#">Sản phẩm</a> | <a href="#">Giới thiệu</a> | <a href="#">FAQ</a> | <a href="#">Liên hệ</a>
                 </p>
                 Copyright © 2019 <a href="#">D16 PTIT</a>
             </div> 
-            <!-- END of templatemo_footer -->
         </div> 
-        <!-- END of templatemo_wrapper -->
     </div> 
-    <!-- END of templatemo_body_wrapper -->
 </body>
 </html>
