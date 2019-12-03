@@ -1,10 +1,8 @@
 package dao;
 
-import dao.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import model.Account;
-import static dao.DAO.con;
 
 public class AccountDAO extends DAO{
 
