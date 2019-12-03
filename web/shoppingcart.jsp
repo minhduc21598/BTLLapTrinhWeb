@@ -1,5 +1,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.User" %>
+<%@page import="model.Shipment" %>
+<%@page import="java.util.ArrayList" %>
+
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -28,8 +32,15 @@
             <div id="templatemo_header">
                 <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
                 <div id="header_right">
-                    <p>
-                        <a href="#">My Account</a> | <a href="#">My Wishlist</a> | <a href="#">My Cart</a> | <a href="#">Checkout</a> | <a href="#">Log In</a></p>
+                    <% User user = (User) session.getAttribute("user"); %>
+                    <% if (user == null) { %>
+                    <a href="loginForCustomer.jsp">Log In</a>
+                    <% } else {%>                    
+                    <p>Welcome, <%= user.getName()%></p>
+                    <a href="editInforCustomer.jsp">My Account</a> | 
+                    <a href="shoppingcart.jsp">My Cart</a> | 
+                    <a href="#">Checkout</a>
+                    <% }%>
                     <p>
                         Giỏ hàng hiện tại: <strong>3 sản phẩm</strong> ( <a href="shoppingcart.jsp">Xem giỏ</a> )
                     </p>
@@ -108,36 +119,52 @@
                             <th width="60" align="right">Tổng tiền</th> 
                             <th width="90"> </th>
                         </tr>
-                        <tr>
-                            <td><img src="images/product/01.jpg" alt="image 1" /></td> 
-                            <td>Adidas xxx <!-- (Validate <a href="http://validator.w3.org/check?uri=referer" rel="nofollow">XHTML</a> &amp; <a href="http://jigsaw.w3.org/css-validator/check/referer" rel="nofollow">CSS</a>) --></td> 
-                            <td align="center"><input type="text" value="1" style="width: 20px; text-align: right" /> </td>
-                            <td align="right">$100 </td> 
-                            <td align="right">$100 </td>
-                            <td align="center"> <a href="#"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a> </td>
-                        </tr>
+                        <% ArrayList<Shipment> list = (ArrayList<Shipment>) request.getAttribute("list"); %>
+                        <% for (int i = 0; i < list.size(); i++) {%>
                         <tr>
                             <td><img src="images/product/02.jpg" alt="image 2" /> </td>
-                            <td>Converse xxx</td> 
-                            <td align="center"><input type="text" value="1" style="width: 20px; text-align: right" />  </td>
-                            <td align="right">$80  </td>
-                            <td align="right">$80 </td>
+                            <td><%= list.get(i).getProduct().getName()%></td> 
+                            <td align="center">
+                                <input type="text" value="<%= list.get(i).getQuantity()%>" style="width: 20px; text-align: right" />  
+                            </td>
+                            <td align="right"><%= list.get(i).getProduct().getPrice()%>  </td>
+                            <td align="right"><%= list.get(i).getTotal()%> </td>
                             <td align="center"> <a href="#"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  </td>
                         </tr>
-                        <tr>
-                            <td><img src="images/product/03.jpg" alt="image 3" /> </td>
-                            <td>Adidas xyz</td> 
-                            <td align="center"><input type="text" value="1" style="width: 20px; text-align: right" />  </td>
-                            <td align="right">$60  </td>
-                            <td align="right">$60 </td>
-                            <td align="center"> <a href="#"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" align="right"  height="30px">Bạn vừa thay đổi giỏ của mình? Bấm vào đây để <a href="shoppingcart.html"><strong>Cập nhật</strong></a>&nbsp;&nbsp;</td>
-                            <td align="right" style="background:#ddd; font-weight:bold"> Tổng tiền </td>
-                            <td align="right" style="background:#ddd; font-weight:bold">$240 </td>
-                            <td style="background:#ddd; font-weight:bold"> </td>
-                        </tr>
+                        <% }%>
+                        <script>
+                            alert(<%= list.size() %>)
+                        </script>
+                        <!--                            <tr>
+                                                        <td><img src="images/product/01.jpg" alt="image 1" /></td> 
+                                                        <td>Adidas xxx  (Validate <a href="http://validator.w3.org/check?uri=referer" rel="nofollow">XHTML</a> &amp; <a href="http://jigsaw.w3.org/css-validator/check/referer" rel="nofollow">CSS</a>) </td> 
+                                                        <td align="center"><input type="text" value="1" style="width: 20px; text-align: right" /> </td>
+                                                        <td align="right">$100 </td> 
+                                                        <td align="right">$100 </td>
+                                                        <td align="center"> <a href="#"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a> </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><img src="images/product/02.jpg" alt="image 2" /> </td>
+                                                        <td>Converse xxx</td> 
+                                                        <td align="center"><input type="text" value="1" style="width: 20px; text-align: right" />  </td>
+                                                        <td align="right">$80  </td>
+                                                        <td align="right">$80 </td>
+                                                        <td align="center"> <a href="#"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><img src="images/product/03.jpg" alt="image 3" /> </td>
+                                                        <td>Adidas xyz</td> 
+                                                        <td align="center"><input type="text" value="1" style="width: 20px; text-align: right" />  </td>
+                                                        <td align="right">$60  </td>
+                                                        <td align="right">$60 </td>
+                                                        <td align="center"> <a href="#"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3" align="right"  height="30px">Bạn vừa thay đổi giỏ của mình? Bấm vào đây để <a href="shoppingcart.html"><strong>Cập nhật</strong></a>&nbsp;&nbsp;</td>
+                                                        <td align="right" style="background:#ddd; font-weight:bold"> Tổng tiền </td>
+                                                        <td align="right" style="background:#ddd; font-weight:bold">$240 </td>
+                                                        <td style="background:#ddd; font-weight:bold"> </td>
+                                                    </tr>-->
                     </table>
                     <div style="float:right; width: 215px; margin-top: 20px;">
                         <!-- <p><a href="checkout.html">Proceed to checkout</a></p> -->

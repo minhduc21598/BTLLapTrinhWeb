@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User" %>
+<%@page import="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -36,27 +37,18 @@
                 <div id="templatemo_header">
                     <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
                     <div id="header_right">
+                        <% User user = (User) session.getAttribute("user"); %>
+                        <% if (user == null) { %>
+                        <a href="loginForCustomer.jsp">Log In</a>
+                        <% } else {%>                     
+                        <p>Welcome, <%= user.getName()%></p>
+                        <a href="editInforCustomer.jsp">My Account</a> | 
+                        <a href="ShowShoppingCart?idUser=<%= user.getId() %>">My Cart</a> | 
+                        <form action="LogOut" method="post"><a href="index.jsp">Log out</a></form>
+                        <% }%>
                         <p>
-                            <a href="#">My Account</a> | 
-                            <!--<a href="#">My Wishlist</a> |--> 
-                            <a href="#">My Cart</a> | 
-                            <a href="#">Checkout</a> | 
-                            <!--                            <a href="loginForCustomer.jsp">Log In</a></p>-->
-                            <% User user = (User) request.getAttribute("user"); %>
-                            <% if (user == null) { %>
-                            <a href="loginForCustomer.jsp">Log In</a>
-                            <% } else {%>
-                            <script>
-                                alert('Đăng nhập thành công !')
-                            </script>
-                            <p>
-                                Welcome,
-                                <a href="editInforCustomer.jsp"><%= user.getHoten()%></a>
-                            </p>
-                            <% }%>
-                            <p>
-                                Shopping Cart: <strong>3 items</strong> ( <a href="shoppingcart.html">Show Cart</a> )
-                            </p>
+                            Shopping Cart: <strong>3 items</strong> ( <a href="shoppingcart.html">Show Cart</a> )
+                        </p>
                     </div>
                     <div class="cleaner"></div>
                 </div> <!-- END of templatemo_header -->

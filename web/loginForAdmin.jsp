@@ -6,7 +6,7 @@
         <title>Login</title>
     </head>
     <body>
-        <form action="CheckLoginAdmin" method="post">
+        <form action="../CheckLoginAdmin" method="post">
             <div>Username: <input type="text" name = "name"></div>
             <div>Password: <input type="pass" name = "pass"></div>  
             <input type="submit" name = "OK">
