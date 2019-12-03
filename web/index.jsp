@@ -1,30 +1,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@page import="model.User" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Shoes Store from templatemo</title>
+        <title>Trang chủ</title>
         <meta name="keywords" content="" />
         <meta name="description" content="" />
         <link href="css/home.css" rel="stylesheet" type="text/css" />
 
         <link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
 
-        <link rel="stylesheet" type="text/css" href="css/ddsmoothmenu.css" />
-        <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
-        <!--<script type="text/javascript" src="js/ddsmoothmenu.js">-->
-        <!--</script>-->
-        <!--        <script type="text/javascript">
-                    ddsmoothmenu.init({
-                        mainmenuid: "top_nav", //menu DIV id
-                        orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
-                        classname: 'ddsmoothmenu', //class added to menu's outer DIV
-                        //customtheme: ["#1c5a80", "#18374a"],
-                        contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
-                    })
-                </script>-->
+        <link  href="css/ddsmoothmenu.css"  rel="stylesheet" type="text/css" />
+
+
     </head>
+
     <body>
         <div id="templatemo_body_wrapper">
             <div id="templatemo_wrapper">
@@ -36,8 +27,19 @@
                             <a href="#">My Account</a> | 
                             <!--<a href="#">My Wishlist</a> |--> 
                             <a href="#">My Cart</a> | 
-                            <a href="#">Checkout</a> | 
-                            <a href="loginForCustomer.jsp">Log In</a></p>
+                            <a href="#">Logout</a> | 
+                            <!--                            <a href="loginForCustomer.jsp">Log In</a></p>-->
+                            <% User user = (User) request.getAttribute("user"); %>
+                            <% if (user == null) { %>
+                            <a href="loginForCustomer.jsp">Log In</a>
+                            <% } else {%>
+                            <script>
+                                alert('Đăng nhập thành công !')
+                            </script>                    
+                            Welcome,
+                            <a href="editInforCustomer.jsp"><%= user.getHoten()%></a>
+                            <% }%>
+                        </p>
                         <p>
                             Shopping Cart: <strong>3 items</strong> ( <a href="shoppingcart.html">Show Cart</a> )
                         </p>
@@ -49,25 +51,25 @@
                     <div id="top_nav" class="ddsmoothmenu">
                         <ul>
                             <li><a href="index.html" class="selected">Home</a></li>
-                            <li><a href="products.html">Products</a>
-                                <ul>
-                                    <li><a href="#submenu1">Sub menu 1</a></li>
-                                    <li><a href="#submenu2">Sub menu 2</a></li>
-                                    <li><a href="#submenu3">Sub menu 3</a></li>
-                                    <li><a href="#submenu4">Sub menu 4</a></li>
-                                    <li><a href="#submenu5">Sub menu 5</a></li>
-                                </ul>
+                            <li><a href="products.html">Sản phẩm</a>
+                                <!--                                <ul>
+                                                                    <li><a href="#submenu1">Sub menu 1</a></li>
+                                                                    <li><a href="#submenu2">Sub menu 2</a></li>
+                                                                    <li><a href="#submenu3">Sub menu 3</a></li>
+                                                                    <li><a href="#submenu4">Sub menu 4</a></li>
+                                                                    <li><a href="#submenu5">Sub menu 5</a></li>
+                                                                </ul>-->
                             </li>
-                            <li><a href="about.html">About</a>
-                                <ul>
-                                    <li><a href="#submenu1">Sub menu 1</a></li>
-                                    <li><a href="#submenu2">Sub menu 2</a></li>
-                                    <li><a href="#submenu3">Sub menu 3</a></li>
-                                </ul>
+                            <li><a href="about.html">Giới thiệu</a>
+                                <!--                                <ul>
+                                                                    <li><a href="#submenu1">Sub menu 1</a></li>
+                                                                    <li><a href="#submenu2">Sub menu 2</a></li>
+                                                                    <li><a href="#submenu3">Sub menu 3</a></li>
+                                                                </ul>-->
                             </li>
                             <li><a href="faqs.html">FAQs</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <!--                            <li><a href="checkout.html">Checkout</a></li>-->
+                            <li><a href="contact.html">Liên hệ</a></li>
                         </ul>
                         <br style="clear: left" />
                     </div> <!-- end of ddsmoothmenu -->
@@ -85,21 +87,21 @@
                             <h3>Categories</h3>   
                             <div class="content"> 
                                 <ul class="sidebar_list">
-                                    <li class="first"><a href="#">Sed eget purus</a></li>
-                                    <li><a href="#">Vestibulum eleifend</a></li>
-                                    <li><a href="#">Nulla odio ipsum</a></li>
-                                    <li><a href="#">Suspendisse posuere</a></li>
-                                    <li><a href="#">Nunc a dui sed</a></li>
-                                    <li><a href="#">Curabitur ac mauris</a></li>
-                                    <li><a href="#">Mauris nulla tortor</a></li>
-                                    <li><a href="#">Nullam ultrices</a></li>
-                                    <li><a href="#">Nulla odio ipsum</a></li>
-                                    <li><a href="#">Suspendisse posuere</a></li>
-                                    <li><a href="#">Nunc a dui sed</a></li>
-                                    <li><a href="#">Curabitur ac mauris</a></li>
-                                    <li><a href="#">Mauris nulla tortor</a></li>
-                                    <li><a href="#">Nullam ultrices</a></li>
-                                    <li class="last"><a href="#">Sed eget purus</a></li>
+                                    <li class="first"><a href="#">Giày thể thao nam</a></li>
+                                    <li><a href="#">Giày sneaker nam</a></li>
+                                    <li><a href="#">Giày lười nam</a></li>
+                                    <li><a href="#">Giày tây nam</a></li>
+                                    <li><a href="#">Giày vải nam</a></li>
+                                    <li><a href="#">Giày boots nam</a></li>
+                                    <li><a href="#">Giày casual nam</a></li>
+                                    <li><a href="#">Giày thể thao nữ</a></li>
+                                    <li><a href="#">Giày sneaker nữ</a></li>
+                                    <li><a href="#">Giày lười nữ</a></li>
+                                    <li><a href="#">Giày cao gót</a></li>
+                                    <li><a href="#">Giày búp bê</a></li>
+                                    <li><a href="#">Giày đế xuồng nữ</a></li>
+                                    <li><a href="#">Giày boots nữ</a></li>
+                                    <li class="last"><a href="#">Giày sandals nữ</a></li>
                                 </ul>
                             </div>
                         </div>

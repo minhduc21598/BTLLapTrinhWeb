@@ -6,6 +6,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="loginForAdmin.jsp">Đăng nhập</a>
+        <h1>Code giao diện admin ở đây cho t nhé !</h1>
     </body>
 </html>

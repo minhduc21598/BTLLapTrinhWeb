@@ -317,3 +317,81 @@ a.nivo-prevNav {
     color:#efe9d1;
     text-decoration:underline;
 }
+
+/*Box-Login*/
+.box-login {
+	width: 300px;
+	padding: 20px;
+	margin: 0 auto;
+	text-align: center;
+}
+.box-login h3 {
+	color: black;
+}
+
+.box-login input[type = "text"], .box-login input[type="password"] {
+	border: 0px;
+	background: none;
+	margin: 20px auto;
+	display: block;
+	text-align: center;
+	border: 2px solid #00cec9;
+	padding: 10px 10px;
+	width: 200px;
+	border-radius: 20px;
+	outline: none;
+}
+
+.box-login input[type = "submit"] {
+	border: 0px;
+	background: none;
+	margin: 20px auto;
+	display: block;
+	text-align: center;
+	border: 2px solid #0984e3;
+	padding: 10px 10px;
+	width: 100px;
+	border-radius: 20px;
+	outline: none;
+	cursor: pointer;
+}
+
+.box-login input[type = "submit"]:hover {
+	background: #0984e3;
+	color: white;
+}
+
+/*Box edit infor customer*/
+.box-edit-infor-customer {
+	background: #f2f2f2;
+	/*border: 1px solid black;*/
+	border-radius: 5px;
+	width: 80%;
+	padding: 30px;
+}
+
+.box-edit-infor-customer input[type = text], .box-edit-infor-customer input[type = email], 
+.box-edit-infor-customer input[type = tel], .box-edit-infor-customer input[type = date] {
+	width: 100%;
+  padding: 10px 8px;
+  margin: 8px 0px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.box-edit-infor-customer input[type = submit] {
+	width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 8px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.box-edit-infor-customer input[type = submit]:hover {
+  background-color: #45a049;
+}
