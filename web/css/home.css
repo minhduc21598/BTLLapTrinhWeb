@@ -395,3 +395,40 @@ a.nivo-prevNav {
 .box-edit-infor-customer input[type = submit]:hover {
   background-color: #45a049;
 }
+
+/*Box-signup*/
+.box-signup {
+	background: #f2f2f2;
+	/*border: 1px solid black;*/
+	border-radius: 5px;
+	width: 60%;
+	padding: 20px;
+	margin: 10px auto;
+}
+
+.box-signup input[type = "text"], .box-signup input [type = "password"], .box-signup input[type = "email"],
+ .box-signup input[type = "tel"], .box-signup input[type = "date"] {
+	width: 100%;
+  padding: 10px 8px;
+  margin: 8px 0px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.box-signup input[type = "submit"] {
+	width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 8px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.box-signup input[type = "submit"]:hover {
+  background-color: #45a049;
+}
+

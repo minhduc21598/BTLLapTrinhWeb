@@ -9,7 +9,6 @@
 <link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css"  />
 </head>
 <body>
-
     <div id="templatemo_body_wrapper">
         <div id="templatemo_wrapper">
 
@@ -17,9 +16,9 @@
                 <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
                 <div id="header_right">
                     <p>
-                        <a href="#">My Account</a> | <a href="#">My Cart</a> | <a href="#">Logout</a> | <a href="#">Login</a></p>
+                        <a href="#">Tài khoản</a> | <a href="#">Giỏ hàng</a> | <a href="#">Đăng xuất</a> | <a href="#">Đăng nhập</a></p>
                     <p>
-                        Giỏ hàng hiện tại: <strong>3 sản phẩm</strong> ( <a href="shoppingcart.html">Xem giỏ</a> )
+                        Giỏ hàng hiện tại: <strong>3 items</strong> ( <a href="shoppingcart.html">Xem giỏ</a> )
                     </p>
                 </div>
                 <div class="cleaner"></div>

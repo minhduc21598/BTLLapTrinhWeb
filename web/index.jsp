@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,24 +24,23 @@
                     <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
                     <div id="header_right">
                         <p>
-                            <a href="#">My Account</a> | 
-                            <!--<a href="#">My Wishlist</a> |--> 
-                            <a href="#">My Cart</a> | 
-                            <a href="#">Logout</a> | 
+                            <a href="#">Tài khoản</a> | 
+                            <a href="#">Giỏ hàng</a> | 
+                            <a href="#">Đăng xuất</a> | 
                             <!--                            <a href="loginForCustomer.jsp">Log In</a></p>-->
                             <% User user = (User) request.getAttribute("user"); %>
                             <% if (user == null) { %>
-                            <a href="loginForCustomer.jsp">Log In</a>
+                            <a href="loginForCustomer.jsp">Đăng nhập</a>
                             <% } else {%>
                             <script>
                                 alert('Đăng nhập thành công !')
                             </script>                    
-                            Welcome,
+                            Chào mừng,
                             <a href="editInforCustomer.jsp"><%= user.getHoten()%></a>
                             <% }%>
                         </p>
                         <p>
-                            Shopping Cart: <strong>3 items</strong> ( <a href="shoppingcart.html">Show Cart</a> )
+                            Giỏ hàng hiện tại: <strong>3 items</strong> ( <a href="shoppingcart.html">Xem giỏ</a> )
                         </p>
                     </div>
                     <div class="cleaner"></div>
@@ -84,7 +83,7 @@
                 <div id="templatemo_main">
                     <div id="sidebar" class="float_l">
                         <div class="sidebar_box"><span class="bottom"></span>
-                            <h3>Categories</h3>   
+                            <h3>DANH MỤC SẢN PHẨM</h3>   
                             <div class="content"> 
                                 <ul class="sidebar_list">
                                     <li class="first"><a href="#">Giày thể thao nam</a></li>
@@ -106,33 +105,33 @@
                             </div>
                         </div>
                         <div class="sidebar_box"><span class="bottom"></span>
-                            <h3>Bestsellers </h3>   
+                            <h3>Bán chạy nhất</h3>   
                             <div class="content"> 
-                                <div class="bs_box">
-                                    <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                    <h4><a href="#">Donec nunc nisl</a></h4>
-                                    <p class="price">$10</p>
-                                    <div class="cleaner"></div>
-                                </div>
-                                <div class="bs_box">
-                                    <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                    <h4><a href="#">Lorem ipsum dolor sit</a></h4>
-                                    <p class="price">$12</p>
-                                    <div class="cleaner"></div>
-                                </div>
-                                <div class="bs_box">
-                                    <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                    <h4><a href="#">Phasellus ut dui</a></h4>
-                                    <p class="price">$20</p>
-                                    <div class="cleaner"></div>
-                                </div>
-                                <div class="bs_box">
-                                    <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                    <h4><a href="#">Vestibulum ante</a></h4>
-                                    <p class="price">$8</p>
-                                    <div class="cleaner"></div>
-                                </div>
+                            <div class="bs_box">
+                                <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
+                                <h4><a href="#">Tên giày bán chạy 1</a></h4>
+                                <p class="price">$10</p>
+                                <div class="cleaner"></div>
                             </div>
+                            <div class="bs_box">
+                                <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
+                                <h4><a href="#">Tên giày bán chạy 2</a></h4>
+                                <p class="price">$12</p>
+                                <div class="cleaner"></div>
+                            </div>
+                            <div class="bs_box">
+                                <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
+                                <h4><a href="#">Tên giày bán chạy 3</a></h4>
+                                <p class="price">$20</p>
+                                <div class="cleaner"></div>
+                            </div>
+                            <div class="bs_box">
+                                <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
+                                <h4><a href="#">Tên giày bán chạy 4</a></h4>
+                                <p class="price">$8</p>
+                                <div class="cleaner"></div>
+                            </div>
+                        </div>
                         </div>
                     </div>
                     <div id="content" class="float_r">
@@ -154,7 +153,7 @@
                                                           $('#slider').nivoSlider();
                                                       });
                                                 </script>-->
-                        <h1>New Products</h1>
+                        <h1>Sản phẩm mới</h1>
                         <div class="product_box">
                             <h3>Ut eu feugiat</h3>
                             <a href="productdetail.html"><img src="images/product/01.jpg" alt="Shoes 1" /></a>

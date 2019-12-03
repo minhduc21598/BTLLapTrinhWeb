@@ -32,9 +32,9 @@
                 <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
                 <div id="header_right">
                     <p>
-                        <a href="#">My Account</a> | <a href="#">My Wishlist</a> | <a href="#">My Cart</a> | <a href="#">Checkout</a> | <a href="#">Log In</a></p>
+                        <a href="#">Tài khoản</a> | <a href="#">Giỏ hàng</a> | <a href="#">Đăng xuất</a> | <a href="#">Đăng nhập</a></p>
                     <p>
-                        Giỏ hàng hiện tại: <strong>3 sản phẩm</strong> ( <a href="shoppingcart.jsp">Xem giỏ</a> )
+                        Giỏ hàng hiện tại: <strong>3 items</strong> ( <a href="shoppingcart.html">Xem giỏ</a> )
                     </p>
                 </div>
                 <div class="cleaner"></div>
