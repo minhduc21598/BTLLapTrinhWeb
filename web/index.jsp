@@ -1,7 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User" %>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%@page import="javax.servlet.http.HttpSession" %>
+<!DOCTYPE>
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Trang chủ</title>
@@ -23,28 +24,21 @@
                 <div id="templatemo_header">
                     <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
                     <div id="header_right">
-                        <p>
-                            <a href="#">Tài khoản</a> | 
-                            <a href="#">Giỏ hàng</a> | 
-                            <a href="#">Đăng xuất</a> | 
-                            <!--                            <a href="loginForCustomer.jsp">Log In</a></p>-->
-                            <% User user = (User) request.getAttribute("user"); %>
-                            <% if (user == null) { %>
-                            <a href="loginForCustomer.jsp">Đăng nhập</a>
-                            <% } else {%>
-                            <script>
-                                alert('Đăng nhập thành công !')
-                            </script>                    
-                            Chào mừng,
-                            <a href="editInforCustomer.jsp"><%= user.getHoten()%></a>
-                            <% }%>
-                        </p>
+                        <% User user = (User) session.getAttribute("user"); %>
+                        <% if (user == null) { %>
+                        <a href="loginForCustomer.jsp">Đăng nhập</a>
+                        <% } else {%>                     
+                        <p>Xin chào, <%= user.getName()%></p>
+                        <a href="editInforCustomer.jsp">Tài khoản</a> | 
+                        <a href="ShowShoppingCart?idUser=<%= user.getId()%>">Giỏ hàng</a> | 
+                        <a href="LogOut?user=<%= user%>">Đăng xuất</a>
+                        <% }%>
                         <p>
                             Giỏ hàng hiện tại: <strong>3 items</strong> ( <a href="shoppingcart.html">Xem giỏ</a> )
                         </p>
                     </div>
                     <div class="cleaner"></div>
-                </div> <!-- END of templatemo_header -->
+                </div>
 
                 <div id="templatemo_menubar">
                     <div id="top_nav" class="ddsmoothmenu">
@@ -71,14 +65,14 @@
                             <li><a href="contact.html">Liên hệ</a></li>
                         </ul>
                         <br style="clear: left" />
-                    </div> <!-- end of ddsmoothmenu -->
+                    </div>
                     <div id="templatemo_search">
                         <form action="#" method="get">
                             <input type="text" value=" " name="keyword" id="keyword" title="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
                             <input type="submit" name="Search" value=" " alt="Search" id="searchbutton" title="Search" class="sub_btn"  />
                         </form>
                     </div>
-                </div> <!-- END of templatemo_menubar -->
+                </div> 
 
                 <div id="templatemo_main">
                     <div id="sidebar" class="float_l">
@@ -107,31 +101,31 @@
                         <div class="sidebar_box"><span class="bottom"></span>
                             <h3>Bán chạy nhất</h3>   
                             <div class="content"> 
-                            <div class="bs_box">
-                                <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                <h4><a href="#">Tên giày bán chạy 1</a></h4>
-                                <p class="price">$10</p>
-                                <div class="cleaner"></div>
+                                <div class="bs_box">
+                                    <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
+                                    <h4><a href="#">Tên giày bán chạy 1</a></h4>
+                                    <p class="price">$10</p>
+                                    <div class="cleaner"></div>
+                                </div>
+                                <div class="bs_box">
+                                    <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
+                                    <h4><a href="#">Tên giày bán chạy 2</a></h4>
+                                    <p class="price">$12</p>
+                                    <div class="cleaner"></div>
+                                </div>
+                                <div class="bs_box">
+                                    <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
+                                    <h4><a href="#">Tên giày bán chạy 3</a></h4>
+                                    <p class="price">$20</p>
+                                    <div class="cleaner"></div>
+                                </div>
+                                <div class="bs_box">
+                                    <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
+                                    <h4><a href="#">Tên giày bán chạy 4</a></h4>
+                                    <p class="price">$8</p>
+                                    <div class="cleaner"></div>
+                                </div>
                             </div>
-                            <div class="bs_box">
-                                <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                <h4><a href="#">Tên giày bán chạy 2</a></h4>
-                                <p class="price">$12</p>
-                                <div class="cleaner"></div>
-                            </div>
-                            <div class="bs_box">
-                                <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                <h4><a href="#">Tên giày bán chạy 3</a></h4>
-                                <p class="price">$20</p>
-                                <div class="cleaner"></div>
-                            </div>
-                            <div class="bs_box">
-                                <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                <h4><a href="#">Tên giày bán chạy 4</a></h4>
-                                <p class="price">$8</p>
-                                <div class="cleaner"></div>
-                            </div>
-                        </div>
                         </div>
                     </div>
                     <div id="content" class="float_r">
@@ -212,11 +206,8 @@
                 <div id="templatemo_footer">
                     <p><a href="#">Home</a> | <a href="#">Products</a> | <a href="#">About</a> | <a href="#">FAQs</a> | <a href="#">Checkout</a> | <a href="#">Contact Us</a>
                     </p>
-
                     Copyright © 2072 <a href="#">Your Company Name</a></div> 
-
             </div>
         </div> 
-
     </body>
 </html>

@@ -1,10 +1,11 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.User" %>
+<%@page import="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Login</title>
+    <title>Đăng nhập</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <link href="css/home.css" rel="stylesheet" type="text/css" />
@@ -20,8 +21,15 @@
             <div id="templatemo_header">
                 <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
                 <div id="header_right">
-                    <p>
-                        <a href="#">Tài khoản</a> | <a href="#">Giỏ hàng</a> | <a href="#">Đăng xuất</a> | <a href="#">Đăng nhập</a></p>
+                    <% User user = (User) session.getAttribute("user"); %>
+                        <% if (user == null) { %>
+                        <a href="loginForCustomer.jsp">Đăng nhập</a>
+                        <% } else {%>                     
+                        <p>Welcome, <%= user.getName() %></p>
+                        <a href="editInforCustomer.jsp">Tài khoản</a> | 
+                        <a href="ShowShoppingCart?idUser=<%= user.getId() %>">Giỏ hàng</a> | 
+                        <form action="LogOut" method="post"><a href="index.jsp">Đăng xuất</a></form>
+                        <% }%>
                     <p>
                         Giỏ hàng hiện tại: <strong>3 items</strong> ( <a href="shoppingcart.html">Xem giỏ</a> )
                     </p>
