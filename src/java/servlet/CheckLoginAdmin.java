@@ -75,7 +75,7 @@ public class CheckLoginAdmin extends HttpServlet {
         if (ac.getUsername() != null) {
             UserDAO ud = new UserDAO();
             User user = ud.checkUser(ac.getId());
-            if (user.getKieu() == 1) {
+            if (user.getType()== 1) {
                 out.print("Welcome, admin !");
             } else {
                 out.print("Sorry, you are not allowed to login here !");

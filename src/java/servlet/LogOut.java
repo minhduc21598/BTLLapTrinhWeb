@@ -1,7 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package servlet;
 
-import dao.AccountDAO;
-import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -11,11 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Account;
-import model.User;
 
-@WebServlet(name = "CheckLoginCustomer", urlPatterns = {"/CheckLoginCustomer"})
-public class CheckLoginCustomer extends HttpServlet {
+/**
+ *
+ * @author Minh Đức
+ */
+@WebServlet(name = "LogOut", urlPatterns = {"/LogOut"})
+public class LogOut extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,10 +39,10 @@ public class CheckLoginCustomer extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CheckLoginCustomer</title>");
+            out.println("<title>Servlet LogOut</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CheckLoginCustomer at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LogOut at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -55,7 +60,10 @@ public class CheckLoginCustomer extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        rd.forward(request, response);
     }
 
     /**
@@ -69,27 +77,6 @@ public class CheckLoginCustomer extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String name = request.getParameter("name");
-        String pass = request.getParameter("pass");
-        PrintWriter out = new PrintWriter(response.getWriter());
-        AccountDAO ad = new AccountDAO();
-        Account ac = ad.checkAccount(name, pass);
-        if (ac.getUsername() != null) {
-            UserDAO ud = new UserDAO();
-            User user = ud.checkUser(ac.getId());
-            user.setAccount(ac);
-            if (user.getType() == 2) {
-                HttpSession session = request.getSession();
-                session.setAttribute("user", user);
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                rd.forward(request, response);
-            } else {
-                out.print("Admin cannot login here !");
-            }
-        } else {
-            out.print("Wrong username or password !");
-        }
     }
 
     /**

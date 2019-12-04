@@ -1,18 +1,16 @@
-
 package dao;
 
-import static dao.DAO.con;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import model.User;
 
-public class UserDAO extends DAO{
+public class UserDAO extends DAO {
 
     public UserDAO() {
         getDBConnection();
     }
-    
-    public User checkUser(int id){
+
+    public User checkUser(int id) {
         User user = new User();
         String sql = "SELECT * FROM nguoidung WHERE id = ?";
         try {
@@ -21,12 +19,12 @@ public class UserDAO extends DAO{
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 user.setId(rs.getInt("id"));
-                user.setHoten(rs.getString("hoten"));
-                user.setDiachi(rs.getString("diachi"));
-                user.setNgaysinh(rs.getDate("ngaysinh"));
+                user.setName(rs.getString("hoten"));
+                user.setAddress(rs.getString("diachi"));
+                user.setDateofbirth(rs.getDate("ngaysinh"));
                 user.setEmail(rs.getString("email"));
-                user.setSdt(rs.getString("sdt"));
-                user.setKieu(rs.getInt("kieu"));
+                user.setPhonenum(rs.getString("sdt"));
+                user.setType(rs.getInt("kieu"));
             }
         } catch (Exception e) {
             e.printStackTrace();
