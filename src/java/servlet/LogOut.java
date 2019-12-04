@@ -62,8 +62,7 @@ public class LogOut extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.removeAttribute("user");
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-        rd.forward(request, response);
+        response.sendRedirect("index.jsp");
     }
 
     /**

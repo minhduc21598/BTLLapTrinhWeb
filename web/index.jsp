@@ -31,11 +31,9 @@
                         <p>Xin chào, <%= user.getName()%></p>
                         <a href="editInforCustomer.jsp">Tài khoản</a> | 
                         <a href="ShowShoppingCart?idUser=<%= user.getId()%>">Giỏ hàng</a> | 
-                        <a href="LogOut?user=<%= user%>">Đăng xuất</a>
+                        <a href="LogOut">Đăng xuất</a>
                         <% }%>
-                        <p>
-                            Giỏ hàng hiện tại: <strong>3 items</strong> ( <a href="shoppingcart.html">Xem giỏ</a> )
-                        </p>
+                        
                     </div>
                     <div class="cleaner"></div>
                 </div>
@@ -204,9 +202,7 @@
                 </div> 
 
                 <div id="templatemo_footer">
-                    <p><a href="#">Home</a> | <a href="#">Products</a> | <a href="#">About</a> | <a href="#">FAQs</a> | <a href="#">Checkout</a> | <a href="#">Contact Us</a>
-                    </p>
-                    Copyright © 2072 <a href="#">Your Company Name</a></div> 
+                    Copyright © 2019 <a href="#">D16PTIT</a></div> 
             </div>
         </div> 
     </body>

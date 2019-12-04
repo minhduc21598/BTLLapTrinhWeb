@@ -70,6 +70,7 @@ public class ShowShoppingCart extends HttpServlet {
         request.setAttribute("list", listShipment);
         RequestDispatcher rd = request.getRequestDispatcher("shoppingcart.jsp");
         rd.forward(request, response);
+        destroy();
     }
 
     /**

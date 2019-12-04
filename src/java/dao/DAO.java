@@ -9,7 +9,7 @@ public class DAO {
     }
     public void getDBConnection() {
         if (con == null) {
-            String dbUrl = "jdbc:mysql://localhost:3306/laptrinhweb";
+            String dbUrl = "jdbc:mysql://localhost:3306/ltweb";
             String dbDriver = "com.mysql.jdbc.Driver";
             try {
                 Class.forName(dbDriver);
