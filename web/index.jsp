@@ -31,7 +31,7 @@
                         <p>Xin chào, <%= user.getName()%></p>
                         <a href="editInforCustomer.jsp">Tài khoản</a> | 
                         <a href="ShowShoppingCart?idUser=<%= user.getId()%>">Giỏ hàng</a> | 
-                        <a href="LogOut?user=<%= user%>">Đăng xuất</a>
+                        <a href="LogOut">Đăng xuất</a>
                         <% }%>
                         <p>
                             Giỏ hàng hiện tại: <strong>3 items</strong> ( <a href="shoppingcart.html">Xem giỏ</a> )
