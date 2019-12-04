@@ -8,11 +8,9 @@
 <meta name="description" content="" />
 <link href="css/home.css" rel="stylesheet" type="text/css" />
 <link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css"  />
-
 </head>
 
 <body>
-
 <div id="templatemo_body_wrapper">
 <div id="templatemo_wrapper">
 

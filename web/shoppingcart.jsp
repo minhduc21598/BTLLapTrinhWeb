@@ -12,19 +12,6 @@
     <meta name="description" content="" />
     <link href="css/home.css" rel="stylesheet" type="text/css" />
     <link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
-    <!-- <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/ddsmoothmenu.js">
-    </script>
-    <script type="text/javascript">   
-    ddsmoothmenu.init({
-            mainmenuid: "top_nav", //menu DIV id
-            orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
-            classname: 'ddsmoothmenu', //class added to menu's outer DIV
-            //customtheme: ["#1c5a80", "#18374a"],
-            contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
-    })
-    </script> -->
-
 </head>
 <body>
     <div id="templatemo_body_wrapper">
@@ -41,9 +28,6 @@
                     <a href="ShowShoppingCart?idUser=<%= user.getId()%>">Giỏ hàng</a>  | 
                     <a href="LogOut">Đăng xuất</a>
                     <% }%>
-                    <p>
-                        Giỏ hàng hiện tại: <strong>3 sản phẩm</strong> ( <a href="shoppingcart.jsp">Xem giỏ</a> )
-                    </p>
                 </div>
                 <div class="cleaner"></div>
             </div> 
@@ -52,20 +36,8 @@
                     <ul>
                         <li><a href="index.html">Trang Chủ</a></li>
                         <li><a href="products.html">Sản Phẩm</a>
-                            <!--  <ul>
-                                 <li><a href="#submenu1">Sub menu 1</a></li>
-                                 <li><a href="#submenu2">Sub menu 2</a></li>
-                                 <li><a href="#submenu3">Sub menu 3</a></li>
-                                 <li><a href="#submenu4">Sub menu 4</a></li>
-                                 <li><a href="#submenu5">Sub menu 5</a></li>
-                           </ul> -->
                         </li>
                         <li><a href="about.html">Giới Thiệu</a>
-                            <!--  <ul>
-                                 <li><a href="#submenu1">Sub menu 1</a></li>
-                                 <li><a href="#submenu2">Sub menu 2</a></li>
-                                 <li><a href="#submenu3">Sub menu 3</a></li>
-                           </ul> -->
                         </li>
                         <li><a href="faqs.html">FAQ</a></li>
                         <li><a href="contact.html">Liên Hệ</a></li>
@@ -136,8 +108,6 @@
                 <div class="cleaner"></div>
             </div> 
             <div id="templatemo_footer">
-                <p><a href="#">Trang chủ</a> | <a href="#">Sản phẩm</a> | <a href="#">Giới thiệu</a> | <a href="#">FAQ</a> | <a href="#">Liên hệ</a>
-                </p>
                 Copyright © 2019 <a href="#">D16 PTIT</a>
             </div> 
         </div> 

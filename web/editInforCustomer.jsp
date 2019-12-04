@@ -7,6 +7,8 @@
 <meta name="description" content="" />
 <link href="css/home.css" rel="stylesheet" type="text/css" />
 <link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css"  />
+<%@page import="model.User" %>
+<%@page import="javax.servlet.http.HttpSession" %>
 </head>
 <body>
     <div id="templatemo_body_wrapper">
@@ -15,11 +17,15 @@
             <div id="templatemo_header">
                 <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
                 <div id="header_right">
-                    <p>
-                        <a href="#">Tài khoản</a> | <a href="#">Giỏ hàng</a> | <a href="#">Đăng xuất</a> | <a href="#">Đăng nhập</a></p>
-                    <p>
-                        Giỏ hàng hiện tại: <strong>3 items</strong> ( <a href="shoppingcart.html">Xem giỏ</a> )
-                    </p>
+                    <% User user = (User) session.getAttribute("user"); %>
+                    <% if (user == null) { %>
+                    <a href="loginForCustomer.jsp">Đăng nhập</a>
+                    <% } else {%>                     
+                    <p>Xin chào, <%= user.getName()%></p>
+                    <a href="editInforCustomer.jsp">Tài khoản</a> | 
+                    <a href="ShowShoppingCart?idUser=<%= user.getId()%>">Giỏ hàng</a> | 
+                    <a href="LogOut">Đăng xuất</a>
+                    <% }%>
                 </div>
                 <div class="cleaner"></div>
             </div> <!-- END of templatemo_header -->
@@ -86,7 +92,7 @@
                 <div id="content" class="float_r">
                     <div>
                         <form class="box-edit-infor-customer" action="" method="post">
-                            <h3>CHỈNH SỬA THÔNG TIN</h3>
+                            <h3>THÔNG TIN NGƯỜI DÙNG</h3>
                             <label for="">Họ và tên:</label>
                             <input type="text" name = "name" placeholder="Nhập họ và tên...">
                             <label for="">Địa chỉ:</label>
@@ -97,8 +103,15 @@
                             <input type="email" name = "email" placeholder="Nhập email...">
                             <label for="">Số điện thoại:</label>
                             <input type="tel" name = "phone" placeholder="Nhập số điện thoại...">
+                            
+                            <label for="">Tên người dùng:</label>
+                            <input type="text" name = "name" placeholder="Nhập tên người dùng...">
+                            
+                            <label for="">Nhập password:</label>
+                            <input type="password" name = "pass" placeholder="Nhập password...">
+                            
 
-                            <input type="submit" name = "OK">
+                            <input type="submit" name = "OK" value="Cập nhật">
                         </form>
                     </div>
                 </div>
