@@ -3,7 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Upstream, based on origin1/master
             <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/web/index.jsp</file>
+=======
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/BTLLapTrinhWeb/web/index.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/BTLLapTrinhWeb/web/css/ddsmoothmenu.css</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/BTLLapTrinhWeb/web/productdetail.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/BTLLapTrinhWeb/web/editInforCustomer.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/BTLLapTrinhWeb/web/css/home.css</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/BTLLapTrinhWeb/web/loginForCustomer.jsp</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/BTLLapTrinhWeb/web/singupForm.jsp</file>
+>>>>>>> 0eec99e Dao: Thêm  signupForm
         </group>
     </open-files>
 </project-private>
