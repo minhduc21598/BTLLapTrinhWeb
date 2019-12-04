@@ -82,8 +82,7 @@ public class CheckLoginCustomer extends HttpServlet {
             if (user.getType() == 2) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                rd.forward(request, response);
+                response.sendRedirect("index.jsp");
             } else {
                 out.print("Admin cannot login here !");
             }

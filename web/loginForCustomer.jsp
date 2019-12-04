@@ -28,7 +28,7 @@
                         <p>Welcome, <%= user.getName() %></p>
                         <a href="editInforCustomer.jsp">Tài khoản</a> | 
                         <a href="ShowShoppingCart?idUser=<%= user.getId() %>">Giỏ hàng</a> | 
-                        <form action="LogOut" method="post"><a href="index.jsp">Đăng xuất</a></form>
+                        <form action="../LogOut" method="post"><a href="index.jsp">Đăng xuất</a></form>
                         <% }%>
                     <p>
                         Giỏ hàng hiện tại: <strong>3 items</strong> ( <a href="shoppingcart.html">Xem giỏ</a> )
