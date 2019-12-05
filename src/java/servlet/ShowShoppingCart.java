@@ -12,10 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
 import dao.ShipmentDAO;
-import model.User;
 import model.Shipment;
 import java.util.ArrayList;
 
@@ -70,7 +68,6 @@ public class ShowShoppingCart extends HttpServlet {
         request.setAttribute("list", listShipment);
         RequestDispatcher rd = request.getRequestDispatcher("shoppingcart.jsp");
         rd.forward(request, response);
-        destroy();
     }
 
     /**
