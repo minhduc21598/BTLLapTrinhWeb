@@ -1,13 +1,25 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.User" %>
+<%@page import="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Chỉnh sửa thông tin</title>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<link href="css/home.css" rel="stylesheet" type="text/css" />
-<link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css"  />
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Chỉnh sửa thông tin</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="css/home.css" rel="stylesheet" type="text/css" />
+    <link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css"  />
 </head>
+
+<script>
+    <% String mess = (String) request.getAttribute("mess"); %>
+    <% if (mess != null) {%>
+    alert(`<%= mess%>`);
+    <% }%>
+</script>
+
 <body>
     <div id="templatemo_body_wrapper">
         <div id="templatemo_wrapper">
@@ -15,11 +27,16 @@
             <div id="templatemo_header">
                 <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
                 <div id="header_right">
-                    <p>
-                        <a href="#">Tài khoản</a> | <a href="#">Giỏ hàng</a> | <a href="#">Đăng xuất</a> | <a href="#">Đăng nhập</a></p>
-                    <p>
-                        Giỏ hàng hiện tại: <strong>3 items</strong> ( <a href="shoppingcart.html">Xem giỏ</a> )
-                    </p>
+                    <% User user = (User) session.getAttribute("user"); %>
+                    <% if (user == null) { %>
+                    <a href="loginForCustomer.jsp">Đăng nhập</a> |
+                    <a href="editInforCustomer.jsp">Đăng ký</a>
+                    <% } else {%>                     
+                    <p>Xin chào, <%= user.getName()%></p>
+                    <a href="editInforCustomer.jsp">Tài khoản</a> | 
+                    <a href="ShowShoppingCart?idUser=<%= user.getId()%>">Giỏ hàng</a> | 
+                    <a href="LogOut">Đăng xuất</a>
+                    <% }%>
                 </div>
                 <div class="cleaner"></div>
             </div> <!-- END of templatemo_header -->
@@ -85,20 +102,27 @@
                 </div>
                 <div id="content" class="float_r">
                     <div>
-                        <form class="box-edit-infor-customer" action="" method="post">
-                            <h3>CHỈNH SỬA THÔNG TIN</h3>
+                        <form class="box-edit-infor-customer" action="EditInforUser?action=<%= (user == null) ? "create" : "update"%>" method="post">
+                            <h3>THÔNG TIN NGƯỜI DÙNG</h3>
                             <label for="">Họ và tên:</label>
-                            <input type="text" name = "name" placeholder="Nhập họ và tên...">
+                            <input type="text" name = "name" placeholder="Nhập họ và tên" value="<%= (user == null) ? "" : user.getName()%>">
                             <label for="">Địa chỉ:</label>
-                            <input type="text" name = "address" placeholder="Nhập địa chỉ...">
+                            <input type="text" name = "address" placeholder="Nhập địa chỉ" value="<%= (user == null) ? "" : user.getAddress()%>">
                             <label for="">Ngày sinh:</label>
-                            <input type="date" name = "date" placeholder="Nhập ngày sinh...">
+                            <input type="date" name = "date" value="<%= (user == null) ? "" : user.getDateofbirth()%>">
                             <label for="">Email:</label>
-                            <input type="email" name = "email" placeholder="Nhập email...">
+                            <input type="email" name = "email" placeholder="Nhập email" value="<%= (user == null) ? "" : ((user.getEmail() == null) ? "" : user.getEmail())%>">
                             <label for="">Số điện thoại:</label>
-                            <input type="tel" name = "phone" placeholder="Nhập số điện thoại...">
-
-                            <input type="submit" name = "OK">
+                            <input type="tel" name = "phone" placeholder="Nhập số điện thoại" value="<%= (user == null) ? "" : user.getPhonenum()%>">
+                            <label for="">Tên người dùng:</label>
+                            <% if (user == null) { %>
+                            <input type="text" name = "username" placeholder="Nhập tên người dùng">
+                            <% } else {%>
+                            <input type="text" name = "username" placeholder="Nhập tên người dùng" value="<%= user.getAccount().getUsername()%>" readonly>
+                            <% }%>
+                            <label for="">Nhập password:</label> 
+                            <input type="password" name = "pass" placeholder="Nhập password" value="<%= (user == null) ? "" : user.getAccount().getPassword()%>">
+                            <input type="submit" name = "OK" value="<%= (user == null) ? "Tạo mới" : "Cập nhật"%>">
                         </form>
                     </div>
                 </div>

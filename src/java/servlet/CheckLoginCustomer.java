@@ -29,18 +29,7 @@ public class CheckLoginCustomer extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CheckLoginCustomer</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CheckLoginCustomer at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -70,11 +59,12 @@ public class CheckLoginCustomer extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        processRequest(request, response);
         String name = request.getParameter("name");
         String pass = request.getParameter("pass");
-        PrintWriter out = new PrintWriter(response.getWriter());
         AccountDAO ad = new AccountDAO();
         Account ac = ad.checkAccount(name, pass);
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         if (ac.getUsername() != null) {
             UserDAO ud = new UserDAO();
             User user = ud.checkUser(ac.getId());
@@ -82,13 +72,15 @@ public class CheckLoginCustomer extends HttpServlet {
             if (user.getType() == 2) {
                 HttpSession session = request.getSession();
                 session.setAttribute("user", user);
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                request.setAttribute("mess", "Đăng nhập thành công !");
                 rd.forward(request, response);
-            } else {
-                out.print("Admin cannot login here !");
+            } else if (user.getType() == 1) {
+                request.setAttribute("mess", "Admin không được đăng nhập ở đây !");
+                rd.forward(request, response);
             }
         } else {
-            out.print("Wrong username or password !");
+            request.setAttribute("mess", "Sai tên đăng nhập hoặc mật khẩu !");
+            rd.forward(request, response);
         }
     }
 

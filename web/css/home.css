@@ -371,7 +371,8 @@ a.nivo-prevNav {
 }
 
 .box-edit-infor-customer input[type = text], .box-edit-infor-customer input[type = email], 
-.box-edit-infor-customer input[type = tel], .box-edit-infor-customer input[type = date] {
+.box-edit-infor-customer input[type = tel], .box-edit-infor-customer input[type = date],
+.box-edit-infor-customer input[type = password]{
 	width: 100%;
   padding: 10px 8px;
   margin: 8px 0px;
