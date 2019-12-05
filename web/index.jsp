@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User" %>
 <%@page import="javax.servlet.http.HttpSession" %>
+<%@page import="javax.swing.JOptionPane" %>
 <!DOCTYPE>
 <html>
     <head>
@@ -17,6 +18,13 @@
 
     </head>
 
+    <script>
+        <% String mess = (String) request.getAttribute("mess"); %>
+        <% if (mess != null) {%>
+        alert(`<%= mess%>`);
+        <% }%>
+    </script>
+
     <body>
         <div id="templatemo_body_wrapper">
             <div id="templatemo_wrapper">
@@ -26,14 +34,15 @@
                     <div id="header_right">
                         <% User user = (User) session.getAttribute("user"); %>
                         <% if (user == null) { %>
-                        <a href="loginForCustomer.jsp">Đăng nhập</a>
+                        <a href="loginForCustomer.jsp">Đăng nhập</a> |
+                        <a href="editInforCustomer.jsp">Đăng ký</a>
                         <% } else {%>                     
                         <p>Xin chào, <%= user.getName()%></p>
                         <a href="editInforCustomer.jsp">Tài khoản</a> | 
                         <a href="ShowShoppingCart?idUser=<%= user.getId()%>">Giỏ hàng</a> | 
                         <a href="LogOut">Đăng xuất</a>
                         <% }%>
-                        
+
                     </div>
                     <div class="cleaner"></div>
                 </div>

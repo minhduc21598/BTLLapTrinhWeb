@@ -21,7 +21,8 @@
                 <div id="header_right">
                     <% User user = (User) session.getAttribute("user"); %>
                     <% if (user == null) { %>
-                    <a href="loginForCustomer.jsp">Đăng nhập</a>
+                    <a href="loginForCustomer.jsp">Đăng nhập</a> |
+                    <a href="editInforCustomer.jsp">Đăng ký</a>
                     <% } else {%>                    
                     <p>Xin chào, <%= user.getName()%></p>
                     <a href="editInforCustomer.jsp">Tài khoản</a> | 

@@ -28,4 +28,33 @@ public class AccountDAO extends DAO{
         }
         return ac;
     }
+    
+    public int createAccount(Account account){
+        String sql = "INSERT INTO taikhoan(tendangnhap,matkhau,id_nguoidung) VALUES(?,?,?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, account.getUsername());
+            ps.setString(2, account.getPassword());
+            ps.setInt(3, account.getId());
+            int rowCount = ps.executeUpdate();
+            return rowCount;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    public int updateAccount(int id, String pass){
+        String sql = "UPDATE taikhoan SET matkhau = ? WHERE id_nguoidung = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, pass);
+            ps.setInt(2, id);
+            int rowCount = ps.executeUpdate();
+            return rowCount;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

@@ -9,11 +9,11 @@ public class DAO {
     }
     public void getDBConnection() {
         if (con == null) {
-            String dbUrl = "jdbc:mysql://localhost:3306/ltweb";
+            String dbUrl = "jdbc:mysql://localhost:3306/laptrinhweb";
             String dbDriver = "com.mysql.jdbc.Driver";
             try {
                 Class.forName(dbDriver);
-                con = DriverManager.getConnection(dbUrl, "root", "6336");
+                con = DriverManager.getConnection(dbUrl, "root", "Minhduc2151998");
             } catch (Exception e) {
                 e.printStackTrace();
             }

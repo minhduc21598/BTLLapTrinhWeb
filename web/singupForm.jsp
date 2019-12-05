@@ -18,7 +18,10 @@
         <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
         <div id="header_right">
             <p>
-            <a href="#">Tài khoản</a> | <a href="#">Giỏ hàng</a> | <a href="#">Đăng xuất</a> | <a href="#">Đăng nhập</a></p>
+            <a href="#">Tài khoản</a> | 
+            <a href="#">Giỏ hàng</a> | 
+            <a href="#">Đăng xuất</a> | 
+            <a href="#">Đăng nhập</a></p>
             <p>
                 Giỏ hiện tại: <strong>3 items</strong> ( <a href="shoppingcart.html">Xem giỏ</a> )
             </p>
