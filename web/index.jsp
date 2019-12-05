@@ -106,54 +106,71 @@
                             </div>
                         </div>
                         <div class="sidebar_box"><span class="bottom"></span>
-                            <h3>Bán chạy nhất</h3>   
-                            <div class="content"> 
-                                <div class="bs_box">
-                                    <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                    <h4><a href="#">Tên giày bán chạy 1</a></h4>
-                                    <p class="price">$10</p>
-                                    <div class="cleaner"></div>
+                            <h3>LỌC SẢN PHẨM</h3>
+                            <div class="filter">
+                                <div class="filter-hang">
+                                    <span>CHỌN HÃNG SẢN XUẤT</span> <br>
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <label><input type="checkbox" name="" value="">Adidas</label>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <label><input type="checkbox" name="" value="">Nike</label>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <label><input type="checkbox" name="" value="">Converse</label>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <label><input type="checkbox" name="" value="">Bitis</label>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="bs_box">
-                                    <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                    <h4><a href="#">Tên giày bán chạy 2</a></h4>
-                                    <p class="price">$12</p>
-                                    <div class="cleaner"></div>
-                                </div>
-                                <div class="bs_box">
-                                    <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                    <h4><a href="#">Tên giày bán chạy 3</a></h4>
-                                    <p class="price">$20</p>
-                                    <div class="cleaner"></div>
-                                </div>
-                                <div class="bs_box">
-                                    <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                    <h4><a href="#">Tên giày bán chạy 4</a></h4>
-                                    <p class="price">$8</p>
-                                    <div class="cleaner"></div>
+                                <div class="filter-gia">
+                                    <span>CHỌN MỨC GIÁ</span> <br>
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <label><input type="checkbox" name="" value="">Dưới 1 triệu</label>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <label><input type="checkbox" name="" value="">Từ 1-2 triệu</label>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <label><input type="checkbox" name="" value="">Trên 2 triệu</label>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div id="content" class="float_r">
-                        <div id="slider-wrapper">
-                            <div id="slider" class="nivoSlider">
-                                <img src="images/slider/02.jpg" alt="" />
-                                <a href="#"><img src="images/slider/01.jpg" alt="" title="This is an example of a caption" /></a>
-                                <img src="images/slider/03.jpg" alt="" />
-                                <img src="images/slider/04.jpg" alt="" title="#htmlcaption" />
-                            </div>
-                            <div id="htmlcaption" class="nivo-html-caption">
-                                <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.
-                            </div>
+                        <div class="box-sort">
+                            <span>Sắp xếp theo:</span>
+                            <select name="">
+                                <option value=""><a href="#">Sắp xếp theo</a></option>
+                                <option value=""><a href="#">Giá tăng dần</a></option>
+                                <option value=""><a href="#">Giá giảm dần</a></option>
+                            </select>
                         </div>
-                        <!--<script type="text/javascript" src="js/jquery-1.4.3.min.js"></script>-->
-                        <!--<script type="text/javascript" src="js/jquery.nivo.slider.pack.js"></script>-->
-                        <!--                        <script type="text/javascript">
-                                                      $(window).load(function () {
-                                                          $('#slider').nivoSlider();
-                                                      });
-                                                </script>-->
+
+                        <div id="Best-seller">
+                            <h3>Bán chạy</h3>
+
+                        </div>
                         <h1>Sản phẩm mới</h1>
                         <div class="product_box">
                             <h3>Ut eu feugiat</h3>
