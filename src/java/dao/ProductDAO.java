@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import model.Product;
 import model.Type;
 import model.Manufacturer;
+import model.ProductImage;
+import java.util.ArrayList;
 
 public class ProductDAO extends DAO{
 
@@ -18,6 +20,7 @@ public class ProductDAO extends DAO{
         String sql = "SELECT * FROM sanpham WHERE id = ?";
         ManufacturerDAO md = new ManufacturerDAO();
         TypeDAO td = new TypeDAO();
+        ProductImageDAO pid = new ProductImageDAO();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -37,6 +40,8 @@ public class ProductDAO extends DAO{
                 product.setType(type);
                 Manufacturer manufacturer = md.getManufacturer(rs.getInt("id_nhacungcap"));
                 product.setManufacturer(manufacturer);
+                ArrayList<ProductImage> listImage = pid.getImage(rs.getInt("id"));
+                product.setListImage(listImage);
             }
         } catch (Exception e) {
             e.printStackTrace();

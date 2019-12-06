@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User" %>
-<%@page import="javax.servlet.http.HttpSession" %>
-<%@page import="javax.swing.JOptionPane" %>
-<!DOCTYPE>
+<%@page import="java.util.ArrayList" %>
+<%@page import="model.Type" %>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -34,11 +34,11 @@
                     <div id="header_right">
                         <% User user = (User) session.getAttribute("user"); %>
                         <% if (user == null) { %>
-                        <a href="loginForCustomer.jsp">Đăng nhập</a> |
-                        <a href="editInforCustomer.jsp">Đăng ký</a>
+                        <a href="login.jsp">Đăng nhập</a> |
+                        <a href="editInforUser.jsp">Đăng ký</a>
                         <% } else {%>                     
                         <p>Xin chào, <%= user.getName()%></p>
-                        <a href="editInforCustomer.jsp">Tài khoản</a> | 
+                        <a href="editInforUser.jsp">Tài khoản</a> | 
                         <a href="ShowShoppingCart?idUser=<%= user.getId()%>">Giỏ hàng</a> | 
                         <a href="LogOut">Đăng xuất</a>
                         <% }%>
@@ -87,21 +87,25 @@
                             <h3>DANH MỤC SẢN PHẨM</h3>   
                             <div class="content"> 
                                 <ul class="sidebar_list">
-                                    <li class="first"><a href="#">Giày thể thao nam</a></li>
-                                    <li><a href="#">Giày sneaker nam</a></li>
-                                    <li><a href="#">Giày lười nam</a></li>
-                                    <li><a href="#">Giày tây nam</a></li>
-                                    <li><a href="#">Giày vải nam</a></li>
-                                    <li><a href="#">Giày boots nam</a></li>
-                                    <li><a href="#">Giày casual nam</a></li>
-                                    <li><a href="#">Giày thể thao nữ</a></li>
-                                    <li><a href="#">Giày sneaker nữ</a></li>
-                                    <li><a href="#">Giày lười nữ</a></li>
-                                    <li><a href="#">Giày cao gót</a></li>
-                                    <li><a href="#">Giày búp bê</a></li>
-                                    <li><a href="#">Giày đế xuồng nữ</a></li>
-                                    <li><a href="#">Giày boots nữ</a></li>
-                                    <li class="last"><a href="#">Giày sandals nữ</a></li>
+                                    <!--                                    <li class="first"><a href="#">Giày thể thao nam</a></li>
+                                                                        <li><a href="#">Giày sneaker nam</a></li>
+                                                                        <li><a href="#">Giày lười nam</a></li>
+                                                                        <li><a href="#">Giày tây nam</a></li>
+                                                                        <li><a href="#">Giày vải nam</a></li>
+                                                                        <li><a href="#">Giày boots nam</a></li>
+                                                                        <li><a href="#">Giày casual nam</a></li>
+                                                                        <li><a href="#">Giày thể thao nữ</a></li>
+                                                                        <li><a href="#">Giày sneaker nữ</a></li>
+                                                                        <li><a href="#">Giày lười nữ</a></li>
+                                                                        <li><a href="#">Giày cao gót</a></li>
+                                                                        <li><a href="#">Giày búp bê</a></li>
+                                                                        <li><a href="#">Giày đế xuồng nữ</a></li>
+                                                                        <li><a href="#">Giày boots nữ</a></li>
+                                                                        <li class="last"><a href="#">Giày sandals nữ</a></li>-->
+                                    <% ArrayList<Type> listType = (ArrayList<Type>) request.getAttribute("listType");  %>
+                                    <% for (int i = 0; i < listType.size(); i++) {%>
+                                    <li><a href="#"><%= listType.get(i).getType()%></a></li>
+                                    <% }%>
                                 </ul>
                             </div>
                         </div>

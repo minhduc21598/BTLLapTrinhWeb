@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User" %>
 <%@page import="model.Shipment" %>
@@ -20,15 +19,10 @@
                 <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
                 <div id="header_right">
                     <% User user = (User) session.getAttribute("user"); %>
-                    <% if (user == null) { %>
-                    <a href="loginForCustomer.jsp">Đăng nhập</a> |
-                    <a href="editInforCustomer.jsp">Đăng ký</a>
-                    <% } else {%>                    
                     <p>Xin chào, <%= user.getName()%></p>
-                    <a href="editInforCustomer.jsp">Tài khoản</a> | 
+                    <a href="editInforUser.jsp">Tài khoản</a> | 
                     <a href="ShowShoppingCart?idUser=<%= user.getId()%>">Giỏ hàng</a>  | 
                     <a href="LogOut">Đăng xuất</a>
-                    <% }%>
                 </div>
                 <div class="cleaner"></div>
             </div> 

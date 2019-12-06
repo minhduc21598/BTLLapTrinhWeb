@@ -1,44 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlet;
 
+import dao.AccountDAO;
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Account;
 import model.User;
-import dao.AccountDAO;
-import dao.UserDAO;
 
-/**
- *
- * @author Minh Đức
- */
-@WebServlet(name = "CheckLoginAdmin", urlPatterns = {"/CheckLoginAdmin"})
-public class CheckLoginAdmin extends HttpServlet {
+@WebServlet(name = "CheckLogin", urlPatterns = {"/CheckLogin"})
+public class CheckLogin extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CheckLoginAdmin</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CheckLoginAdmin at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,21 +58,31 @@ public class CheckLoginAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        processRequest(request, response);
         String name = request.getParameter("name");
         String pass = request.getParameter("pass");
-        PrintWriter out = new PrintWriter(response.getWriter());
         AccountDAO ad = new AccountDAO();
         Account ac = ad.checkAccount(name, pass);
+
         if (ac.getUsername() != null) {
             UserDAO ud = new UserDAO();
             User user = ud.checkUser(ac.getId());
-            if (user.getType()== 1) {
-                out.print("Welcome, admin !");
-            } else {
-                out.print("Sorry, you are not allowed to login here !");
+            user.setAccount(ac);
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+            request.setAttribute("mess", "Đăng nhập thành công !");
+            if (user.getType() == 2) {         
+                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                rd.forward(request, response);
+            } else if (user.getType() == 1) {
+                RequestDispatcher rd = request.getRequestDispatcher("adminHome.jsp");
+                rd.forward(request, response);
             }
         } else {
-            out.print("Wrong username or password !");
+            request.setAttribute("mess", "Sai tên đăng nhập hoặc mật khẩu !");
+            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            rd.forward(request, response);
         }
     }
 

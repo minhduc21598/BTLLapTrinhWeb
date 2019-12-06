@@ -1,21 +1,29 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Admin Login</title>
+    <title>Đăng nhập</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <link href="css/home.css" rel="stylesheet" type="text/css" />
     <link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css"  />
 </head>
-    <body>
+
+<script>
+    <% String mess = (String) request.getAttribute("mess"); %>
+    <% if (mess != null) {%>
+    alert(`<%= mess%>`);
+    <% }%>
+</script>
+
+<body>
     <div id="templatemo_body_wrapper">
         <div id="templatemo_wrapper">
             <div id="templatemo_header">
                 <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
                 <div id="header_right">
+                    <a href="login.jsp">Đăng nhập</a> |
+                    <a href="editInforUser.jsp">Đăng ký</a>
                 </div>
                 <div class="cleaner"></div>
             </div>
@@ -40,17 +48,18 @@
                 </div>
             </div>
             <div id="templatemo_main">
-                <form class="box-login" action="CheckLoginAdmin" method="post">
+                <form class="box-login" action="CheckLogin" method="post">
                     <h3>Thông tin đăng nhập</h3>
                     <input type="text" name = "name" placeholder="Tên đăng nhập">
                     <input type="password" name = "pass" placeholder="Mật khẩu">                   
                     <input type="submit" name = "OK" value="Đăng nhập">                   
-                </form>
-            </div>
-            <div id="templatemo_footer">
-                Copyright © 2019 <a href="#">D16 PTIT</a> 
-            </div> 
-        </div>
-    </div>
-</body>
-</html>
+                    <span> Bạn chưa có tài khoản? <a href ="editInforUser.jsp"> Đăng kí ngay <a/>
+                            </form>
+                            </div>
+                            <div id="templatemo_footer">
+                                Copyright © 2019 <a href="#">D16 PTIT</a> 
+                            </div> 
+                            </div>
+                            </div>
+                            </body>
+                            </html>

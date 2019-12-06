@@ -46,7 +46,6 @@ public class EditInforUser extends HttpServlet {
             user.setPhonenum(request.getParameter("phone"));
             user.setType(2);
             int idUser = ud.createUser(user);
-
             if (idUser != 0) {
                 Account account = new Account();
                 account.setId(idUser);
@@ -54,7 +53,7 @@ public class EditInforUser extends HttpServlet {
                 account.setPassword(request.getParameter("pass"));
                 int check = ad.createAccount(account);
                 if (check != 0) {
-                    RequestDispatcher rd = request.getRequestDispatcher("loginForCustomer.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
                     request.setAttribute("mess", "Đăng kí thành công !");
                     rd.forward(request, response);
                 } else {
@@ -62,6 +61,10 @@ public class EditInforUser extends HttpServlet {
                     request.setAttribute("mess", "Đăng kí không thành công !");
                     rd.forward(request, response);
                 }
+            } else {
+                RequestDispatcher rd = request.getRequestDispatcher("editInforCustomer.jsp");
+                request.setAttribute("mess", "Đăng kí không thành công !");
+                rd.forward(request, response);
             }
         } else if (action.equals("update")) {
             HttpSession session = request.getSession();

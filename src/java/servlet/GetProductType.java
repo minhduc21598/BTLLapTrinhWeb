@@ -1,21 +1,28 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package servlet;
 
-import dao.AccountDAO;
-import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Account;
-import model.User;
+import javax.servlet.RequestDispatcher;
+import java.util.ArrayList;
+import model.Type;
+import dao.TypeDAO;
 
-@WebServlet(name = "CheckLoginCustomer", urlPatterns = {"/CheckLoginCustomer"})
-public class CheckLoginCustomer extends HttpServlet {
+/**
+ *
+ * @author Minh Đức
+ */
+@WebServlet(name = "GetProductType", urlPatterns = {"/GetProductType"})
+public class GetProductType extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,7 +36,11 @@ public class CheckLoginCustomer extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        TypeDAO td = new TypeDAO();
+        ArrayList<Type> listType = td.getAllType();
+        request.setAttribute("listType", listType);
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,30 +69,7 @@ public class CheckLoginCustomer extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         processRequest(request, response);
-        String name = request.getParameter("name");
-        String pass = request.getParameter("pass");
-        AccountDAO ad = new AccountDAO();
-        Account ac = ad.checkAccount(name, pass);
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-        if (ac.getUsername() != null) {
-            UserDAO ud = new UserDAO();
-            User user = ud.checkUser(ac.getId());
-            user.setAccount(ac);
-            if (user.getType() == 2) {
-                HttpSession session = request.getSession();
-                session.setAttribute("user", user);
-                request.setAttribute("mess", "Đăng nhập thành công !");
-                rd.forward(request, response);
-            } else if (user.getType() == 1) {
-                request.setAttribute("mess", "Admin không được đăng nhập ở đây !");
-                rd.forward(request, response);
-            }
-        } else {
-            request.setAttribute("mess", "Sai tên đăng nhập hoặc mật khẩu !");
-            rd.forward(request, response);
-        }
     }
 
     /**
