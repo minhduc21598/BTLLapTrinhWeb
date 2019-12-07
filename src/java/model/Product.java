@@ -11,7 +11,6 @@ public class Product implements Serializable{
     private double price;
     private double importprice;
     private int sale;
-    private double saleprice;
     private int remain;
     private int sold;
     private int hot;
@@ -61,14 +60,6 @@ public class Product implements Serializable{
 
     public void setSale(int sale) {
         this.sale = sale;
-    }
-
-    public double getSaleprice() {
-        return saleprice;
-    }
-
-    public void setSaleprice(double saleprice) {
-        this.saleprice = saleprice;
     }
 
     public int getRemain() {

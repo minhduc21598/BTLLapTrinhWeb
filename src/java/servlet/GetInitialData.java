@@ -6,7 +6,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,13 +15,19 @@ import javax.servlet.RequestDispatcher;
 import java.util.ArrayList;
 import model.Type;
 import dao.TypeDAO;
+import model.Manufacturer;
+import dao.ManufacturerDAO;
+import model.Product;
+import dao.ProductDAO;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
  * @author Minh Đức
  */
-@WebServlet(name = "GetProductType", urlPatterns = {"/GetProductType"})
-public class GetProductType extends HttpServlet {
+@WebServlet(name = "GetInitialData", urlPatterns = {"/GetInitialData"})
+public class GetInitialData extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,11 +41,25 @@ public class GetProductType extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listProduct");
         TypeDAO td = new TypeDAO();
         ArrayList<Type> listType = td.getAllType();
         request.setAttribute("listType", listType);
+
+        ManufacturerDAO md = new ManufacturerDAO();
+        ArrayList<Manufacturer> listManu = md.getAllManufacturer();
+        request.setAttribute("listManu", listManu);
+
+        if(listProduct == null){
+            ProductDAO pd = new ProductDAO();
+            listProduct = pd.getAllProduct();
+            request.setAttribute("listProduct", listProduct);
+        } else {
+            request.setAttribute("listProduct", listProduct);
+        }
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,6 +74,27 @@ public class GetProductType extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        String sortType = (String) request.getAttribute("sortType");
+//        ProductDAO pd = new ProductDAO();
+//        ArrayList<Product> listProduct = pd.getAllProduct();
+//        if (sortType.equals("increase")) {
+//            Collections.sort(listProduct, new Comparator<Product>() {
+//                @Override
+//                public int compare(Product p1, Product p2) {
+//                    return ((int) p1.getPrice() - (int) p2.getPrice());
+//                }
+//            });
+//        } else if (sortType.equals("decrease")) {
+//            Collections.sort(listProduct, new Comparator<Product>() {
+//                @Override
+//                public int compare(Product p1, Product p2) {
+//                    return ((int) p2.getPrice() - (int) p1.getPrice());
+//                }
+//            });
+//        }
+//        request.setAttribute("listProduct", listProduct);
+//        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+//        rd.forward(request, response);
         processRequest(request, response);
     }
 
@@ -69,7 +109,7 @@ public class GetProductType extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
     }
 
     /**
