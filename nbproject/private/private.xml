@@ -3,15 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/src/java/servlet/EditInforUser.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/src/java/dao/AccountDAO.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/src/java/dao/ProductDAO.java</file>
             <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/web/index.jsp</file>
-            <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/src/java/servlet/ShowShoppingCart.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/web/singupForm.jsp</file>
+            <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/web/editInforUser.jsp</file>
+            <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/src/java/servlet/GetInitialData.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/src/java/servlet/Filter.java</file>
             <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/web/shoppingcart.jsp</file>
-            <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/web/editInforCustomer.jsp</file>
-            <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/src/java/dao/UserDAO.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/src/java/model/User.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/src/java/servlet/Sort.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/BTLLapTrinhWeb/src/java/dao/ManufacturerDAO.java</file>
         </group>
     </open-files>
 </project-private>

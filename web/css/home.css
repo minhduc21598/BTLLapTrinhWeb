@@ -161,7 +161,7 @@ h6 { font-size: 12px; margin: 0 0 5px; padding: 0; }
     text-align: center;
     margin: 0 10px 30px 0;
     padding-bottom: 20px;
-    border-bottom: 1px dotted #ccc
+    border-bottom: 1px dotted #ccc;
 }
 
 .product_box img {
@@ -372,7 +372,7 @@ a.nivo-prevNav {
 
 .box-edit-infor-customer input[type = text], .box-edit-infor-customer input[type = email], 
 .box-edit-infor-customer input[type = tel], .box-edit-infor-customer input[type = date],
-.box-edit-infor-customer input[type = password]{
+.box-edit-infor-customer input[type = "password"]{
 	width: 100%;
   padding: 10px 8px;
   margin: 8px 0px;
@@ -433,3 +433,43 @@ a.nivo-prevNav {
   background-color: #45a049;
 }
 
+/*Filter-hang-gia*/
+
+.filter a {
+	text-decoration: none;	
+}
+
+.filter ul li {
+	list-style: none;	
+}
+
+.filter-hang, .filter-gia {
+	border-bottom: 1px dotted #ccc;
+	margin: 10px;
+}
+
+.filter-hang ul, .filter-gia ul {
+	padding: 4px;
+	margin: 4px;
+	
+}
+
+/*Box-sort*/
+
+.box-sort span {
+	margin: 10px;
+    font-size: 15px;
+    line-height: 32px;
+    color: black;
+}
+
+.box-sort {
+    background: #EBEBEB;
+    height: 33px;
+    border: 1px solid #EBEBEB;
+}
+.box-sort select {	
+font-size: 14px;
+    width: 150px;
+    height: 24px;
+}

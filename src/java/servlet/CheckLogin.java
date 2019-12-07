@@ -3,7 +3,6 @@ package servlet;
 import dao.AccountDAO;
 import dao.UserDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +13,8 @@ import javax.servlet.http.HttpSession;
 import model.Account;
 import model.User;
 
-@WebServlet(name = "CheckLoginCustomer", urlPatterns = {"/CheckLoginCustomer"})
-public class CheckLoginCustomer extends HttpServlet {
+@WebServlet(name = "CheckLogin", urlPatterns = {"/CheckLogin"})
+public class CheckLogin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,7 +28,7 @@ public class CheckLoginCustomer extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,22 +63,21 @@ public class CheckLoginCustomer extends HttpServlet {
         String pass = request.getParameter("pass");
         AccountDAO ad = new AccountDAO();
         Account ac = ad.checkAccount(name, pass);
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         if (ac.getUsername() != null) {
             UserDAO ud = new UserDAO();
             User user = ud.checkUser(ac.getId());
             user.setAccount(ac);
-            if (user.getType() == 2) {
-                HttpSession session = request.getSession();
-                session.setAttribute("user", user);
-                request.setAttribute("mess", "Đăng nhập thành công !");
-                rd.forward(request, response);
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+            if (user.getType() == 2) {         
+                response.sendRedirect("GetInitialData");
             } else if (user.getType() == 1) {
-                request.setAttribute("mess", "Admin không được đăng nhập ở đây !");
+                RequestDispatcher rd = request.getRequestDispatcher("adminHome.jsp");
                 rd.forward(request, response);
             }
         } else {
             request.setAttribute("mess", "Sai tên đăng nhập hoặc mật khẩu !");
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);
         }
     }

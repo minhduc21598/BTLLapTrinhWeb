@@ -5,40 +5,39 @@
  */
 package servlet;
 
+import dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Account;
-import model.User;
-import dao.AccountDAO;
-import dao.UserDAO;
+import javax.servlet.RequestDispatcher;
+import model.Product;
 
 /**
  *
  * @author Minh Đức
  */
-@WebServlet(name = "CheckLoginAdmin", urlPatterns = {"/CheckLoginAdmin"})
-public class CheckLoginAdmin extends HttpServlet {
+@WebServlet(name = "Sort", urlPatterns = {"/Sort"})
+public class Sort extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CheckLoginAdmin</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CheckLoginAdmin at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -53,7 +52,27 @@ public class CheckLoginAdmin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String sortType = request.getParameter("sortType");
+        ProductDAO pd = new ProductDAO();
+        ArrayList<Product> listProduct = pd.getAllProduct();
+        if (sortType.equals("increase")) {
+            Collections.sort(listProduct, new Comparator<Product>() {
+                @Override
+                public int compare(Product p1, Product p2) {
+                    return ((int) p1.getPrice() - (int) p2.getPrice());
+                }
+            });
+        } else if (sortType.equals("decrease")) {
+            Collections.sort(listProduct, new Comparator<Product>() {
+                @Override
+                public int compare(Product p1, Product p2) {
+                    return ((int) p2.getPrice() - (int) p1.getPrice());
+                }
+            });
+        }
+        request.setAttribute("listProduct", listProduct);
+        RequestDispatcher rd = request.getRequestDispatcher("GetInitialData");
+        rd.forward(request, response);
     }
 
     /**
@@ -67,22 +86,7 @@ public class CheckLoginAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String pass = request.getParameter("pass");
-        PrintWriter out = new PrintWriter(response.getWriter());
-        AccountDAO ad = new AccountDAO();
-        Account ac = ad.checkAccount(name, pass);
-        if (ac.getUsername() != null) {
-            UserDAO ud = new UserDAO();
-            User user = ud.checkUser(ac.getId());
-            if (user.getType()== 1) {
-                out.print("Welcome, admin !");
-            } else {
-                out.print("Sorry, you are not allowed to login here !");
-            }
-        } else {
-            out.print("Wrong username or password !");
-        }
+        processRequest(request, response);
     }
 
     /**
