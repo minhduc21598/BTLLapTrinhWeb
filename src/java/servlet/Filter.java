@@ -73,6 +73,18 @@ public class Filter extends HttpServlet {
         return listProductByPrice;
     }
 
+    public ArrayList<Product> filterByType(String type) {
+        ProductDAO pd = new ProductDAO();
+        ArrayList<Product> listProduct = pd.getAllProduct();
+        ArrayList<Product> listProductByType = new ArrayList<>();
+        for (int i = 0; i < listProduct.size(); i++) {
+            if (listProduct.get(i).getType().getType().equals(type)) {
+                listProductByType.add(listProduct.get(i));
+            }
+        }
+        return listProductByType;
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -104,21 +116,16 @@ public class Filter extends HttpServlet {
             throws ServletException, IOException {
         String manufacturer = (String) request.getParameter("manufacturer");
         String priceRange = (String) request.getParameter("priceRange");
+        String type = (String) request.getParameter("type");
         ArrayList<Product> listProduct = new ArrayList<>();
-        if (manufacturer != null && priceRange == null) {
+        if (manufacturer != null) {
             listProduct = filterByManu(manufacturer);
         }
-        if (manufacturer == null && priceRange != null) {
+        if (priceRange != null) {
             listProduct = filterByPrice(priceRange);
         }
-        if (manufacturer != null && priceRange != null) {
-            ArrayList<Product> listProduct1 = filterByManu(manufacturer);
-            ArrayList<Product> listProduct2 = filterByPrice(priceRange);
-            for (int i = 0; i < listProduct1.size(); i++) {
-                if (listProduct2.contains(listProduct1.get(i))) {
-                    listProduct.add(listProduct1.get(i));
-                }
-            }
+        if (type != null) {
+            listProduct = filterByType(type);
         }
         request.setAttribute("listProduct", listProduct);
         RequestDispatcher rd = request.getRequestDispatcher("GetInitialData");

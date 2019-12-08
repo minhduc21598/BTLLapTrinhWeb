@@ -21,7 +21,8 @@
                     <% User user = (User) session.getAttribute("user"); %>
                     <p>Xin chào, <%= user.getName()%></p>
                     <a href="editInforUser.jsp">Tài khoản</a> | 
-                    <a href="ShowShoppingCart?idUser=<%= user.getId()%>">Giỏ hàng</a>  | 
+                    <a href="ShowShoppingCart">Giỏ hàng</a>  |
+                    <a href="ShowShipment">Đơn hàng</a> |
                     <a href="LogOut">Đăng xuất</a>
                 </div>
                 <div class="cleaner"></div>
@@ -29,7 +30,7 @@
             <div id="templatemo_menubar">
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.html">Trang Chủ</a></li>
+                        <li><a href="GetInitialData">Trang Chủ</a></li>
                         <li><a href="products.html">Sản Phẩm</a>
                         </li>
                         <li><a href="about.html">Giới Thiệu</a>
@@ -92,7 +93,9 @@
                             </td>
                             <td align="right"><%= list.get(i).getProduct().getPrice()%>  </td>
                             <td align="right"><%= list.get(i).getTotal()%> </td>
-                            <td align="center"> <a href="#"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  </td>
+                            <td align="center"> 
+                                <a href="RemoveFromCart?idShipment=<%= list.get(i).getId() %>"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  
+                            </td>
                         </tr>
                         <% }%>
                     </table>
