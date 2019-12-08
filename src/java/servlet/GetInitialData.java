@@ -19,8 +19,7 @@ import model.Manufacturer;
 import dao.ManufacturerDAO;
 import model.Product;
 import dao.ProductDAO;
-import java.util.Collections;
-import java.util.Comparator;
+
 
 /**
  *
@@ -50,13 +49,11 @@ public class GetInitialData extends HttpServlet {
         ArrayList<Manufacturer> listManu = md.getAllManufacturer();
         request.setAttribute("listManu", listManu);
 
-        if(listProduct == null){
+        if (listProduct == null) {
             ProductDAO pd = new ProductDAO();
             listProduct = pd.getAllProduct();
-            request.setAttribute("listProduct", listProduct);
-        } else {
-            request.setAttribute("listProduct", listProduct);
         }
+        request.setAttribute("listProduct", listProduct);
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
 
@@ -74,27 +71,6 @@ public class GetInitialData extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        String sortType = (String) request.getAttribute("sortType");
-//        ProductDAO pd = new ProductDAO();
-//        ArrayList<Product> listProduct = pd.getAllProduct();
-//        if (sortType.equals("increase")) {
-//            Collections.sort(listProduct, new Comparator<Product>() {
-//                @Override
-//                public int compare(Product p1, Product p2) {
-//                    return ((int) p1.getPrice() - (int) p2.getPrice());
-//                }
-//            });
-//        } else if (sortType.equals("decrease")) {
-//            Collections.sort(listProduct, new Comparator<Product>() {
-//                @Override
-//                public int compare(Product p1, Product p2) {
-//                    return ((int) p2.getPrice() - (int) p1.getPrice());
-//                }
-//            });
-//        }
-//        request.setAttribute("listProduct", listProduct);
-//        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-//        rd.forward(request, response);
         processRequest(request, response);
     }
 
@@ -109,7 +85,7 @@ public class GetInitialData extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**
