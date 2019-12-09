@@ -20,7 +20,7 @@
     <div id="templatemo_body_wrapper">
         <div id="templatemo_wrapper">
             <div id="templatemo_header">
-                <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
+                <div id="site_title"><h1><a href="#">Shop Giày Online</a></h1></div>
                 <div id="header_right">
                     <a href="login.jsp">Đăng nhập</a> |
                     <a href="editInforUser.jsp">Đăng ký</a>
@@ -30,14 +30,11 @@
             <div id="templatemo_menubar">
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.html">Trang Chủ</a></li>
-                        <li><a href="products.html">Sản Phẩm</a>
-                        </li>
-                        <li><a href="about.html">Giới Thiệu</a>
-                        </li>
-                        <li><a href="faqs.html">FAQ</a></li>
-                        <li><a href="contact.html">Liên Hệ</a></li>
-                    </ul>
+                            <li><a href="index.jsp" class="selected">Trang chủ</a></li>
+                            <li><a href="#">Giới thiệu</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                        </ul>
                     <br style="clear: left" />
                 </div>
                 <div id="templatemo_search">

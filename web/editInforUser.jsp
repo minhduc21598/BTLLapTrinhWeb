@@ -25,7 +25,7 @@
         <div id="templatemo_wrapper">
 
             <div id="templatemo_header">
-                <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
+                <div id="site_title"><h1><a href="#">Shop Giày Online</a></h1></div>
                 <div id="header_right">
                     <% User user = (User) session.getAttribute("user"); %>
                     <% if (user == null) { %>
@@ -46,23 +46,12 @@
                     <ul>
                         <li><a href="index.html">Trang Chủ</a></li>
                         <li><a href="products.html">Sản Phẩm</a>
-                            <!--  <ul>
-                                 <li><a href="#submenu1">Sub menu 1</a></li>
-                                 <li><a href="#submenu2">Sub menu 2</a></li>
-                                 <li><a href="#submenu3">Sub menu 3</a></li>
-                                 <li><a href="#submenu4">Sub menu 4</a></li>
-                                 <li><a href="#submenu5">Sub menu 5</a></li>
-                           </ul> -->
                         </li>
                         <li><a href="about.html">Giới Thiệu</a>
-                            <!--  <ul>
-                                 <li><a href="#submenu1">Sub menu 1</a></li>
-                                 <li><a href="#submenu2">Sub menu 2</a></li>
-                                 <li><a href="#submenu3">Sub menu 3</a></li>
-                           </ul> -->
                         </li>
-                        <li><a href="faqs.html">FAQ</a></li>
-                        <!-- <li><a href="checkout.html">Checkout</a></li> -->
+                        <li>
+                            <a href="faqs.html">FAQ</a>
+                        </li>
                         <li><a href="contact.html">Liên Hệ</a></li>
                     </ul>
                     <br style="clear: left" />
@@ -75,32 +64,8 @@
                 </div>
             </div> <!-- END of templatemo_menubar -->
 
-            <div id="templatemo_main">
-                <div id="sidebar" class="float_l">
-                    <div class="sidebar_box"><span class="bottom"></span>
-                        <h3>Danh mục sản phẩm</h3>   
-                        <div class="content"> 
-                            <ul class="sidebar_list">
-                                <li class="first"><a href="#">Giày thể thao nam</a></li>
-                                <li><a href="#">Giày sneaker nam</a></li>
-                                <li><a href="#">Giày lười nam</a></li>
-                                <li><a href="#">Giày tây nam</a></li>
-                                <li><a href="#">Giày vải nam</a></li>
-                                <li><a href="#">Giày boots nam</a></li>
-                                <li><a href="#">Giày casual nam</a></li>
-                                <li><a href="#">Giày thể thao nữ</a></li>
-                                <li><a href="#">Giày sneaker nữ</a></li>
-                                <li><a href="#">Giày lười nữ</a></li>
-                                <li><a href="#">Giày cao gót</a></li>
-                                <li><a href="#">Giày búp bê</a></li>
-                                <li><a href="#">Giày đế xuồng nữ</a></li>
-                                <li><a href="#">Giày boots nữ</a></li>
-                                <li class="last"><a href="#">Giày sandals nữ</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div id="content" class="float_r">
+            <div id="templatemo_main">      
+                <div id="content">
                     <div>
                         <form class="box-edit-infor-customer" action="EditInforUser?action=<%= (user == null) ? "create" : "update"%>" method="post">
                             <h3>THÔNG TIN NGƯỜI DÙNG</h3>
@@ -126,12 +91,9 @@
                         </form>
                     </div>
                 </div>
-                <div class="cleaner"></div>
             </div> <!-- END of templatemo_main -->
 
             <div id="templatemo_footer">
-                <p><a href="#">Trang chủ</a> | <a href="#">Sản phẩm</a> | <a href="#">Giới thiệu</a> | <a href="#">FAQ</a> | <a href="#">Liên hệ</a>
-                </p>
                 Copyright © 2019 <a href="#">D16 PTIT</a>     
             </div> <!-- E   ND of templatemo_footer -->    
         </div> <!-- END of templatemo_wrapper -->

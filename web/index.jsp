@@ -12,11 +12,7 @@
         <meta name="keywords" content="" />
         <meta name="description" content="" />
         <link href="css/home.css" rel="stylesheet" type="text/css" />
-
-        <link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
-
         <link  href="css/ddsmoothmenu.css"  rel="stylesheet" type="text/css" />
-
     </head>
 
     <script>
@@ -32,7 +28,7 @@
             <div id="templatemo_wrapper">
 
                 <div id="templatemo_header">
-                    <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
+                    <div id="site_title"><h1><a href="#">Giày Online</a></h1></div>
                     <div id="header_right">
                         <% User user = (User) session.getAttribute("user"); %>
                         <% if (user == null) { %>
@@ -52,26 +48,10 @@
                 <div id="templatemo_menubar">
                     <div id="top_nav" class="ddsmoothmenu">
                         <ul>
-                            <li><a href="index.html" class="selected">Home</a></li>
-                            <li><a href="products.html">Sản phẩm</a>
-                                <!--                                <ul>
-                                                                    <li><a href="#submenu1">Sub menu 1</a></li>
-                                                                    <li><a href="#submenu2">Sub menu 2</a></li>
-                                                                    <li><a href="#submenu3">Sub menu 3</a></li>
-                                                                    <li><a href="#submenu4">Sub menu 4</a></li>
-                                                                    <li><a href="#submenu5">Sub menu 5</a></li>
-                                                                </ul>-->
-                            </li>
-                            <li><a href="about.html">Giới thiệu</a>
-                                <!--                                <ul>
-                                                                    <li><a href="#submenu1">Sub menu 1</a></li>
-                                                                    <li><a href="#submenu2">Sub menu 2</a></li>
-                                                                    <li><a href="#submenu3">Sub menu 3</a></li>
-                                                                </ul>-->
-                            </li>
-                            <li><a href="faqs.html">FAQs</a></li>
-                            <!--                            <li><a href="checkout.html">Checkout</a></li>-->
-                            <li><a href="contact.html">Liên hệ</a></li>
+                            <li><a href="index.jsp" class="selected">Trang chủ</a></li>
+                            <li><a href="#">Giới thiệu</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Liên hệ</a></li>
                         </ul>
                         <br style="clear: left" />
                     </div>
@@ -82,7 +62,6 @@
                         </form>
                     </div>
                 </div> 
-
                 <div id="templatemo_main">
                     <div id="sidebar" class="float_l">
                         <div class="sidebar_box"><span class="bottom"></span>
@@ -129,7 +108,6 @@
                                     </ul>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div id="content" class="float_r">
@@ -141,28 +119,231 @@
                                 <option value="Sort?sortType=decrease">Giá giảm dần</option>
                             </select>
                         </div>
-                        <div id="Best-seller">
-                            <h3>Bán chạy</h3>
+                        <h2>Sản phẩm bán chạy</h2>
+                        <div class="best-seller">
+                            <div class="best-seller-scroll">
+                                <div class="product_box">
+                                    <h3>Tên sản phẩm</h3>
+                                    <a href="productdetail.html"><img src="images/product/01.jpg" alt="Shoes 1" /></a>
+                                    <table>
+                                        <tr>
+                                            <td><span class="product_status">Còn hàng</span></td>
+                                            <td><span class="product_price">2000000đ</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="product_status_sale">-10%</span></td>
+                                            <td><span class="product_price_sale">1800000đ</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="shoppingcart.html" class="addtocart"></a></td>
+                                            <td><a href="productdetail.html" class="detail"></a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <!--===========-->
+                                <div class="product_box">
+                                    <h3>Tên sản phẩm</h3>
+                                    <a href="productdetail.html"><img src="images/product/01.jpg" alt="Shoes 2" /></a>
+                                    <table>
+                                        <tr>
+                                            <td><span class="product_status">Còn hàng</span></td>
+                                            <td><span class="product_price">2000000đ</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="product_status_sale">-10%</span></td>
+                                            <td><span class="product_price_sale">1800000đ</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="shoppingcart.html" class="addtocart"></a></td>
+                                            <td><a href="productdetail.html" class="detail"></a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <!--==================-->
+                                <div class="product_box">
+                                    <h3>Tên sản phẩm</h3>
+                                    <a href="productdetail.html"><img src="images/product/01.jpg" alt="Shoes 3" /></a>
+                                    <table>
+                                        <tr>
+                                            <td><span class="product_status">Còn hàng</span></td>
+                                            <td><span class="product_price">2000000đ</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="product_status_sale">-10%</span></td>
+                                            <td><span class="product_price_sale">1800000đ</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="shoppingcart.html" class="addtocart"></a></td>
+                                            <td><a href="productdetail.html" class="detail"></a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <!--=====================-->
+                                <div class="product_box">
+                                    <h3>Tên sản phẩm</h3>
+                                    <a href="productdetail.html"><img src="images/product/01.jpg" alt="Shoes 4" /></a>
+                                    <table>
+                                        <tr>
+                                            <td><span class="product_status">Còn hàng</span></td>
+                                            <td><span class="product_price">2000000đ</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="product_status_sale">-10%</span></td>
+                                            <td><span class="product_price_sale">1800000đ</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="shoppingcart.html" class="addtocart"></a></td>
+                                            <td><a href="productdetail.html" class="detail"></a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <!--=================-->
+                                <div class="product_box">
+                                    <h3>Tên sản phẩm</h3>
+                                    <a href="productdetail.html"><img src="images/product/01.jpg" alt="Shoes 4" /></a>
+                                    <table>
+                                        <tr>
+                                            <td><span class="product_status">Còn hàng</span></td>
+                                            <td><span class="product_price">2000000đ</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="product_status_sale">-10%</span></td>
+                                            <td><span class="product_price_sale">1800000đ</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="shoppingcart.html" class="addtocart"></a></td>
+                                            <td><a href="productdetail.html" class="detail"></a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <h1>Tất cả sản phẩm</h1>
-                        <% ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listProduct"); %>
-                        <% for (int i = 0; i < listProduct.size(); i++) {%>
+                        <!--//////////////////////-->
+                        <h2>Sản phẩm mới</h2>
                         <div class="product_box">
-                            <h3><%= listProduct.get(i).getName()%></h3>
-                            <a href="productdetail.html"><img src="images/product/02.jpg" alt="Shoes 2" /></a>
-                            <p class="product_price"><%= listProduct.get(i).getPrice()%> đ</p>
-                            <a href="shoppingcart.html" class="addtocart"></a>
-                            <a href="productdetail.html" class="detail"></a>
-                        </div>  
-                        <% }%>
-                        <div class="cleaner"></div>
-                    </div> 
+                            <h3>Tên sản phẩm</h3>
+                            <a href="productdetail.html"><img src="images/product/03.jpg" alt="Shoes 1" /></a>
+                            <table>
+                                <tr>
+                                    <td><span class="product_status">Còn hàng</span></td>
+                                    <td><span class="product_price">2000000đ</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="product_status_sale">-10%</span></td>
+                                    <td><span class="product_price_sale">1800000đ</span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="shoppingcart.html" class="addtocart"></a></td>
+                                    <td><a href="productdetail.html" class="detail"></a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--=============-->
+                        <div class="product_box">
+                            <h3>Tên sản phẩm</h3>
+                            <a href="productdetail.html"><img src="images/product/03.jpg" alt="Shoes 2" /></a>
+                            <table>
+                                <tr>
+                                    <td><span class="product_status">Còn hàng</span></td>
+                                    <td><span class="product_price">2000000đ</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="product_status_sale">-10%</span></td>
+                                    <td><span class="product_price_sale">1800000đ</span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="shoppingcart.html" class="addtocart"></a></td>
+                                    <td><a href="productdetail.html" class="detail"></a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--=============-->
+                        <div class="product_box">
+                            <h3>Tên sản phẩm</h3>
+                            <a href="productdetail.html"><img src="images/product/03.jpg" alt="Shoes 3" /></a>
+                            <table>
+                                <tr>
+                                    <td><span class="product_status">Còn hàng</span></td>
+                                    <td><span class="product_price">2000000đ</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="product_status_sale">-10%</span></td>
+                                    <td><span class="product_price_sale">1800000đ</span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="shoppingcart.html" class="addtocart"></a></td>
+                                    <td><a href="productdetail.html" class="detail"></a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--================-->        
+                        <div class="product_box">
+                            <h3>Tên sản phẩm</h3>
+                            <a href="productdetail.html"><img src="images/product/03.jpg" alt="Shoes 1" /></a>
+                            <table>
+                                <tr>
+                                    <td><span class="product_status">Còn hàng</span></td>
+                                    <td><span class="product_price">2000000đ</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="product_status_sale">-10%</span></td>
+                                    <td><span class="product_price_sale">1800000đ</span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="shoppingcart.html" class="addtocart"></a></td>
+                                    <td><a href="productdetail.html" class="detail"></a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--===============-->
+                        <div class="product_box">
+                            <h3>Tên sản phẩm</h3>
+                            <a href="productdetail.html"><img src="images/product/03.jpg" alt="Shoes 5" /></a>
+                            <table>
+                                <tr>
+                                    <td><span class="product_status">Còn hàng</span></td>
+                                    <td><span class="product_price">2000000đ</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="product_status_sale">-10%</span></td>
+                                    <td><span class="product_price_sale">1800000đ</span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="shoppingcart.html" class="addtocart"></a></td>
+                                    <td><a href="productdetail.html" class="detail"></a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--==========-->
+                        <div class="product_box">
+                            <h3>Tên sản phẩm</h3>
+                            <a href="productdetail.html"><img src="images/product/03.jpg" alt="Shoes 6" /></a>
+                            <table>
+                                <tr>
+                                    <td><span class="product_status">Còn hàng</span></td>
+                                    <td><span class="product_price">2000000đ</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="product_status_sale">-10%</span></td>
+                                    <td><span class="product_price_sale">1800000đ</span></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="shoppingcart.html" class="addtocart"></a></td>
+                                    <td><a href="productdetail.html" class="detail"></a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--=====-->
+                    </div>
+                    <!--End sản phẩm mới-->
                     <div class="cleaner"></div>
                 </div> 
+                <div class="cleaner"></div>
+            </div> 
 
-                <div id="templatemo_footer">
-                    Copyright © 2019 <a href="#">D16PTIT</a></div> 
-            </div>
-        </div> 
-    </body>
+            <div id="templatemo_footer">
+                Copyright © 2019 <a href="#">D16PTIT</a></div> 
+        </div>
+    </div> 
+</body>
 </html>
