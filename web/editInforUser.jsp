@@ -44,7 +44,7 @@
             <div id="templatemo_menubar">
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.html">Trang Chủ</a></li>
+                        <li><a href="GetInitialData">Trang Chủ</a></li>
                         <li><a href="products.html">Sản Phẩm</a>
                         </li>
                         <li><a href="about.html">Giới Thiệu</a>

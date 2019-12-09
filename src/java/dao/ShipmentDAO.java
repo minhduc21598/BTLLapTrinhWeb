@@ -37,4 +37,49 @@ public class ShipmentDAO extends DAO{
         }
         return listShipment;
     }
+    
+    public int createShipmentInCart(Shipment shipment){
+        String sql = "INSERT INTO donhang(soluong,tongtien,trangthai,id_sanpham,id_nguoidung) VALUES(?,?,?,?,?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, shipment.getQuantity());
+            ps.setDouble(2, shipment.getTotal());
+            ps.setInt(3, shipment.getStatus());
+            ps.setInt(4, shipment.getProduct().getId());
+            ps.setInt(5, shipment.getUser().getId());
+            int rowCount = ps.executeUpdate();
+            return rowCount;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    public int updateShipmentQuantity(Product product, int idUser){
+        String sql = "UPDATE donhang SET soluong = soluong + 1, tongtien = tongtien + ? WHERE id_sanpham = ? AND id_nguoidung = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDouble(1, product.getPrice());
+            ps.setInt(2, product.getId());
+            ps.setInt(3, idUser);
+            int rowCount = ps.executeUpdate();
+            return rowCount;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    public int deleteShipment(int idShipment){
+        String sql = "DELETE FROM donhang WHERE id = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idShipment);
+            int rowCount = ps.executeUpdate();
+            return rowCount;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

@@ -37,7 +37,8 @@
                         <% } else {%>                     
                         <p>Xin chào, <%= user.getName()%></p>
                         <a href="editInforUser.jsp">Tài khoản</a> | 
-                        <a href="ShowShoppingCart?idUser=<%= user.getId()%>">Giỏ hàng</a> | 
+                        <a href="ShowShoppingCart">Giỏ hàng</a> |
+                        <a href="ShowShipment">Đơn hàng</a> |
                         <a href="LogOut">Đăng xuất</a>
                         <% }%>
 
@@ -48,7 +49,8 @@
                 <div id="templatemo_menubar">
                     <div id="top_nav" class="ddsmoothmenu">
                         <ul>
-                            <li><a href="index.jsp" class="selected">Trang chủ</a></li>
+                            <li><a href="GetInitialData" class="selected">Trang chủ</a></li>
+                            <li><a href="#">Sản phẩm</a></li>
                             <li><a href="#">Giới thiệu</a></li>
                             <li><a href="#">FAQs</a></li>
                             <li><a href="#">Liên hệ</a></li>
@@ -56,8 +58,8 @@
                         <br style="clear: left" />
                     </div>
                     <div id="templatemo_search">
-                        <form action="#" method="get">
-                            <input type="text" value=" " name="keyword" id="keyword" title="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
+                        <form action="Search" method="post">
+                            <input type="text" name="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
                             <input type="submit" name="Search" value=" " alt="Search" id="searchbutton" title="Search" class="sub_btn"  />
                         </form>
                     </div>
@@ -70,7 +72,7 @@
                                 <ul class="sidebar_list">
                                     <% ArrayList<Type> listType = (ArrayList<Type>) request.getAttribute("listType");  %>
                                     <% for (int i = 0; i < listType.size(); i++) {%>
-                                    <li><a href="#"><%= listType.get(i).getType()%></a></li>
+                                    <li><a href="Filter?type=<%= listType.get(i).getType()%>"><%= listType.get(i).getType()%></a></li>
                                         <% }%>
                                 </ul>
                             </div>
@@ -80,18 +82,16 @@
                             <div class="filter">
                                 <div class="filter-hang">
                                     <span>CHỌN HÃNG SẢN XUẤT</span> <br>
-                                    <form action="" method="post">
-                                        <ul>
-                                            <% ArrayList<Manufacturer> listManu = (ArrayList<Manufacturer>) request.getAttribute("listManu");  %>
-                                            <% for (int i = 0; i < listManu.size(); i++) {%>
-                                            <li>
-                                                <a>
-                                                    <label><input type="radio" onclick="location = 'Filter?manufacturer=<%= listManu.get(i).getName()%>'"><%= listManu.get(i).getName()%></label>
-                                                </a>
-                                            </li>
-                                            <% }%>
-                                        </ul>
-                                    </form>
+                                    <ul>
+                                        <% ArrayList<Manufacturer> listManu = (ArrayList<Manufacturer>) request.getAttribute("listManu");  %>
+                                        <% for (int i = 0; i < listManu.size(); i++) {%>
+                                        <li>
+                                            <a>
+                                                <label><input type="radio" onclick="location = 'Filter?manufacturer=<%= listManu.get(i).getName()%>'"><%= listManu.get(i).getName()%></label>
+                                            </a>
+                                        </li>
+                                        <% }%>
+                                    </ul>
                                 </div>
                                 <div class="filter-gia">
                                     <span>CHỌN MỨC GIÁ</span> <br>
@@ -314,7 +314,6 @@
                                 </tr>
                             </table>
                         </div>
-                        <!--==========-->
                         <div class="product_box">
                             <h3>Tên sản phẩm</h3>
                             <a href="productdetail.html"><img src="images/product/03.jpg" alt="Shoes 6" /></a>
@@ -333,12 +332,10 @@
                                 </tr>
                             </table>
                         </div>
-                        <!--=====-->
                     </div>
-                    <!--End sản phẩm mới-->
                     <div class="cleaner"></div>
-                </div> 
-                <div class="cleaner"></div>
+<!--                 </div> 
+                <div class="cleaner"></div> -->
             </div> 
 
             <div id="templatemo_footer">
