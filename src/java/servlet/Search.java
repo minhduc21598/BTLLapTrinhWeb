@@ -12,19 +12,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
-import dao.ShipmentDAO;
-import model.Shipment;
+import model.Product;
+import dao.ProductDAO;
 import java.util.ArrayList;
-import model.User;
 
 /**
  *
  * @author Minh Đức
  */
-@WebServlet(name = "ShowShoppingCart", urlPatterns = {"/ShowShoppingCart"})
-public class ShowShoppingCart extends HttpServlet {
+@WebServlet(name = "Search", urlPatterns = {"/Search"})
+public class Search extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,13 +36,18 @@ public class ShowShoppingCart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        ShipmentDAO sd = new ShipmentDAO();
-        ArrayList<Shipment> listShipment = sd.getShipment(user.getId());
-        request.setAttribute("list", listShipment);
-        RequestDispatcher rd = request.getRequestDispatcher("shoppingcart.jsp");
-        rd.forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Search</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Search at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -73,6 +76,17 @@ public class ShowShoppingCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String keyword = request.getParameter("keyword");
+        ArrayList<Product> listProduct;
+        ProductDAO pd = new ProductDAO();
+        if(keyword == null){
+            listProduct = pd.getAllProduct();
+        } else {
+            listProduct = pd.getProductByName(keyword);
+        }
+        request.setAttribute("listProduct", listProduct);
+        RequestDispatcher rd = request.getRequestDispatcher("GetInitialData");
+        rd.forward(request, response);
     }
 
     /**

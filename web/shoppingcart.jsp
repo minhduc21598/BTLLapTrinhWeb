@@ -21,7 +21,8 @@
                     <% User user = (User) session.getAttribute("user");%>
                     <p>Xin chào, <%= user.getName()%></p>
                     <a href="editInforUser.jsp">Tài khoản</a> | 
-                    <a href="ShowShoppingCart?idUser=<%= user.getId()%>">Giỏ hàng</a>  | 
+                    <a href="ShowShoppingCart">Giỏ hàng</a>  |
+                    <a href="ShowShipment">Đơn hàng</a> |
                     <a href="LogOut">Đăng xuất</a>
                 </div>
                 <div class="cleaner"></div>
@@ -29,10 +30,8 @@
             <div id="templatemo_menubar">
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.jsp" class="selected">Trang chủ</a></li>
-                        <li><a href="#">Giới thiệu</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="GetInitialData">Trang Chủ</a></li>
+                        <li><a href="contact.html">Liên Hệ</a></li>
                     </ul>
                     <br style="clear: left" />
                 </div> 

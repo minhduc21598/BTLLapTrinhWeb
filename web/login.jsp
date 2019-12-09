@@ -29,10 +29,8 @@
             <div id="templatemo_menubar">
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.jsp" class="selected">Trang chủ</a></li>
-                        <li><a href="#">Giới thiệu</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Liên hệ</a></li>
+                        <li><a href="GetInitialData">Trang Chủ</a></li>
+                        <li><a href="contact.html">Liên Hệ</a></li>
                     </ul>
                     <br style="clear: left" />
                 </div>

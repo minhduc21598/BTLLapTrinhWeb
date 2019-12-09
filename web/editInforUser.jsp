@@ -40,18 +40,11 @@
             <div id="templatemo_menubar">
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.html">Trang Chủ</a></li>
-                        <li><a href="products.html">Sản Phẩm</a>
-                        </li>
-                        <li><a href="about.html">Giới Thiệu</a>
-                        </li>
-                        <li>
-                            <a href="faqs.html">FAQ</a>
-                        </li>
+                        <li><a href="GetInitialData">Trang Chủ</a></li>
                         <li><a href="contact.html">Liên Hệ</a></li>
                     </ul>
                     <br style="clear: left" />
-                </div>>
+                </div>
                 <div id="templatemo_search">
                     <form action="#" method="get">
                         <input type="text" placeholder="Nhập sản phẩm cần tìm" value=" " name="keyword" id="keyword" title="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />

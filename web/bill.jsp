@@ -30,8 +30,6 @@
                     <div id="top_nav" class="ddsmoothmenu">
                         <ul>
                             <li><a href="index.jsp" class="selected">Trang chủ</a></li>
-                            <li><a href="#">Giới thiệu</a></li>
-                            <li><a href="#">FAQs</a></li>
                             <li><a href="#">Liên hệ</a></li>
                         </ul>
                         <br style="clear: left" />

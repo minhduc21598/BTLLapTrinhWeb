@@ -56,13 +56,10 @@
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
                         <li><a href="GetInitialData" class="selected">Trang chủ</a></li>
-                            <li><a href="about.html">Giới thiệu</a>
-                            </li>
-                            <li><a href="faqs.html">FAQs</a></li>
                             <li><a href="contact.html">Liên hệ</a></li>
                         </ul>
                     <br style="clear: left" />
-                </div> <!-- end of ddsmoothmenu -->
+                </div>
                 <div id="templatemo_search">
                         <form action="Search" method="post">
                             <input type="text" name="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
