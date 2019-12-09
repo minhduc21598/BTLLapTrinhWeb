@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlet;
 
+import dao.ManufacturerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,16 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
-import dao.ShipmentDAO;
 import dao.ProductDAO;
-import model.Shipment;
+import dao.TypeDAO;
+import model.Product;
+import java.util.ArrayList;
+import model.Manufacturer;
+import model.Type;
 
 /**
  *
  * @author Minh Đức
  */
-@WebServlet(name = "RemoveFromCart", urlPatterns = {"/RemoveFromCart"})
-public class RemoveFromCart extends HttpServlet {
+@WebServlet(name = "DetailProduct", urlPatterns = {"/DetailProduct"})
+public class DetailProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +41,10 @@ public class RemoveFromCart extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RemoveFromCart</title>");            
+            out.println("<title>Servlet DetailProduct</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RemoveFromCart at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DetailProduct at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,13 +62,23 @@ public class RemoveFromCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int idShipment = Integer.parseInt(request.getParameter("idShipment"));
-        ShipmentDAO sd = new ShipmentDAO();
-        Shipment shipment = sd.getShipment(idShipment);
+        int idProduct = Integer.parseInt(request.getParameter("idProduct"));
         ProductDAO pd = new ProductDAO();
-        pd.updateRemain(shipment.getQuantity(), shipment.getProduct().getId());
-        int check = sd.deleteShipment(idShipment);
-        if(check != 0) response.sendRedirect("ShowShipment");
+        Product product = pd.getProduct(idProduct);
+        
+        TypeDAO td = new TypeDAO();
+        ArrayList<Type> listType = td.getAllType();
+        request.setAttribute("listType", listType);
+
+        ManufacturerDAO md = new ManufacturerDAO();
+        ArrayList<Manufacturer> listManu = md.getAllManufacturer();
+        request.setAttribute("listManu", listManu);       
+
+        ArrayList<Product> relevantProduct = pd.getProductByType(product.getType().getId());
+        request.setAttribute("product", product);
+        request.setAttribute("relevantProduct", relevantProduct);
+        RequestDispatcher rd = request.getRequestDispatcher("productdetail.jsp");
+        rd.forward(request, response);
     }
 
     /**

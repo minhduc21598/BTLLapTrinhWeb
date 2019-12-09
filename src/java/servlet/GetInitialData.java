@@ -54,7 +54,7 @@ public class GetInitialData extends HttpServlet {
             listProduct = pd.getAllProduct();
         }
         request.setAttribute("listProduct", listProduct);
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
         rd.forward(request, response);
 
     }

@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
 import dao.ShipmentDAO;
 import dao.ProductDAO;
 import model.Shipment;
@@ -21,8 +20,8 @@ import model.Shipment;
  *
  * @author Minh Đức
  */
-@WebServlet(name = "RemoveFromCart", urlPatterns = {"/RemoveFromCart"})
-public class RemoveFromCart extends HttpServlet {
+@WebServlet(name = "RemoveShipment", urlPatterns = {"/RemoveShipment"})
+public class RemoveShipment extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +40,10 @@ public class RemoveFromCart extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RemoveFromCart</title>");            
+            out.println("<title>Servlet RemoveShipment</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet RemoveFromCart at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RemoveShipment at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,9 +65,9 @@ public class RemoveFromCart extends HttpServlet {
         ShipmentDAO sd = new ShipmentDAO();
         Shipment shipment = sd.getShipment(idShipment);
         ProductDAO pd = new ProductDAO();
-        pd.updateRemain(shipment.getQuantity(), shipment.getProduct().getId());
-        int check = sd.deleteShipment(idShipment);
-        if(check != 0) response.sendRedirect("ShowShipment");
+        int check1 = sd.updateShipmentStatus(idShipment, 0);
+        int check2 = pd.updateRemain(shipment.getQuantity(), shipment.getProduct().getId());
+        if(check1 != 0 && check2 != 0) response.sendRedirect("ShowShipment");
     }
 
     /**

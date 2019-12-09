@@ -5,8 +5,8 @@
  */
 package servlet;
 
+import dao.ManufacturerDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,8 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
 import dao.ShipmentDAO;
+import dao.TypeDAO;
 import model.Shipment;
 import java.util.ArrayList;
+import model.Manufacturer;
+import model.Type;
 import model.User;
 
 /**
@@ -41,7 +44,16 @@ public class ShowShoppingCart extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         ShipmentDAO sd = new ShipmentDAO();
-        ArrayList<Shipment> listShipment = sd.getShipment(user.getId());
+        ArrayList<Shipment> listShipment = sd.getAllShipment(user.getId(), 0);
+        
+        TypeDAO td = new TypeDAO();
+        ArrayList<Type> listType = td.getAllType();
+        request.setAttribute("listType", listType);
+
+        ManufacturerDAO md = new ManufacturerDAO();
+        ArrayList<Manufacturer> listManu = md.getAllManufacturer();
+        request.setAttribute("listManu", listManu);
+        
         request.setAttribute("list", listShipment);
         RequestDispatcher rd = request.getRequestDispatcher("shoppingcart.jsp");
         rd.forward(request, response);

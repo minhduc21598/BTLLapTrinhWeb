@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User" %>
 <%@page import="model.Shipment" %>
+<%@page import="model.Type" %>
+<%@page import="model.Manufacturer" %>
 <%@page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
@@ -46,52 +48,78 @@
                 <div id="sidebar" class="float_l">
                     <div class="sidebar_box"><span class="bottom"></span>
                         <h3>DANH MỤC SẢN PHẨM</h3>   
-                        <div class="content">
+                        <div class="content"> 
                             <ul class="sidebar_list">
-                                <li><a href="#">Giày thể thao nam</a></li>
-                                <li><a href="#">Giày sneaker nam</a></li>
-                                <li><a href="#">Giày lười nam</a></li>         
-                                <li><a href="#">Giày thể thao nữ</a></li>
-                                <li><a href="#">Giày sneaker nữ</a></li>
-                                <li><a href="#">Giày cao gót</a></li>
-                                <li><a href="#">Giày búp bê</a></li>
-                                <li class="last"><a href="#">Giày sandals nữ</a></li>
+                                <% ArrayList<Type> listType = (ArrayList<Type>) request.getAttribute("listType");  %>
+                                <% for (int i = 0; i < listType.size(); i++) {%>
+                                <li><a href="Filter?type=<%= listType.get(i).getType()%>"><%= listType.get(i).getType()%></a></li>
+                                    <% }%>
                             </ul>
+                        </div>
+                    </div>
+                    <div class="sidebar_box"><span class="bottom"></span>
+                        <h3>LỌC SẢN PHẨM</h3>
+                        <div class="filter">
+                            <div class="filter-hang">
+                                <span>CHỌN HÃNG SẢN XUẤT</span> <br>
+                                <ul>
+                                    <% ArrayList<Manufacturer> listManu = (ArrayList<Manufacturer>) request.getAttribute("listManu");  %>
+                                    <% for (int i = 0; i < listManu.size(); i++) {%>
+                                    <li>
+                                        <a>
+                                            <label><input type="radio" onclick="location = 'Filter?manufacturer=<%= listManu.get(i).getName()%>'"><%= listManu.get(i).getName()%></label>
+                                        </a>
+                                    </li>
+                                    <% }%>
+                                </ul>
+                            </div>
+                            <div class="filter-gia">
+                                <span>CHỌN MỨC GIÁ</span> <br>
+                                <ul>
+                                    <li>
+                                        <a><label><input type="radio" onclick="location = 'Filter?priceRange=1'">Dưới 1 triệu</label></a>
+                                    </li>
+                                    <li>
+                                        <a><label><input type="radio" onclick="location = 'Filter?priceRange=2'">Từ 1-2 triệu</label></a>
+                                    </li>
+                                    <li>
+                                        <a><label><input type="radio" onclick="location = 'Filter?priceRange=3'">Trên 2 triệu</label></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div id="content" class="float_r">
                     <h1>Giỏ hàng</h1>
-                    <table width="680px" cellspacing="0" cellpadding="5" >
-                        <tr>
-                            <th width="30" align="left">Chọn</th>
-                            <th width="200" align="left">Ảnh sản phẩm </th> 
-                            <th width="160" align="left">Tên sản phẩm</th> 
-                            <th width="80" align="left">Số lượng </th> 
-                            <th width="40" align="left">Giá </th> 
-                            <th width="90"> </th>
-                        </tr>
-                        <% ArrayList<Shipment> list = (ArrayList<Shipment>) request.getAttribute("list"); %>
-                        <% for (int i = 0; i < list.size(); i++) {%>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td><img src="images/product/02.jpg" alt="image 2" /> </td>
-                            <td><%= list.get(i).getProduct().getName()%></td> 
-                            <td>
-                                <form action="/action_page.php">
-                                    <input style="width:26px" type="number" name="quantity" min="1" max="100">
-                                </form>
-                            </td>
-                            <td align="left"><%= list.get(i).getProduct().getPrice()%>  </td>
-<!--                            <td align="left"><%= list.get(i).getTotal()%> </td>-->
-                            <td align="center"> <a href="#"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  </td>
-                        </tr>
-                        <% }%>
-                    </table>
                     <div class="buy">
-                        <form action="bill.jsp" method="">
-                            <p> Tổng tiền: 255000đ</p>
-                            <p><a href="javascript:history.back()">Tiếp tục mua sắm</a></p>
+                        <form action="ShowShipment" method="">
+                            <table width="680px" cellspacing="0" cellpadding="5" >
+                                <tr>
+                                    <th width="30" align="left">Chọn</th>
+                                    <th width="200" align="left">Ảnh sản phẩm </th> 
+                                    <th width="160" align="left">Tên sản phẩm</th> 
+                                    <th width="80" align="left">Số lượng </th> 
+                                    <th width="40" align="left">Giá </th> 
+                                    <th width="90"> </th>
+                                </tr>
+                                <% ArrayList<Shipment> list = (ArrayList<Shipment>) request.getAttribute("list"); %>
+                                <% for (int i = 0; i < list.size(); i++) {%>
+                                <tr>
+                                    <td><input type="checkbox" name="item<%= i %>" value="<%= list.get(i).getId() %>"></td>
+                                    <td><a href="DetailProduct?idProduct=<%= list.get(i).getProduct().getId()%>"><img src="<%= list.get(i).getProduct().getListImage().get(0).getUrl()%>" /></a></td>
+                                    <td><%= list.get(i).getProduct().getName()%></td> 
+                                    <td>
+                                        <input style="width:26px" type="number" name="quantity<%= i %>" min="1" max="100" value="<%= list.get(i).getQuantity()%>">
+                                    </td>
+                                    <td align="left"><%= list.get(i).getProduct().getPrice()%></td>
+                                    <td align="center"> 
+                                        <a href="RemoveFromCart?idShipment=<%= list.get(i).getId()%>"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  
+                                    </td>
+                                </tr>
+                                <% }%>
+                            </table>
+                            <p style="margin-top: 20px"><a href="GetInitialData">Tiếp tục mua sắm</a></p>
                             <button type ="submit">Thanh toán ngay</button>
                         </form>
                     </div>

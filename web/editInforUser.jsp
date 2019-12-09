@@ -31,7 +31,8 @@
                     <% } else {%>                     
                     <p>Xin chào, <%= user.getName()%></p>
                     <a href="editInforUser.jsp">Tài khoản</a> | 
-                    <a href="ShowShoppingCart?idUser=<%= user.getId()%>">Giỏ hàng</a> | 
+                    <a href="ShowShoppingCart?idUser=<%= user.getId()%>">Giỏ hàng</a> |
+                    <a href="ShowShipment">Đơn hàng</a> |
                     <a href="LogOut">Đăng xuất</a>
                     <% }%>
                 </div>
