@@ -6,24 +6,21 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Chỉnh sửa thông tin</title>
+    <title>Chỉnh sửa thông tin:...</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
-    <link href="css/home.css" rel="stylesheet" type="text/css" />
+    <link href="home.css" rel="stylesheet" type="text/css" />
     <link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css"  />
 </head>
-
 <script>
     <% String mess = (String) request.getAttribute("mess"); %>
     <% if (mess != null) {%>
     alert(`<%= mess%>`);
     <% }%>
 </script>
-
 <body>
     <div id="templatemo_body_wrapper">
         <div id="templatemo_wrapper">
-
             <div id="templatemo_header">
                 <div id="site_title"><h1><a href="#">Shop Giày Online</a></h1></div>
                 <div id="header_right">
@@ -40,31 +37,22 @@
                     <% }%>
                 </div>
                 <div class="cleaner"></div>
-            </div> <!-- END of templatemo_header -->
-
+            </div>
             <div id="templatemo_menubar">
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
                         <li><a href="GetInitialData">Trang Chủ</a></li>
-                        <li><a href="products.html">Sản Phẩm</a>
-                        </li>
-                        <li><a href="about.html">Giới Thiệu</a>
-                        </li>
-                        <li>
-                            <a href="faqs.html">FAQ</a>
-                        </li>
                         <li><a href="contact.html">Liên Hệ</a></li>
                     </ul>
                     <br style="clear: left" />
-                </div> <!-- end of ddsmoothmenu -->
+                </div>
                 <div id="templatemo_search">
                     <form action="#" method="get">
                         <input type="text" placeholder="Nhập sản phẩm cần tìm" value=" " name="keyword" id="keyword" title="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
                         <input type="submit" name="Search" value=" " alt="Search" id="searchbutton" title="Search" class="sub_btn"  />
                     </form>
                 </div>
-            </div> <!-- END of templatemo_menubar -->
-
+            </div> 
             <div id="templatemo_main">      
                 <div id="content">
                     <div>
@@ -92,13 +80,12 @@
                         </form>
                     </div>
                 </div>
-            </div> <!-- END of templatemo_main -->
-
+            </div>
             <div id="templatemo_footer">
                 Copyright © 2019 <a href="#">D16 PTIT</a>     
-            </div> <!-- E   ND of templatemo_footer -->    
-        </div> <!-- END of templatemo_wrapper -->
-    </div> <!-- END of templatemo_body_wrapper -->
+            </div>   
+        </div> 
+    </div> 
 
 </body>
 </html>

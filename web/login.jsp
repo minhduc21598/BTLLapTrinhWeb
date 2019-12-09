@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Đăng nhập</title>
+    <title>Đăng nhập:...</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
-    <link href="css/home.css" rel="stylesheet" type="text/css" />
+    <link href="home.css" rel="stylesheet" type="text/css" />
     <link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css"  />
 </head>
 
@@ -15,7 +15,6 @@
     alert(`<%= mess%>`);
     <% }%>
 </script>
-
 <body>
     <div id="templatemo_body_wrapper">
         <div id="templatemo_wrapper">
@@ -31,10 +30,7 @@
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
                         <li><a href="GetInitialData">Trang Chủ</a></li>
-                        <li><a href="#">Sản Phẩm</a></li>
-                        <li><a href="#">Giới Thiệu</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Liên Hệ</a></li>
+                        <li><a href="contact.html">Liên Hệ</a></li>
                     </ul>
                     <br style="clear: left" />
                 </div>
@@ -54,10 +50,10 @@
                     <span> Bạn chưa có tài khoản? <a href ="editInforUser.jsp"> Đăng kí ngay <a/></span>
                 </form>
             </div>
-                            <div id="templatemo_footer">
-                                Copyright © 2019 <a href="#">D16 PTIT</a> 
-                            </div> 
-                            </div>
-                            </div>
-                            </body>
-                            </html>
+            <div id="templatemo_footer">
+                Copyright © 2019 <a href="#">D16 PTIT</a> 
+            </div> 
+        </div>
+    </div>
+</body>
+</html>

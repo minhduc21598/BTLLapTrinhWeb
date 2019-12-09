@@ -8,10 +8,10 @@
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Giỏ hàng</title>
+    <title>Giỏ hàng:...</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
-    <link href="css/home.css" rel="stylesheet" type="text/css" />
+    <link href="home.css" rel="stylesheet" type="text/css" />
     <link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -33,10 +33,7 @@
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
                         <li><a href="GetInitialData">Trang Chủ</a></li>
-                        <li><a href="#">Sản Phẩm</a></li>
-                        <li><a href="#">Giới Thiệu</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Liên Hệ</a></li>
+                        <li><a href="contact.html">Liên Hệ</a></li>
                     </ul>
                     <br style="clear: left" />
                 </div> 
@@ -95,55 +92,34 @@
                 </div>
                 <div id="content" class="float_r">
                     <h1>Giỏ hàng</h1>
-                    <table width="680px" cellspacing="0" cellpadding="5">
-                        <tr bgcolor="#ddd">
-                            <th width="50" align="left">Chọn</th>
-                            <th width="220" align="left">Ảnh sản phẩm </th> 
-                            <th width="180" align="left">Tên sản phẩm</th> 
-                            <th width="100" align="left">Số lượng </th> 
-                            <th width="60" align="left">Giá </th> 
-                            <th width="60" align="left">Tổng tiền</th> 
-                            <th width="90"> </th>
-                        </tr>
-                        <% ArrayList<Shipment> list = (ArrayList<Shipment>) request.getAttribute("list"); %>
-                        <% for (int i = 0; i < list.size(); i++) {%>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td><img src="images/product/02.jpg" alt="image 2" /> </td>
-                            <td><%= list.get(i).getProduct().getName()%></td> 
-                            <!--                            <td align="center">
-                                                            <input type="text" value="<%= list.get(i).getQuantity()%>" style="width: 20px; text-align: right" />  
-                                                        </td>-->
-                            <td>
-                                <input type=button value="-" onclick="button1()" />
-                                <input type="text" id="quantity" value="1" style="width: 20px; text-align:center"
-                                       readonly>
-                                <input type=button value="+" onclick="button2()" />
-
-                                <script type="text/javascript">
-                                    var x = document.getElementById("quantity").value;
-                                    function button1() {
-                                        if (x > 1) {
-                                            document.getElementById("quantity").setAttribute("value", --x);
-                                        }
-                                    }
-                                    function button2() {
-                                        document.getElementById("quantity").setAttribute("value", ++x);
-                                    }
-                                </script>
-                            </td>
-                            <td align="right"><%= list.get(i).getProduct().getPrice()%>  </td>
-                            <td align="right"><%= list.get(i).getTotal()%> </td>
-                            <td align="center"> 
-                                <a href="RemoveFromCart?idShipment=<%= list.get(i).getId()%>"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  
-                            </td>
-                        </tr>
-                        <% }%>
-                    </table>
                     <div class="buy">
-                        <form action="bill.jsp" method="">
-                            <p> Tổng tiền: 255000đ</p>
-                            <p><a href="javascript:history.back()">Tiếp tục mua sắm</a></p>
+                        <form action="ShowShipment" method="">
+                            <table width="680px" cellspacing="0" cellpadding="5" >
+                                <tr>
+                                    <th width="30" align="left">Chọn</th>
+                                    <th width="200" align="left">Ảnh sản phẩm </th> 
+                                    <th width="160" align="left">Tên sản phẩm</th> 
+                                    <th width="80" align="left">Số lượng </th> 
+                                    <th width="40" align="left">Giá </th> 
+                                    <th width="90"> </th>
+                                </tr>
+                                <% ArrayList<Shipment> list = (ArrayList<Shipment>) request.getAttribute("list"); %>
+                                <% for (int i = 0; i < list.size(); i++) {%>
+                                <tr>
+                                    <td><input type="checkbox" name="item<%= i %>" value="<%= list.get(i).getId() %>"></td>
+                                    <td><a href="DetailProduct?idProduct=<%= list.get(i).getProduct().getId()%>"><img src="<%= list.get(i).getProduct().getListImage().get(0).getUrl()%>" /></a></td>
+                                    <td><%= list.get(i).getProduct().getName()%></td> 
+                                    <td>
+                                        <input style="width:26px" type="number" name="quantity<%= i %>" min="1" max="100" value="<%= list.get(i).getQuantity()%>">
+                                    </td>
+                                    <td align="left"><%= list.get(i).getProduct().getPrice()%></td>
+                                    <td align="center"> 
+                                        <a href="RemoveFromCart?idShipment=<%= list.get(i).getId()%>"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  
+                                    </td>
+                                </tr>
+                                <% }%>
+                            </table>
+                            <p style="margin-top: 20px"><a href="GetInitialData">Tiếp tục mua sắm</a></p>
                             <button type ="submit">Thanh toán ngay</button>
                         </form>
                     </div>

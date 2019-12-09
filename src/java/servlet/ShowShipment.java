@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import dao.ManufacturerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -17,7 +18,10 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
 import dao.ShipmentDAO;
 import dao.ProductDAO;
+import dao.TypeDAO;
+import model.Manufacturer;
 import model.Shipment;
+import model.Type;
 import model.User;
 
 /**
@@ -39,18 +43,37 @@ public class ShowShipment extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ShowShipment</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ShowShipment at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        TypeDAO td = new TypeDAO();
+        ArrayList<Type> listType = td.getAllType();
+        request.setAttribute("listType", listType);
+
+        ManufacturerDAO md = new ManufacturerDAO();
+        ArrayList<Manufacturer> listManu = md.getAllManufacturer();
+        request.setAttribute("listManu", listManu);
+        
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        ShipmentDAO sd = new ShipmentDAO();
+        ProductDAO pd = new ProductDAO();
+        ArrayList<Shipment> listShipment = sd.getAllShipment(user.getId(), 0);
+        for(int i = 0;i < listShipment.size();i++){
+            String item = "item";
+            item += i;
+            String idShipment = request.getParameter(item);
+            String quantity = "quantity";
+            quantity += i;
+            String num = request.getParameter(quantity);
+            if(idShipment != null){
+                Shipment shipment = sd.getShipment(Integer.parseInt(idShipment));
+                sd.changeShipmentQuantity(Integer.parseInt(num), shipment.getProduct().getPrice(), Integer.parseInt(idShipment));
+                sd.updateShipmentStatus(Integer.parseInt(idShipment), 1);
+                pd.updateRemain(-Integer.parseInt(num), shipment.getProduct().getId());
+            }
         }
+        listShipment = sd.getAllShipment(user.getId(), 1);
+        request.setAttribute("listShipment", listShipment);
+        RequestDispatcher rd = request.getRequestDispatcher("shipment.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -79,25 +102,7 @@ public class ShowShipment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        ShipmentDAO sd = new ShipmentDAO();
-        ProductDAO pd = new ProductDAO();
-        ArrayList<Shipment> listShipment = sd.getAllShipment(user.getId(), 0);
-        for(int i = 0;i < listShipment.size();i++){
-            String item = "item";
-            item += i;
-            String idShipment = request.getParameter(item);
-            if(idShipment != null){
-                sd.updateShipmentStatus(Integer.parseInt(idShipment), 1);
-                Shipment shipment = sd.getShipment(Integer.parseInt(idShipment));
-                pd.updateRemain(-shipment.getQuantity(), shipment.getProduct().getId());
-            }
-        }
-        listShipment = sd.getAllShipment(user.getId(), 1);
-        request.setAttribute("listShipment", listShipment);
-        RequestDispatcher rd = request.getRequestDispatcher("");
-        rd.forward(request, response);
+        processRequest(request, response);
     }
 
     /**

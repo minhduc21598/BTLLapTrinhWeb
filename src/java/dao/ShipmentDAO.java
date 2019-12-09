@@ -92,8 +92,24 @@ public class ShipmentDAO extends DAO{
         }
     }
     
+    public int changeShipmentQuantity(int soluong, double productPrice, int idShipment){
+        String sql = "UPDATE donhang SET soluong = ?, tongtien = ? * ? WHERE id = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, soluong);
+            ps.setInt(2, soluong);
+            ps.setDouble(3, productPrice);
+            ps.setInt(4, idShipment);
+            int rowCount = ps.executeUpdate();
+            return rowCount;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
     public int updateShipmentStatus(int idShipment, int status){
-        String sql = "UPDATE donhang SET status = ? WHERE id = ?";
+        String sql = "UPDATE donhang SET trangthai = ? WHERE id = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, status);
