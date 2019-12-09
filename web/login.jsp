@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Đăng nhập</title>
+    <title>Đăng nhập:...</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
-    <link href="css/home.css" rel="stylesheet" type="text/css" />
+    <link href="home.css" rel="stylesheet" type="text/css" />
     <link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css"  />
 </head>
 
@@ -15,7 +15,6 @@
     alert(`<%= mess%>`);
     <% }%>
 </script>
-
 <body>
     <div id="templatemo_body_wrapper">
         <div id="templatemo_wrapper">
@@ -30,11 +29,11 @@
             <div id="templatemo_menubar">
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
-                            <li><a href="index.jsp" class="selected">Trang chủ</a></li>
-                            <li><a href="#">Giới thiệu</a></li>
-                            <li><a href="#">FAQs</a></li>
-                            <li><a href="#">Liên hệ</a></li>
-                        </ul>
+                        <li><a href="index.jsp" class="selected">Trang chủ</a></li>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
                     <br style="clear: left" />
                 </div>
                 <div id="templatemo_search">

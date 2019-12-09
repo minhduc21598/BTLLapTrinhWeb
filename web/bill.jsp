@@ -9,11 +9,10 @@
         <title>Hóa đơn:...</title>
         <meta name="keywords" content="" />
         <meta name="description" content="" />
-        <link href="css/home.css" rel="stylesheet" type="text/css" />
+        <link href="home.css" rel="stylesheet" type="text/css" />
         <link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-
         <div id="templatemo_body_wrapper">
             <div id="templatemo_wrapper">
                 <div id="templatemo_header">
@@ -29,7 +28,7 @@
                 </div> 
                 <div id="templatemo_menubar">
                     <div id="top_nav" class="ddsmoothmenu">
-                       <ul>
+                        <ul>
                             <li><a href="index.jsp" class="selected">Trang chủ</a></li>
                             <li><a href="#">Giới thiệu</a></li>
                             <li><a href="#">FAQs</a></li>
@@ -44,34 +43,26 @@
                         </form>
                     </div>
                 </div>
-
                 <div id="templatemo_main">
                     <div id="sidebar" class="float_l">
                         <div class="sidebar_box"><span class="bottom"></span>
                             <h3>Danh mục sản phẩm</h3>
                             <div class="content">
                                 <ul class="sidebar_list">
-                                    <li class="first"><a href="#">Giày thể thao nam</a></li>
+                                    <li><a href="#">Giày thể thao nam</a></li>
                                     <li><a href="#">Giày sneaker nam</a></li>
-                                    <li><a href="#">Giày lười nam</a></li>
-                                    <li><a href="#">Giày tây nam</a></li>
-                                    <li><a href="#">Giày vải nam</a></li>
-                                    <li><a href="#">Giày boots nam</a></li>
-                                    <li><a href="#">Giày casual nam</a></li>
+                                    <li><a href="#">Giày lười nam</a></li>         
                                     <li><a href="#">Giày thể thao nữ</a></li>
                                     <li><a href="#">Giày sneaker nữ</a></li>
-                                    <li><a href="#">Giày lười nữ</a></li>
                                     <li><a href="#">Giày cao gót</a></li>
                                     <li><a href="#">Giày búp bê</a></li>
-                                    <li><a href="#">Giày đế xuồng nữ</a></li>
-                                    <li><a href="#">Giày boots nữ</a></li>
                                     <li class="last"><a href="#">Giày sandals nữ</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div id="content" class="float_r">
-                        <h1>CHI TIẾT ĐƠN HÀNG</h1>
+                        <h2>Chi tiết đơn hàng</h2>
                         <table width="660px" cellspacing="0" cellpadding="5">
                             <tr bgcolor="#ddd">
                                 <th width="220" align="left">Ảnh sản phẩm </th>
@@ -115,6 +106,11 @@
                         <div class="bill">
                             <p>Tổng tiền thanh toán: 250$</p>
                         </div>
+                        <br>
+                        <br>
+                        <div>
+                            <p style="float: right; margin-right: 60px;"><a href = "index.jsp">Tiếp tục mua sắm</a></p>
+                        </div>
                     </div>
                     <div class="cleaner"></div>
                 </div> 
@@ -124,5 +120,4 @@
             </div>
         </div>
     </body>
-
 </html>
