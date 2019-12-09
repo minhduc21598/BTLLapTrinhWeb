@@ -1,20 +1,32 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package servlet;
 
-import dao.AccountDAO;
-import dao.UserDAO;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Account;
-import model.User;
+import javax.servlet.RequestDispatcher;
+import java.util.ArrayList;
+import model.Type;
+import dao.TypeDAO;
+import model.Manufacturer;
+import dao.ManufacturerDAO;
+import model.Product;
+import dao.ProductDAO;
 
-@WebServlet(name = "CheckLogin", urlPatterns = {"/CheckLogin"})
-public class CheckLogin extends HttpServlet {
+
+/**
+ *
+ * @author Minh Đức
+ */
+@WebServlet(name = "GetInitialData", urlPatterns = {"/GetInitialData"})
+public class GetInitialData extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,6 +40,22 @@ public class CheckLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listProduct");
+        TypeDAO td = new TypeDAO();
+        ArrayList<Type> listType = td.getAllType();
+        request.setAttribute("listType", listType);
+
+        ManufacturerDAO md = new ManufacturerDAO();
+        ArrayList<Manufacturer> listManu = md.getAllManufacturer();
+        request.setAttribute("listManu", listManu);
+
+        if (listProduct == null) {
+            ProductDAO pd = new ProductDAO();
+            listProduct = pd.getAllProduct();
+        }
+        request.setAttribute("listProduct", listProduct);
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        rd.forward(request, response);
 
     }
 
@@ -57,29 +85,7 @@ public class CheckLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         processRequest(request, response);
-        String name = request.getParameter("name");
-        String pass = request.getParameter("pass");
-        AccountDAO ad = new AccountDAO();
-        Account ac = ad.checkAccount(name, pass);
-        if (ac.getUsername() != null) {
-            UserDAO ud = new UserDAO();
-            User user = ud.checkUser(ac.getId());
-            user.setAccount(ac);
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-            if (user.getType() == 2) {         
-                response.sendRedirect("GetInitialData");
-            } else if (user.getType() == 1) {
-                RequestDispatcher rd = request.getRequestDispatcher("adminHome.jsp");
-                rd.forward(request, response);
-            }
-        } else {
-            request.setAttribute("mess", "Sai tên đăng nhập hoặc mật khẩu !");
-            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-            rd.forward(request, response);
-        }
     }
 
     /**

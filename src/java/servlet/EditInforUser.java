@@ -57,12 +57,12 @@ public class EditInforUser extends HttpServlet {
                     request.setAttribute("mess", "Đăng kí thành công !");
                     rd.forward(request, response);
                 } else {
-                    RequestDispatcher rd = request.getRequestDispatcher("editInforCustomer.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("editInforUser.jsp");
                     request.setAttribute("mess", "Đăng kí không thành công !");
                     rd.forward(request, response);
                 }
             } else {
-                RequestDispatcher rd = request.getRequestDispatcher("editInforCustomer.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("editInforUser.jsp");
                 request.setAttribute("mess", "Đăng kí không thành công !");
                 rd.forward(request, response);
             }
@@ -78,7 +78,7 @@ public class EditInforUser extends HttpServlet {
             user.setPhonenum(request.getParameter("phone"));
             int check1 = ad.updateAccount(user.getId(), pass);
             int check2 = ud.updateUser(user);
-            RequestDispatcher rd = request.getRequestDispatcher("editInforCustomer.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("editInforUser.jsp");
             if (check1 != 0 && check2 != 0) {
                 request.setAttribute("mess", "Cập nhật thành công !");
                 rd.forward(request, response);
