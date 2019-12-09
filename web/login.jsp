@@ -2,11 +2,10 @@
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Đăng nhập</title>
+    <title>Đăng nhập:...</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
-    <link href="css/home.css" rel="stylesheet" type="text/css" />
-    <link href="css/login.css" rel="stylesheet" type="text/css" />
+    <link href="home.css" rel="stylesheet" type="text/css" />
     <link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css"  />
 </head>
 
@@ -16,12 +15,11 @@
     alert(`<%= mess%>`);
     <% }%>
 </script>
-
 <body>
     <div id="templatemo_body_wrapper">
         <div id="templatemo_wrapper">
             <div id="templatemo_header">
-                <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
+                <div id="site_title"><h1><a href="#">Shop Giày Online</a></h1></div>
                 <div id="header_right">
                     <a href="login.jsp">Đăng nhập</a> |
                     <a href="editInforUser.jsp">Đăng ký</a>
@@ -32,11 +30,6 @@
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
                         <li><a href="GetInitialData">Trang Chủ</a></li>
-                        <li><a href="products.html">Sản Phẩm</a>
-                        </li>
-                        <li><a href="about.html">Giới Thiệu</a>
-                        </li>
-                        <li><a href="faqs.html">FAQ</a></li>
                         <li><a href="contact.html">Liên Hệ</a></li>
                     </ul>
                     <br style="clear: left" />
