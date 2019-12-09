@@ -70,7 +70,7 @@ public class AddToCart extends HttpServlet {
         ShipmentDAO sd = new ShipmentDAO();
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        ArrayList<Shipment> listShipment = sd.getShipment(user.getId());
+        ArrayList<Shipment> listShipment = sd.getAllShipment(user.getId(), 0);
         for (Shipment s : listShipment) {
             if (s.getProduct().getId() == productId) {
                 alreadyExist = true;

@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.User" %>
 <%@page import="model.Shipment" %>
+<%@page import="model.Type" %>
+<%@page import="model.Manufacturer" %>
 <%@page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
@@ -18,7 +20,7 @@
             <div id="templatemo_header">
                 <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
                 <div id="header_right">
-                    <% User user = (User) session.getAttribute("user"); %>
+                    <% User user = (User) session.getAttribute("user");%>
                     <p>Xin chào, <%= user.getName()%></p>
                     <a href="editInforUser.jsp">Tài khoản</a> | 
                     <a href="ShowShoppingCart">Giỏ hàng</a>  |
@@ -53,22 +55,43 @@
                         <h3>DANH MỤC SẢN PHẨM</h3>   
                         <div class="content"> 
                             <ul class="sidebar_list">
-                                <li class="first"><a href="#">Giày thể thao nam</a></li>
-                                <li><a href="#">Giày sneaker nam</a></li>
-                                <li><a href="#">Giày lười nam</a></li>
-                                <li><a href="#">Giày tây nam</a></li>
-                                <li><a href="#">Giày vải nam</a></li>
-                                <li><a href="#">Giày boots nam</a></li>
-                                <li><a href="#">Giày casual nam</a></li>
-                                <li><a href="#">Giày thể thao nữ</a></li>
-                                <li><a href="#">Giày sneaker nữ</a></li>
-                                <li><a href="#">Giày lười nữ</a></li>
-                                <li><a href="#">Giày cao gót</a></li>
-                                <li><a href="#">Giày búp bê</a></li>
-                                <li><a href="#">Giày đế xuồng nữ</a></li>
-                                <li><a href="#">Giày boots nữ</a></li>
-                                <li class="last"><a href="#">Giày sandals nữ</a></li>
+                                <% ArrayList<Type> listType = (ArrayList<Type>) request.getAttribute("listType");  %>
+                                <% for (int i = 0; i < listType.size(); i++) {%>
+                                <li><a href="Filter?type=<%= listType.get(i).getType()%>"><%= listType.get(i).getType()%></a></li>
+                                    <% }%>
                             </ul>
+                        </div>
+                    </div>
+                    <div class="sidebar_box"><span class="bottom"></span>
+                        <h3>LỌC SẢN PHẨM</h3>
+                        <div class="filter">
+                            <div class="filter-hang">
+                                <span>CHỌN HÃNG SẢN XUẤT</span> <br>
+                                <ul>
+                                    <% ArrayList<Manufacturer> listManu = (ArrayList<Manufacturer>) request.getAttribute("listManu");  %>
+                                    <% for (int i = 0; i < listManu.size(); i++) {%>
+                                    <li>
+                                        <a>
+                                            <label><input type="radio" onclick="location = 'Filter?manufacturer=<%= listManu.get(i).getName()%>'"><%= listManu.get(i).getName()%></label>
+                                        </a>
+                                    </li>
+                                    <% }%>
+                                </ul>
+                            </div>
+                            <div class="filter-gia">
+                                <span>CHỌN MỨC GIÁ</span> <br>
+                                <ul>
+                                    <li>
+                                        <a><label><input type="radio" onclick="location = 'Filter?priceRange=1'">Dưới 1 triệu</label></a>
+                                    </li>
+                                    <li>
+                                        <a><label><input type="radio" onclick="location = 'Filter?priceRange=2'">Từ 1-2 triệu</label></a>
+                                    </li>
+                                    <li>
+                                        <a><label><input type="radio" onclick="location = 'Filter?priceRange=3'">Trên 2 triệu</label></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -86,7 +109,7 @@
                         <% ArrayList<Shipment> list = (ArrayList<Shipment>) request.getAttribute("list"); %>
                         <% for (int i = 0; i < list.size(); i++) {%>
                         <tr>
-                            <td><img src="images/product/02.jpg" alt="image 2" /> </td>
+                            <td><a href="DetailProduct?idProduct=<%= list.get(i).getProduct().getId() %>"><img src="images/product/02.jpg" alt="image 2" /></a></td>
                             <td><%= list.get(i).getProduct().getName()%></td> 
                             <td align="center">
                                 <input type="text" value="<%= list.get(i).getQuantity()%>" style="width: 20px; text-align: right" />  
@@ -94,7 +117,7 @@
                             <td align="right"><%= list.get(i).getProduct().getPrice()%>  </td>
                             <td align="right"><%= list.get(i).getTotal()%> </td>
                             <td align="center"> 
-                                <a href="RemoveFromCart?idShipment=<%= list.get(i).getId() %>"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  
+                                <a href="RemoveFromCart?idShipment=<%= list.get(i).getId()%>"><img src="images/remove_x.gif" alt="remove" /><br />Hủy</a>  
                             </td>
                         </tr>
                         <% }%>

@@ -7,25 +7,21 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.RequestDispatcher;
 import dao.ShipmentDAO;
 import dao.ProductDAO;
 import model.Shipment;
-import model.User;
 
 /**
  *
  * @author Minh Đức
  */
-@WebServlet(name = "ShowShipment", urlPatterns = {"/ShowShipment"})
-public class ShowShipment extends HttpServlet {
+@WebServlet(name = "RemoveShipment", urlPatterns = {"/RemoveShipment"})
+public class RemoveShipment extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +40,10 @@ public class ShowShipment extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ShowShipment</title>");            
+            out.println("<title>Servlet RemoveShipment</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ShowShipment at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RemoveShipment at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,7 +61,13 @@ public class ShowShipment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int idShipment = Integer.parseInt(request.getParameter("idShipment"));
+        ShipmentDAO sd = new ShipmentDAO();
+        Shipment shipment = sd.getShipment(idShipment);
+        ProductDAO pd = new ProductDAO();
+        int check1 = sd.updateShipmentStatus(idShipment, 0);
+        int check2 = pd.updateRemain(shipment.getQuantity(), shipment.getProduct().getId());
+        if(check1 != 0 && check2 != 0) response.sendRedirect("ShowShipment");
     }
 
     /**
@@ -79,25 +81,7 @@ public class ShowShipment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        ShipmentDAO sd = new ShipmentDAO();
-        ProductDAO pd = new ProductDAO();
-        ArrayList<Shipment> listShipment = sd.getAllShipment(user.getId(), 0);
-        for(int i = 0;i < listShipment.size();i++){
-            String item = "item";
-            item += i;
-            String idShipment = request.getParameter(item);
-            if(idShipment != null){
-                sd.updateShipmentStatus(Integer.parseInt(idShipment), 1);
-                Shipment shipment = sd.getShipment(Integer.parseInt(idShipment));
-                pd.updateRemain(-shipment.getQuantity(), shipment.getProduct().getId());
-            }
-        }
-        listShipment = sd.getAllShipment(user.getId(), 1);
-        request.setAttribute("listShipment", listShipment);
-        RequestDispatcher rd = request.getRequestDispatcher("");
-        rd.forward(request, response);
+        processRequest(request, response);
     }
 
     /**

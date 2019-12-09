@@ -135,10 +135,14 @@
                         <% for (int i = 0; i < listProduct.size(); i++) {%>
                         <div class="product_box">
                             <h3><%= listProduct.get(i).getName()%></h3>
-                            <a href="productdetail.html"><img src="images/product/02.jpg" alt="Shoes 2" /></a>
+                            <a href="DetailProduct?idProduct=<%= listProduct.get(i).getId() %>"><img src="images/product/02.jpg" alt="Shoes 2" /></a>
                             <p class="product_price"><%= listProduct.get(i).getPrice()%> đ</p>
+                            <% if(user == null){ %>
+                            <a href="login.jsp" class="addtocart"></a>
+                            <% } else { %>
                             <a href="AddToCart?productId=<%= listProduct.get(i).getId()%>" class="addtocart"></a>
-                            <a href="productdetail.jsp" class="detail"></a>
+                            <% } %>
+                            <a href="DetailProduct?idProduct=<%= listProduct.get(i).getId() %>" class="detail"></a>
                         </div>  
                         <% }%>
                         <div class="cleaner"></div>

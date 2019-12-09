@@ -1,5 +1,9 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.Product" %>
+<%@page import="model.User" %>
+<%@page import="model.Manufacturer" %>
+<%@page import="model.Type" %>
+<%@page import="java.util.ArrayList" %>>
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -31,11 +35,17 @@
             <div id="templatemo_header">
                 <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
                 <div id="header_right">
-                    <p>
-                        <a href="#">Tài khoản</a> | <a href="#">Giỏ hàng</a> | <a href="#">Đăng xuất</a> | <a href="#">Đăng nhập</a></p>
-                    <p>
-                        Giỏ hàng hiện tại: <strong>3 items</strong> ( <a href="shoppingcart.html">Xem giỏ</a> )
-                    </p>
+                    <% User user = (User) session.getAttribute("user"); %>
+                    <% if (user == null) { %>
+                    <a href="login.jsp">Đăng nhập</a> |
+                    <a href="editInforUser.jsp">Đăng ký</a>
+                    <% } else {%>                     
+                    <p>Xin chào, <%= user.getName()%></p>
+                    <a href="editInforUser.jsp">Tài khoản</a> | 
+                    <a href="ShowShoppingCart">Giỏ hàng</a> |
+                    <a href="ShowShipment">Đơn hàng</a> |
+                    <a href="LogOut">Đăng xuất</a>
+                    <% }%>
                 </div>
                 <div class="cleaner"></div>
             </div> 
@@ -81,50 +91,42 @@
                         <h3>DANH MỤC SẢN PHẨM</h3>   
                         <div class="content"> 
                             <ul class="sidebar_list">
-                                <li class="first"><a href="#">Giày thể thao nam</a></li>
-                                <li><a href="#">Giày sneaker nam</a></li>
-                                <li><a href="#">Giày lười nam</a></li>
-                                <li><a href="#">Giày tây nam</a></li>
-                                <li><a href="#">Giày vải nam</a></li>
-                                <li><a href="#">Giày boots nam</a></li>
-                                <li><a href="#">Giày casual nam</a></li>
-                                <li><a href="#">Giày thể thao nữ</a></li>
-                                <li><a href="#">Giày sneaker nữ</a></li>
-                                <li><a href="#">Giày lười nữ</a></li>
-                                <li><a href="#">Giày cao gót</a></li>
-                                <li><a href="#">Giày búp bê</a></li>
-                                <li><a href="#">Giày đế xuồng nữ</a></li>
-                                <li><a href="#">Giày boots nữ</a></li>
-                                <li class="last"><a href="#">Giày sandals nữ</a></li>
+                                <% ArrayList<Type> listType = (ArrayList<Type>) request.getAttribute("listType");  %>
+                                <% for (int i = 0; i < listType.size(); i++) {%>
+                                <li><a href="Filter?type=<%= listType.get(i).getType()%>"><%= listType.get(i).getType()%></a></li>
+                                    <% }%>
                             </ul>
                         </div>
                     </div>
                     <div class="sidebar_box"><span class="bottom"></span>
-                        <h3>Bán chạy nhất </h3>   
-                        <div class="content"> 
-                            <div class="bs_box">
-                                <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                <h4><a href="#">Tên giày bán chạy 1</a></h4>
-                                <p class="price">$10</p>
-                                <div class="cleaner"></div>
+                        <h3>LỌC SẢN PHẨM</h3>
+                        <div class="filter">
+                            <div class="filter-hang">
+                                <span>CHỌN HÃNG SẢN XUẤT</span> <br>
+                                <ul>
+                                    <% ArrayList<Manufacturer> listManu = (ArrayList<Manufacturer>) request.getAttribute("listManu");  %>
+                                    <% for (int i = 0; i < listManu.size(); i++) {%>
+                                    <li>
+                                        <a>
+                                            <label><input type="radio" onclick="location = 'Filter?manufacturer=<%= listManu.get(i).getName()%>'"><%= listManu.get(i).getName()%></label>
+                                        </a>
+                                    </li>
+                                    <% }%>
+                                </ul>
                             </div>
-                            <div class="bs_box">
-                                <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                <h4><a href="#">Tên giày bán chạy 2</a></h4>
-                                <p class="price">$12</p>
-                                <div class="cleaner"></div>
-                            </div>
-                            <div class="bs_box">
-                                <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                <h4><a href="#">Tên giày bán chạy 3</a></h4>
-                                <p class="price">$20</p>
-                                <div class="cleaner"></div>
-                            </div>
-                            <div class="bs_box">
-                                <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-                                <h4><a href="#">Tên giày bán chạy 4</a></h4>
-                                <p class="price">$8</p>
-                                <div class="cleaner"></div>
+                            <div class="filter-gia">
+                                <span>CHỌN MỨC GIÁ</span> <br>
+                                <ul>
+                                    <li>
+                                        <a><label><input type="radio" onclick="location = 'Filter?priceRange=1'">Dưới 1 triệu</label></a>
+                                    </li>
+                                    <li>
+                                        <a><label><input type="radio" onclick="location = 'Filter?priceRange=2'">Từ 1-2 triệu</label></a>
+                                    </li>
+                                    <li>
+                                        <a><label><input type="radio" onclick="location = 'Filter?priceRange=3'">Trên 2 triệu</label></a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -132,37 +134,42 @@
                 <div id="content" class="float_r">
                     <h1>Chi tiết sản phẩm</h1>
                     <div class="content_half float_l">
-                        <a  rel="lightbox[portfolio]" href="images/product/10_l.jpg"><img src="images/product/10.jpg" alt="image" /></a>
+                        <img src="images/product/10.jpg" alt="image" />
                     </div>
                     <div class="content_half float_r">
+                        <% Product product = (Product) request.getAttribute("product");%>
                         <table>
                             <tr>
+                                <td>Tên sản phẩm:</td>
+                                <td><%= product.getName() %></td>
+                            </tr>
+                            <tr>
                                 <td width="160">Giá:</td>
-                                <td>$100</td>
+                                <td><%= product.getPrice()%></td>
                             </tr>
                             <tr>
-                                <td>Trạng thái:</td>
-                                <td>Còn hàng</td>
-                            </tr>
-                            <tr>
-                                <td>Mã sản phẩm:</td>
-                                <td>N123</td>
-                            </tr>
-                            <tr>
-                                <td>Giới tính:</td>
-                                <td>Nữ</td>
+                                <td>Loại sản phẩm:</td>
+                                <td><%= product.getType().getType()%></td>
                             </tr>
                             <tr>
                                 <td>Hãng sản suất:</td>
-                                <td>Nike</td>
+                                <td><%= product.getManufacturer().getName()%></td>
                             </tr>
                             <tr>
-                                <td>Số lượng:</td>
-                                <td><input type="text" value="1" style="width: 20px; text-align: right" /></td>
+                                <td>Trạng thái:</td>
+                                <td>
+                                    <%= (product.getRemain() > 0) ? "Còn hàng" : "Hết hàng"%>
+                                </td>
                             </tr>
+                            <% if(product.getRemain() > 0){ %>
+                            <tr>
+                                <td>Số lượng:</td>
+                                <td><%= product.getRemain() %></td>
+                            </tr>
+                            <% } %>
                         </table>
                         <div class="cleaner h20"></div>
-                        <a href="shoppingcart.html" class="addtocart"></a>
+                        <a href="AddToCart?productId=<%= product.getId()%>" class="addtocart"></a>
                     </div>
                     <div class="cleaner h30"></div>
 
@@ -171,41 +178,30 @@
 
                     <div class="cleaner h50"></div>
 
-                    <h3>Sản phẩm tương tự</h3>
+                    <h3>Sản phẩm liên quan</h3>
+                    <% ArrayList<Product> relevantProduct = (ArrayList<Product>) request.getAttribute("relevantProduct"); %>
+                    <% for (Product p : relevantProduct) {%>
                     <div class="product_box">
-                        <a href="productdetail.html"><img src="images/product/01.jpg" alt="" /></a>
-                        <h3>Adidas xxx</h3>
-                        <p class="product_price">$ 100</p>
-                        <a href="shoppingcart.html" class="addtocart"></a>
-                        <a href="productdetail.html" class="detail"></a>
-                    </div>        	
-                    <div class="product_box">
-                        <a href="productdetail.html"><img src="images/product/02.jpg" alt="" /></a>
-                        <h3>Converse xxx</h3>
-                        <p class="product_price">$ 200</p>
-                        <a href="shoppingcart.html" class="addtocart"></a>
-                        <a href="productdetail.html" class="detail"></a>
-                    </div>        	
-                    <div class="product_box no_margin_right">
-                        <a href="productdetail.html"><img src="images/product/03.jpg" alt="" /></a>
-                        <h3>Adidas xyz</h3>
-                        <p class="product_price">$ 120</p>
-                        <a href="shoppingcart.html" class="addtocart"></a>
-                        <a href="productdetail.html" class="detail"></a>
-                    </div>     
+                        <a href="DetailProduct?idProduct=<%= p.getId()%>"><img src="images/product/01.jpg" alt="" /></a>
+                        <h3><%= p.getName()%></h3>
+                        <p class="product_price"><%= p.getPrice()%> đ</p>
+                        <% if (user == null) { %>
+                        <a href="login.jsp" class="addtocart"></a>
+                        <% } else {%>
+                        <a href="AddToCart?productId=<%= p.getId()%>" class="addtocart"></a>
+                        <% }%>
+                        <a href="DetailProduct?idProduct=<%= p.getId()%>" class="detail"></a>
+                    </div> 
+                    <% }%>
                 </div> 
                 <div class="cleaner"></div>
             </div> 
-            <!-- END of templatemo_main -->
             <div id="templatemo_footer">
                 <p><a href="#">Trang chủ</a> | <a href="#">Sản phẩm</a> | <a href="#">Giới thiệu</a> | <a href="#">FAQ</a> | <a href="#">Liên hệ</a>
                 </p>
                 Copyright © 2019 <a href="#">D16 PTIT</a>
             </div> 
-            <!-- END of templatemo_footer -->
         </div> 
-        <!-- END of templatemo_wrapper -->
     </div> 
-    <!-- END of templatemo_body_wrapper -->
 </body>
 </html>

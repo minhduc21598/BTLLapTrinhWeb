@@ -13,14 +13,14 @@ public class ShipmentDAO extends DAO{
         getDBConnection();
     }
     
-    public ArrayList<Shipment> getShipment(int idUser){
+    public ArrayList<Shipment> getAllShipment(int idUser, int status){
         ArrayList<Shipment> listShipment = new ArrayList<>();
         String sql = "SELECT * FROM donhang WHERE id_nguoidung = ? AND trangthai = ?";
         ProductDAO pd = new ProductDAO();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idUser);
-            ps.setInt(2, 0);
+            ps.setInt(2, status);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Shipment shipment = new Shipment();
@@ -36,6 +36,28 @@ public class ShipmentDAO extends DAO{
             e.printStackTrace();
         }
         return listShipment;
+    }
+    
+    public Shipment getShipment(int id){
+        Shipment shipment = new Shipment();
+        String sql = "SELECT * FROM donhang WHERE id = ?";
+        ProductDAO pd = new ProductDAO();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                shipment.setId(rs.getInt("id"));
+                shipment.setQuantity(rs.getInt("soluong"));
+                shipment.setTotal(rs.getDouble("tongtien"));
+                shipment.setStatus(rs.getInt("trangthai"));
+                Product product = pd.getProduct(rs.getInt("id_sanpham"));
+                shipment.setProduct(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return shipment;
     }
     
     public int createShipmentInCart(Shipment shipment){
@@ -62,6 +84,20 @@ public class ShipmentDAO extends DAO{
             ps.setDouble(1, product.getPrice());
             ps.setInt(2, product.getId());
             ps.setInt(3, idUser);
+            int rowCount = ps.executeUpdate();
+            return rowCount;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    public int updateShipmentStatus(int idShipment, int status){
+        String sql = "UPDATE donhang SET status = ? WHERE id = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, status);
+            ps.setInt(2, idShipment);
             int rowCount = ps.executeUpdate();
             return rowCount;
         } catch (Exception e) {
