@@ -12,28 +12,13 @@
     <meta name="description" content="" />
     <link href="css/home.css" rel="stylesheet" type="text/css" />
     <link href="css/ddsmoothmenu.css" rel="stylesheet" type="text/css"  />
-    <!--     <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/ddsmoothmenu.js"> 
-         </script> 
-         <script type="text/javascript">
-        // ddsmoothmenu.init({
-        // 	mainmenuid: "top_nav", //menu DIV id
-        // 	orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
-        // 	classname: 'ddsmoothmenu', //class added to menu's outer DIV
-        // 	//customtheme: ["#1c5a80", "#18374a"],
-        // 	contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
-        // })
-        </script> 
-         <script type="text/javascript" src="js/jquery-1-4-2.min.js"></script>  
-         <link rel="stylesheet" href="css/slimbox2.css" type="text/css" media="screen" />  
-         <script type="text/JavaScript" src="js/slimbox2.js"></script>  -->
 
 </head>
 <body>
     <div id="templatemo_body_wrapper">
         <div id="templatemo_wrapper">
             <div id="templatemo_header">
-                <div id="site_title"><h1><a href="#">Online Shoes Store</a></h1></div>
+                <div id="site_title"><h1><a href="#">Shop Giày Online</a></h1></div>
                 <div id="header_right">
                     <% User user = (User) session.getAttribute("user"); %>
                     <% if (user == null) { %>
@@ -53,30 +38,12 @@
             <div id="templatemo_menubar">
                 <div id="top_nav" class="ddsmoothmenu">
                     <ul>
-                        <li><a href="index.html">Trang Chủ</a></li>
-                        <li><a href="products.html">Sản Phẩm</a>
-                            <!--  <ul>
-                                 <li><a href="#submenu1">Sub menu 1</a></li>
-                                 <li><a href="#submenu2">Sub menu 2</a></li>
-                                 <li><a href="#submenu3">Sub menu 3</a></li>
-                                 <li><a href="#submenu4">Sub menu 4</a></li>
-                                 <li><a href="#submenu5">Sub menu 5</a></li>
-                           </ul> -->
-                        </li>
-                        <li><a href="about.html">Giới Thiệu</a>
-                            <!--  <ul>
-                                 <li><a href="#submenu1">Sub menu 1</a></li>
-                                 <li><a href="#submenu2">Sub menu 2</a></li>
-                                 <li><a href="#submenu3">Sub menu 3</a></li>
-                           </ul> -->
-                        </li>
-                        <li><a href="faqs.html">FAQ</a></li>
-                        <!-- <li><a href="checkout.html">Checkout</a></li> -->
-                        <li><a href="contact.html">Liên Hệ</a></li>
-                    </ul>
+                            <li><a href="index.jsp" class="selected">Trang chủ</a></li>
+                            <li><a href="#">Giới thiệu</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                        </ul>
                     <br style="clear: left" />
-                </div> 
-                <!-- end of ddsmoothmenu -->
                 <div id="templatemo_search">
                     <form action="#" method="get">
                         <input type="text" placeholder="Nhập sản phẩm cần tìm" value=" " name="keyword" id="keyword" title="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
@@ -84,7 +51,6 @@
                     </form>
                 </div>
             </div> 
-            <!-- END of templatemo_menubar -->
             <div id="templatemo_main">
                 <div id="sidebar" class="float_l">
                     <div class="sidebar_box"><span class="bottom"></span>
