@@ -3,6 +3,7 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import model.Product;
 import model.Type;
 import model.Manufacturer;
@@ -15,7 +16,7 @@ public class ProductDAO extends DAO{
         getDBConnection();
     }
     
-    public Product getProduct(int id){
+    public static Product getProduct(int id){
         Product product = new Product();
         String sql = "SELECT * FROM sanpham WHERE id = ?";
         ManufacturerDAO md = new ManufacturerDAO();
@@ -47,6 +48,27 @@ public class ProductDAO extends DAO{
             e.printStackTrace();
         }
         return product;
+    }
+    
+    public static ArrayList<Product> ListProduct() {
+        String sql = "SELECT * FROM SanPham";
+        ArrayList<Product> list = new ArrayList<>();
+        try {
+            PreparedStatement ps = (PreparedStatement) con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product sp= new Product();
+                sp.setId(rs.getInt("id"));
+                sp.setName(rs.getString("tenSP"));
+                sp.setPrice(rs.getDouble("giaban"));
+                sp.setImportprice(rs.getDouble("gianhap"));
+                //sp.setHinhAnh(rs.getString("HinhAnh"));
+                list.add(sp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
     
     public int createProduct(Product product){

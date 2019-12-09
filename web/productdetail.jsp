@@ -162,7 +162,7 @@
                             </tr>
                         </table>
                         <div class="cleaner h20"></div>
-                        <a href="shoppingcart.html" class="addtocart"></a>
+                        <a href="shoppingcart.jsp" class="addtocart"></a>
                     </div>
                     <div class="cleaner h30"></div>
 
@@ -173,25 +173,25 @@
 
                     <h3>Sản phẩm tương tự</h3>
                     <div class="product_box">
-                        <a href="productdetail.html"><img src="images/product/01.jpg" alt="" /></a>
+                        <a href="productdetail.jsp"><img src="images/product/01.jpg" alt="" /></a>
                         <h3>Adidas xxx</h3>
                         <p class="product_price">$ 100</p>
-                        <a href="shoppingcart.html" class="addtocart"></a>
-                        <a href="productdetail.html" class="detail"></a>
+                        <a href="shoppingcart.jsp" class="addtocart"></a>
+                        <a href="productdetail.jsp" class="detail"></a>
                     </div>        	
                     <div class="product_box">
-                        <a href="productdetail.html"><img src="images/product/02.jpg" alt="" /></a>
+                        <a href="productdetail.jsp"><img src="images/product/02.jpg" alt="" /></a>
                         <h3>Converse xxx</h3>
                         <p class="product_price">$ 200</p>
-                        <a href="shoppingcart.html" class="addtocart"></a>
-                        <a href="productdetail.html" class="detail"></a>
+                        <a href="shoppingcart.jsp" class="addtocart"></a>
+                        <a href="productdetail.jsp" class="detail"></a>
                     </div>        	
                     <div class="product_box no_margin_right">
-                        <a href="productdetail.html"><img src="images/product/03.jpg" alt="" /></a>
+                        <a href="productdetail.jsp"><img src="images/product/03.jpg" alt="" /></a>
                         <h3>Adidas xyz</h3>
                         <p class="product_price">$ 120</p>
-                        <a href="shoppingcart.html" class="addtocart"></a>
-                        <a href="productdetail.html" class="detail"></a>
+                        <a href="shoppingcart.jsp" class="addtocart"></a>
+                        <a href="productdetail.jsp" class="detail"></a>
                     </div>     
                 </div> 
                 <div class="cleaner"></div>
