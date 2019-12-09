@@ -26,6 +26,9 @@
         <% request.removeAttribute("mess"); %>
         <% }%>
     </script>
+    </head>
+
+    
 
     <body>
         <div id="templatemo_body_wrapper">
@@ -94,7 +97,9 @@
                                         <% for (int i = 0; i < listManu.size(); i++) {%>
                                         <li>
                                             <a>
-                                                <label><input type="radio" onclick="location = 'Filter?manufacturer=<%= listManu.get(i).getName()%>'"><%= listManu.get(i).getName()%></label>
+                                                <label>
+                                                  <input type="radio" onclick="location = 'Filter?manufacturer=<%= listManu.get(i).getName()%>'"><%= listManu.get(i).getName()%>
+                                                </label>
                                             </a>
                                         </li>
                                         <% }%>
