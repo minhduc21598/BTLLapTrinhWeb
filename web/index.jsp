@@ -15,15 +15,15 @@
 
         <link  href="css/ddsmoothmenu.css"  rel="stylesheet" type="text/css" />
 
-
-    </head>
-
-    <script>
+        <script>
         <% String mess = (String) request.getAttribute("mess"); %>
         <% if (mess != null) {%>
         alert(`<%= mess%>`);
         <% }%>
     </script>
+    </head>
+
+    
 
     <body>
         <div id="templatemo_body_wrapper">
@@ -76,7 +76,7 @@
                     <div id="templatemo_search">
                         <form action="#" method="get">
                             <input type="text" value=" " name="keyword" id="keyword" title="keyword" onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
-                            <input type="submit" name="Search" value=" " alt="Search" id="searchbutton" title="Search" class="sub_btn"  />
+                            <input type="submit" name="Search" value=" " id="searchbutton" title="Search" class="sub_btn"  />
                         </form>
                     </div>
                 </div> 
@@ -87,7 +87,7 @@
                             <h3>DANH MỤC SẢN PHẨM</h3>   
                             <div class="content"> 
                                 <ul class="sidebar_list">
-                                    <!--                                    <li class="first"><a href="#">Giày thể thao nam</a></li>
+                                                                      <li class="first"><a href="#">Giày thể thao nam</a></li>
                                                                         <li><a href="#">Giày sneaker nam</a></li>
                                                                         <li><a href="#">Giày lười nam</a></li>
                                                                         <li><a href="#">Giày tây nam</a></li>
@@ -101,11 +101,8 @@
                                                                         <li><a href="#">Giày búp bê</a></li>
                                                                         <li><a href="#">Giày đế xuồng nữ</a></li>
                                                                         <li><a href="#">Giày boots nữ</a></li>
-                                                                        <li class="last"><a href="#">Giày sandals nữ</a></li>-->
-                                    <% ArrayList<Type> listType = (ArrayList<Type>) request.getAttribute("listType");  %>
-                                    <% for (int i = 0; i < listType.size(); i++) {%>
-                                    <li><a href="#"><%= listType.get(i).getType()%></a></li>
-                                    <% }%>
+                                                                        <li class="last"><a href="#">Giày sandals nữ</a></li>
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -117,22 +114,22 @@
                                     <ul>
                                         <li>
                                             <a href="#">
-                                                <label><input type="checkbox" name="" value="">Adidas</label>
+                                                <label><input type="checkbox">Adidas</label>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <label><input type="checkbox" name="" value="">Nike</label>
+                                                <label><input type="checkbox">Nike</label>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <label><input type="checkbox" name="" value="">Converse</label>
+                                                <label><input type="checkbox">Converse</label>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <label><input type="checkbox" name="" value="">Bitis</label>
+                                                <label><input type="checkbox">Bitis</label>
                                             </a>
                                         </li>
                                     </ul>
@@ -142,17 +139,17 @@
                                     <ul>
                                         <li>
                                             <a href="#">
-                                                <label><input type="checkbox" name="" value="">Dưới 1 triệu</label>
+                                                <label><input type="checkbox">Dưới 1 triệu</label>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <label><input type="checkbox" name="" value="">Từ 1-2 triệu</label>
+                                                <label><input type="checkbox">Từ 1-2 triệu</label>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="#">
-                                                <label><input type="checkbox" name="" value="">Trên 2 triệu</label>
+                                                <label><input type="checkbox">Trên 2 triệu</label>
                                             </a>
                                         </li>
                                     </ul>
@@ -164,7 +161,7 @@
                     <div id="content" class="float_r">
                         <div class="box-sort">
                             <span>Sắp xếp theo:</span>
-                            <select name="">
+                            <select >
                                 <option value=""><a href="#">Sắp xếp theo</a></option>
                                 <option value=""><a href="#">Giá tăng dần</a></option>
                                 <option value=""><a href="#">Giá giảm dần</a></option>
