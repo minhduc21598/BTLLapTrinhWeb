@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import dao.ManufacturerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,19 +13,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
-import dao.ShipmentDAO;
-import model.Shipment;
+import dao.ProductDAO;
+import dao.TypeDAO;
 import java.util.ArrayList;
-import model.User;
+import model.Manufacturer;
+import model.Product;
+import model.Type;
 
 /**
  *
- * @author Minh Đức
+ * @author ngoqu
  */
-@WebServlet(name = "ShowShoppingCart", urlPatterns = {"/ShowShoppingCart"})
-public class ShowShoppingCart extends HttpServlet {
+@WebServlet(name = "GetProductForAdmin", urlPatterns = {"/GetProductForAdmin"})
+public class GetProductForAdmin extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,12 +40,11 @@ public class ShowShoppingCart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        ShipmentDAO sd = new ShipmentDAO();
-        ArrayList<Shipment> listShipment = sd.getShipment(user.getId());
-        request.setAttribute("list", listShipment);
-        RequestDispatcher rd = request.getRequestDispatcher("shoppingcart.jsp");
+        
+        ProductDAO pd = new ProductDAO();
+        ArrayList<Product> listProduct = pd.getAllProduct();
+        request.setAttribute("listProduct", listProduct);
+        RequestDispatcher rd = request.getRequestDispatcher("adminHome.jsp");
         rd.forward(request, response);
     }
 
@@ -73,6 +74,7 @@ public class ShowShoppingCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**

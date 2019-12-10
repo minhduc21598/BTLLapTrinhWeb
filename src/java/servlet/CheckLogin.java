@@ -3,7 +3,6 @@ package servlet;
 import dao.AccountDAO;
 import dao.UserDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,24 +63,21 @@ public class CheckLogin extends HttpServlet {
         String pass = request.getParameter("pass");
         AccountDAO ad = new AccountDAO();
         Account ac = ad.checkAccount(name, pass);
-
         if (ac.getUsername() != null) {
             UserDAO ud = new UserDAO();
             User user = ud.checkUser(ac.getId());
             user.setAccount(ac);
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-            request.setAttribute("mess", "Đăng nhập thành công !");
             if (user.getType() == 2) {         
-                RequestDispatcher rd = request.getRequestDispatcher("GetInitialData");
-                rd.forward(request, response);
+                response.sendRedirect("GetInitialData");
             } else if (user.getType() == 1) {
-                RequestDispatcher rd = request.getRequestDispatcher("adminHome.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("GetProductForAdmin");
                 rd.forward(request, response);
             }
         } else {
             request.setAttribute("mess", "Sai tên đăng nhập hoặc mật khẩu !");
-            RequestDispatcher rd = request.getRequestDispatcher("GetInitialData");
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);
         }
     }

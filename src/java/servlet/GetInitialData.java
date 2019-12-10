@@ -6,25 +6,27 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
-import dao.ShipmentDAO;
-import model.Shipment;
 import java.util.ArrayList;
-import model.User;
+import model.Type;
+import dao.TypeDAO;
+import model.Manufacturer;
+import dao.ManufacturerDAO;
+import model.Product;
+import dao.ProductDAO;
+
 
 /**
  *
  * @author Minh Đức
  */
-@WebServlet(name = "ShowShoppingCart", urlPatterns = {"/ShowShoppingCart"})
-public class ShowShoppingCart extends HttpServlet {
+@WebServlet(name = "GetInitialData", urlPatterns = {"/GetInitialData"})
+public class GetInitialData extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,13 +40,23 @@ public class ShowShoppingCart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        ShipmentDAO sd = new ShipmentDAO();
-        ArrayList<Shipment> listShipment = sd.getShipment(user.getId());
-        request.setAttribute("list", listShipment);
-        RequestDispatcher rd = request.getRequestDispatcher("shoppingcart.jsp");
+        ArrayList<Product> listProduct = (ArrayList<Product>) request.getAttribute("listProduct");
+        TypeDAO td = new TypeDAO();
+        ArrayList<Type> listType = td.getAllType();
+        request.setAttribute("listType", listType);
+
+        ManufacturerDAO md = new ManufacturerDAO();
+        ArrayList<Manufacturer> listManu = md.getAllManufacturer();
+        request.setAttribute("listManu", listManu);
+
+        if (listProduct == null) {
+            ProductDAO pd = new ProductDAO();
+            listProduct = pd.getAllProduct();
+        }
+        request.setAttribute("listProduct", listProduct);
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -73,6 +85,7 @@ public class ShowShoppingCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**

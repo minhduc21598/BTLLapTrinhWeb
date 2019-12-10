@@ -12,7 +12,7 @@ public class TypeDAO extends DAO{
         getDBConnection();
     }
     
-    public ArrayList<Type> getAllType(){
+    public static ArrayList<Type> getAllType(){
         ArrayList<Type> listType = new ArrayList<>();
         String sql = "SELECT * FROM loai";
         try {

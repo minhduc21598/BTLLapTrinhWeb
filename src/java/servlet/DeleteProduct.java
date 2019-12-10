@@ -5,26 +5,22 @@
  */
 package servlet;
 
+import dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.RequestDispatcher;
-import dao.ShipmentDAO;
-import model.Shipment;
-import java.util.ArrayList;
-import model.User;
 
 /**
  *
- * @author Minh Đức
+ * @author ngoqu
  */
-@WebServlet(name = "ShowShoppingCart", urlPatterns = {"/ShowShoppingCart"})
-public class ShowShoppingCart extends HttpServlet {
+@WebServlet(name = "DeleteProduct", urlPatterns = {"/DeleteProduct"})
+public class DeleteProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,14 +33,7 @@ public class ShowShoppingCart extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        ShipmentDAO sd = new ShipmentDAO();
-        ArrayList<Shipment> listShipment = sd.getShipment(user.getId());
-        request.setAttribute("list", listShipment);
-        RequestDispatcher rd = request.getRequestDispatcher("shoppingcart.jsp");
-        rd.forward(request, response);
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,6 +48,13 @@ public class ShowShoppingCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        String MaSP = request.getParameter("maSP");
+        ProductDAO.deleteProduct(Integer.parseInt(MaSP));
+        String url = "/adminHome.jsp";
+        RequestDispatcher rd = getServletContext().getNamedDispatcher(url);
+        rd.forward(request, response);
         processRequest(request, response);
     }
 
@@ -73,6 +69,7 @@ public class ShowShoppingCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**

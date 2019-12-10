@@ -11,18 +11,18 @@
         <title>Trang chủ quản trị</title>
         <meta name="keywords" content="" />
         <meta name="description" content="" />
-        <link href="css/home.css" rel="stylesheet" type="text/css" />
+        <link href="home.css" rel="stylesheet" type="text/css" />
 
         <link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
 
         <link  href="css/ddsmoothmenu.css"  rel="stylesheet" type="text/css" />
 
         <script>
-        <% String mess = (String) request.getAttribute("mess"); %>
-        <% if (mess != null) {%>
-        alert(`<%= mess%>`);
-        <% }%>
-    </script>
+    <% String mess = (String) request.getAttribute("mess"); %>
+    <% if (mess != null) {%>
+    alert(`<%= mess%>`);
+    <% }%>
+</script>
     </head>
     <body>
         <div id="templatemo_body_wrapper">
@@ -41,7 +41,7 @@
                 <div id="templatemo_menubar">
                     <div id="top_nav" class="ddsmoothmenu">
                         <ul>
-                            <li><a href="adminHome.jsp" >Danh sách sản phẩm</a></li>
+                            <li><a href="GetProductForAdmin" >Danh sách sản phẩm</a></li>
                             <li><a href="addProducts.jsp" class="selected">Thêm sản phẩm</a>
                         </ul>
                     </div>  
@@ -49,9 +49,9 @@
 
                 <div id="templatemo_main">
                     <div>
-                        <form class="box-edit-infor-customer" method="post">
+                        <form class="box-edit-infor-customer" method="post" action="qlProduct">
                             <h3>THÊM THÔNG TIN SẢN PHẨM</h3>
-                            <label>Tên Sản Phẩm:</label>
+                            <label>Tên sản phẩm:</label>
                             <input type="text" name = "tenSP" placeholder="Nhập tên sản phẩm" >
                             <label>Giá bán:</label>
                             <input type="text" name = "giaBan" placeholder="Nhập giá bán" >
@@ -61,14 +61,10 @@
                             <input type="text" name = "khuyenMai" placeholder="Nhập % khuyến mại" >
                             <label>Tồn kho:</label>
                             <input type="text" name = "tonKho" placeholder="Nhập số lượng còn lại trong kho" >
-                            <label>Nhập số lượng bán:</label>
-                            <input type="text" name = "name" placeholder="Nhập số lượng sản phẩm bán" >
-                            <label>Đặc điểm sản phẩm:</label>
-                            <input type="radio" name = "featured" value="1" > Hot
-                            <input type="radio" name = "featured" value="2" > Bán chạy
-                            </br>
+<!--                            <label>Nhập số lượng bán:</label>
+                            <input type="text" name = "soLuongBan" placeholder="Nhập số lượng sản phẩm bán" >-->
                             <label>Nhà cung cấp</label>
-                            <select>
+                            <select name="nhaCungCap">
                                 <option value="1">Converse</option>
                                 <option value="2">Adidas</option>
                                 <option value="3">Nike</option>
@@ -77,7 +73,7 @@
                             </select>
                             </br>
                             <label>Loại</label>
-                            <select>
+                            <select name="loai">
                                 <option value="1">Giày thể thao nam</option>
                                 <option value="2">Giày sneaker nam</option>
                                 <option value="3">Giày lười nam</option>
@@ -94,9 +90,6 @@
                                 <option value="14">Giày boots nữ</option>
                                 <option value="15">Giày sandals nữ</option>
                             </select>
-
-
-
                             <input type="submit" name = "OK">
                            
                         </form>

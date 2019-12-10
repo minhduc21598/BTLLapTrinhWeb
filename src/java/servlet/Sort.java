@@ -5,26 +5,26 @@
  */
 package servlet;
 
+import dao.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
-import dao.ShipmentDAO;
-import model.Shipment;
-import java.util.ArrayList;
-import model.User;
+import model.Product;
 
 /**
  *
  * @author Minh Đức
  */
-@WebServlet(name = "ShowShoppingCart", urlPatterns = {"/ShowShoppingCart"})
-public class ShowShoppingCart extends HttpServlet {
+@WebServlet(name = "Sort", urlPatterns = {"/Sort"})
+public class Sort extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,13 +38,6 @@ public class ShowShoppingCart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        ShipmentDAO sd = new ShipmentDAO();
-        ArrayList<Shipment> listShipment = sd.getShipment(user.getId());
-        request.setAttribute("list", listShipment);
-        RequestDispatcher rd = request.getRequestDispatcher("shoppingcart.jsp");
-        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,7 +52,27 @@ public class ShowShoppingCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String sortType = request.getParameter("sortType");
+        ProductDAO pd = new ProductDAO();
+        ArrayList<Product> listProduct = pd.getAllProduct();
+        if (sortType.equals("increase")) {
+            Collections.sort(listProduct, new Comparator<Product>() {
+                @Override
+                public int compare(Product p1, Product p2) {
+                    return ((int) p1.getPrice() - (int) p2.getPrice());
+                }
+            });
+        } else if (sortType.equals("decrease")) {
+            Collections.sort(listProduct, new Comparator<Product>() {
+                @Override
+                public int compare(Product p1, Product p2) {
+                    return ((int) p2.getPrice() - (int) p1.getPrice());
+                }
+            });
+        }
+        request.setAttribute("listProduct", listProduct);
+        RequestDispatcher rd = request.getRequestDispatcher("GetInitialData");
+        rd.forward(request, response);
     }
 
     /**
@@ -73,6 +86,7 @@ public class ShowShoppingCart extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
