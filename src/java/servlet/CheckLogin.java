@@ -72,7 +72,7 @@ public class CheckLogin extends HttpServlet {
             if (user.getType() == 2) {         
                 response.sendRedirect("GetInitialData");
             } else if (user.getType() == 1) {
-                RequestDispatcher rd = request.getRequestDispatcher("adminHome.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("GetProductForAdmin");
                 rd.forward(request, response);
             }
         } else {

@@ -15,6 +15,43 @@ public class ProductDAO extends DAO{
         getDBConnection();
     }
     
+    public static int deleteProduct(int id) {
+        String sql = "DELETE FROM sanpham WHERE id = ?";
+        try {
+            PreparedStatement ps = con.prepareCall(sql);
+            ps.setInt(1, id);
+            int temp = ps.executeUpdate();
+            return temp;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public boolean updateProduct(Product sp) {
+        try {
+            String sql = "UPDATE sanpham SET tenSP = ? ,giaban = ?, gianhap = ?,khuyenmai = ?, tonkho = ?, soluongban = ?, hot = ?, banchay = ?, id_nhacungcap = ?, id_loai = ? WHERE id = ?";
+            PreparedStatement ps = con.prepareCall(sql);
+            ps.setString(1, sp.getName());
+            ps.setDouble(2, sp.getPrice());
+            ps.setDouble(3, sp.getImportprice());
+            ps.setInt(4, sp.getSale());
+            ps.setInt(5, sp.getRemain());
+            ps.setInt(6, sp.getSold());
+            ps.setInt(7, sp.getHot());
+            ps.setInt(8, sp.getBestseller());
+            ps.setInt(9, sp.getManufacturer().getId());
+            ps.setInt(10, sp.getType().getId());
+            ps.setInt(11, sp.getId());
+            int temp = ps.executeUpdate();
+            return temp == 1;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    
+    
     public ArrayList<Product> getAllProduct(){
         ArrayList<Product> listProduct = new ArrayList<>();
         String sql = "SELECT * FROM sanpham";
@@ -125,6 +162,7 @@ public class ProductDAO extends DAO{
         String sql = "SELECT * FROM sanpham WHERE tenSP LIKE '%" + name + "%'";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setString(1, "%" + name + "%");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Product product = new Product();
@@ -150,6 +188,29 @@ public class ProductDAO extends DAO{
         }
         return listProduct;
     }
+    
+    public boolean addProduct(Product sp) {
+        String sql = "INSERT INTO sanpham(tenSP,giaban,gianhap,khuyenmai,tonkho,soluongban,hot,banchay,id_nhacungcap,id_loai) VALUE(?,?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement ps = con.prepareCall(sql);
+            ps.setString(1, sp.getName());
+            ps.setDouble(2, sp.getPrice());
+            ps.setDouble(3, sp.getImportprice());
+            ps.setInt(4, sp.getSale());
+            ps.setInt(5, sp.getRemain());
+            ps.setInt(6, sp.getSold());
+            ps.setInt(7, sp.getHot());
+            ps.setInt(8, sp.getBestseller());
+            ps.setInt(9, sp.getManufacturer().getId());
+            ps.setInt(10, sp.getType().getId());
+            int temp = ps.executeUpdate();
+            return temp == 1;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    
     
     public ArrayList<Product> getProductByType(int idType){
         ArrayList<Product> listProduct = new ArrayList<>();
@@ -201,3 +262,9 @@ public class ProductDAO extends DAO{
     }
     
 }
+
+
+    
+    
+    
+

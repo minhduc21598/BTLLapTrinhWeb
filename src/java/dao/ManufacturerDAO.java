@@ -12,7 +12,7 @@ public class ManufacturerDAO extends DAO{
         getDBConnection();
     }
     
-    public ArrayList<Manufacturer> getAllManufacturer(){
+    public static ArrayList<Manufacturer> getAllManufacturer(){
         ArrayList<Manufacturer> listManu = new ArrayList<>();
         String sql = "SELECT * FROM nhacungcap";
         try {

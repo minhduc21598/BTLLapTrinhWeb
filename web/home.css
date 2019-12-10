@@ -413,6 +413,11 @@ a.nivo-prevNav {
   background-color: #45a049;
 }
 
+table {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid black;
+}
 /*Filter-hang-gia*/
 
 .filter a {
@@ -490,7 +495,7 @@ table tr td {
 /* Buy */
 .buy p{
 	float: right;
-	color: blackl;
+	color: black;
 	font-weight: bold;
 	margin-right: 100px;
 }
@@ -513,7 +518,7 @@ table tr td {
 /* Bill */
 .bill {
 	float: right;
-	color: blackl;
+	color: black;
 	font-weight: bold;
 	margin-right: 60px;
 }
@@ -559,4 +564,5 @@ table tr td {
 	background: #0984e3;
 	color: white;
 }
+
 
