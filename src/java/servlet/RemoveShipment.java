@@ -7,20 +7,21 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import dao.ShipmentDAO;
+import dao.ProductDAO;
+import model.Shipment;
 
 /**
  *
  * @author Minh Đức
  */
-@WebServlet(name = "LogOut", urlPatterns = {"/LogOut"})
-public class LogOut extends HttpServlet {
+@WebServlet(name = "RemoveShipment", urlPatterns = {"/RemoveShipment"})
+public class RemoveShipment extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,9 +35,18 @@ public class LogOut extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        session.removeAttribute("user");
-        response.sendRedirect("GetInitialData");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet RemoveShipment</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet RemoveShipment at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,7 +61,13 @@ public class LogOut extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int idShipment = Integer.parseInt(request.getParameter("idShipment"));
+        ShipmentDAO sd = new ShipmentDAO();
+        Shipment shipment = sd.getShipment(idShipment);
+        ProductDAO pd = new ProductDAO();
+        int check1 = sd.updateShipmentStatus(idShipment, 0);
+        int check2 = pd.updateRemain(shipment.getQuantity(), shipment.getProduct().getId());
+        if(check1 != 0 && check2 != 0) response.sendRedirect("ShowShipment");
     }
 
     /**

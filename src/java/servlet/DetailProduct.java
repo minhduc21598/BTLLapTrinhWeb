@@ -1,26 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlet;
 
+import dao.ManufacturerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.RequestDispatcher;
+import dao.ProductDAO;
+import dao.TypeDAO;
+import model.Product;
+import java.util.ArrayList;
+import model.Manufacturer;
+import model.Type;
 
 /**
  *
  * @author Minh Đức
  */
-@WebServlet(name = "LogOut", urlPatterns = {"/LogOut"})
-public class LogOut extends HttpServlet {
+@WebServlet(name = "DetailProduct", urlPatterns = {"/DetailProduct"})
+public class DetailProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,9 +36,18 @@ public class LogOut extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        session.removeAttribute("user");
-        response.sendRedirect("GetInitialData");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet DetailProduct</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet DetailProduct at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,7 +62,23 @@ public class LogOut extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int idProduct = Integer.parseInt(request.getParameter("idProduct"));
+        ProductDAO pd = new ProductDAO();
+        Product product = pd.getProduct(idProduct);
+        
+        TypeDAO td = new TypeDAO();
+        ArrayList<Type> listType = td.getAllType();
+        request.setAttribute("listType", listType);
+
+        ManufacturerDAO md = new ManufacturerDAO();
+        ArrayList<Manufacturer> listManu = md.getAllManufacturer();
+        request.setAttribute("listManu", listManu);       
+
+        ArrayList<Product> relevantProduct = pd.getProductByType(product.getType().getId());
+        request.setAttribute("product", product);
+        request.setAttribute("relevantProduct", relevantProduct);
+        RequestDispatcher rd = request.getRequestDispatcher("productdetail.jsp");
+        rd.forward(request, response);
     }
 
     /**

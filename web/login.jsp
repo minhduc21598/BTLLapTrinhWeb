@@ -47,13 +47,13 @@
                     <input type="text" name = "name" placeholder="Tên đăng nhập">
                     <input type="password" name = "pass" placeholder="Mật khẩu">                   
                     <input type="submit" name = "OK" value="Đăng nhập">                   
-                    <span> Bạn chưa có tài khoản? <a href ="editInforUser.jsp"> Đăng kí ngay <a/>
-                            </form>
-                            </div>
-                            <div id="templatemo_footer">
-                                Copyright © 2019 <a href="#">D16 PTIT</a> 
-                            </div> 
-                            </div>
-                            </div>
-                            </body>
-                            </html>
+                    <span> Bạn chưa có tài khoản? <a href ="editInforUser.jsp"> Đăng kí ngay <a/></span>
+                </form>
+            </div>
+            <div id="templatemo_footer">
+                Copyright © 2019 <a href="#">D16 PTIT</a> 
+            </div> 
+        </div>
+    </div>
+</body>
+</html>

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 import dao.ShipmentDAO;
+import dao.ProductDAO;
+import model.Shipment;
 
 /**
  *
@@ -62,8 +64,11 @@ public class RemoveFromCart extends HttpServlet {
             throws ServletException, IOException {
         int idShipment = Integer.parseInt(request.getParameter("idShipment"));
         ShipmentDAO sd = new ShipmentDAO();
+        Shipment shipment = sd.getShipment(idShipment);
+        ProductDAO pd = new ProductDAO();
+        pd.updateRemain(shipment.getQuantity(), shipment.getProduct().getId());
         int check = sd.deleteShipment(idShipment);
-        if(check != 0) response.sendRedirect("ShowShoppingCart");
+        if(check != 0) response.sendRedirect("ShowShipment");
     }
 
     /**
